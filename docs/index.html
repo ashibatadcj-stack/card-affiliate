@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あなたに最適なクレジットカード診断 | カード比較ナビ</title>
+  <meta name="description" content="3つの質問に答えるだけで、あなたにぴったりのクレジットカードがわかります。年会費・ポイント還元・審査難易度を比較してご提案。">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Hiragino Sans', sans-serif; background: #f5f7fa; color: #333; }
+    header { background: #1a56db; color: white; padding: 20px; text-align: center; }
+    header h1 { font-size: 1.6rem; }
+    header p { margin-top: 8px; font-size: 0.95rem; opacity: 0.9; }
+    .container { max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    .quiz-card { background: white; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .step-indicator { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
+    .progress-bar { height: 6px; background: #e0e0e0; border-radius: 3px; margin-bottom: 24px; }
+    .progress-fill { height: 100%; background: #1a56db; border-radius: 3px; transition: width 0.3s; }
+    .question { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option-btn {
+      padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: 8px;
+      background: white; font-size: 1rem; cursor: pointer; text-align: left;
+      transition: all 0.2s;
+    }
+    .option-btn:hover { border-color: #1a56db; background: #f0f4ff; }
+    .result-section { display: none; }
+    .result-card {
+      background: white; border-radius: 12px; padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;
+    }
+    .result-card h2 { font-size: 1.3rem; color: #1a56db; margin-bottom: 8px; }
+    .badge { display: inline-block; background: #e8f0fe; color: #1a56db; border-radius: 4px; padding: 4px 10px; font-size: 0.8rem; margin-bottom: 12px; }
+    .apply-btn {
+      display: block; width: 100%; padding: 16px; background: #e53e3e;
+      color: white; text-align: center; border-radius: 8px; font-size: 1.1rem;
+      font-weight: bold; text-decoration: none; margin-top: 16px;
+    }
+    .apply-btn:hover { background: #c53030; }
+    .features-list { list-style: none; padding: 0; }
+    .features-list li::before { content: "✓ "; color: #38a169; }
+    .features-list li { padding: 4px 0; }
+    .retry-btn {
+      display: block; text-align: center; margin: 20px auto; padding: 12px 32px;
+      border: 2px solid #1a56db; color: #1a56db; border-radius: 8px;
+      background: white; cursor: pointer; font-size: 1rem;
+    }
+    footer { text-align: center; padding: 40px 16px; color: #888; font-size: 0.8rem; line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>クレジットカード診断</h1>
+    <p>3つの質問に答えるだけ！あなたに最適なカードがわかります</p>
+  </header>
+
+  <div class="container">
+    <div class="quiz-card" id="quizSection">
+      <div class="step-indicator" id="stepIndicator">質問 1 / 3</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:33%"></div></div>
+      <div class="question" id="questionText"></div>
+      <div class="options" id="optionsContainer"></div>
+    </div>
+
+    <div class="result-section" id="resultSection">
+      <h2 style="margin-bottom:20px; font-size:1.3rem;">診断結果</h2>
+      <div id="resultCards"></div>
+      <button class="retry-btn" onclick="resetQuiz()">もう一度診断する</button>
+    </div>
+  </div>
+
+  <footer>
+    ※当サイトはアフィリエイト広告を掲載しています。<br>
+    ※掲載情報は記事作成時点のものです。最新情報は各カード公式サイトでご確認ください。<br>
+    ※審査結果は各カード会社の判断によります。
+  </footer>
+
+  <script>
+    const CARDS = [{"id": "rakuten", "name": "楽天カード", "affiliate_url": "https://example.com/rakuten", "annual_fee": "永年無料", "points": "楽天ポイント 1%〜3%", "features": ["年会費無料", "楽天市場で還元率アップ", "審査が通りやすい"], "target": ["初めてクレジットカードを作る人", "楽天をよく使う人", "年会費を払いたくない人"], "income_required": "安定収入があれば可", "difficulty": "easy"}, {"id": "epos", "name": "エポスカード", "affiliate_url": "https://example.com/epos", "annual_fee": "永年無料", "points": "エポスポイント 0.5%", "features": ["年会費無料", "マルイで優待", "海外旅行保険付き（無料）"], "target": ["マルイをよく使う人", "海外旅行が多い人", "審査に不安がある人"], "income_required": "パート・アルバイトでも可", "difficulty": "easy"}, {"id": "amazon", "name": "Amazon Mastercard", "affiliate_url": "https://example.com/amazon", "annual_fee": "永年無料", "points": "Amazonポイント 1.5%〜2%", "features": ["Amazon利用者向け高還元", "年会費無料", "Primeと相性抜群"], "target": ["Amazonをよく使う人", "ネット通販が多い人"], "income_required": "安定収入があれば可", "difficulty": "easy"}, {"id": "sbi_platinum", "name": "三井住友カード プラチナプリファード", "affiliate_url": "https://example.com/sbi_platinum", "annual_fee": "33,000円（税込）", "points": "Vポイント 最大5%", "features": ["高還元率", "SBI証券との連携", "コンシェルジュサービス"], "target": ["年収500万円以上", "投資をしている人", "高ステータスを求める人"], "income_required": "年収500万円以上推奨", "difficulty": "hard"}];
+    const QUESTIONS = [{"id": "usage", "text": "クレジットカードを主にどこで使いますか？", "options": [{"value": "amazon", "label": "Amazon・ネット通販"}, {"value": "rakuten", "label": "楽天市場"}, {"value": "travel", "label": "旅行・海外"}, {"value": "general", "label": "特にこだわりなし"}]}, {"id": "fee", "text": "年会費についてどのようにお考えですか？", "options": [{"value": "free", "label": "絶対に無料がいい"}, {"value": "ok_paid", "label": "特典次第で有料でも可"}]}, {"id": "income", "text": "現在の収入状況は？", "options": [{"value": "part", "label": "パート・アルバイト"}, {"value": "full", "label": "正社員・公務員"}, {"value": "high", "label": "年収500万円以上"}]}];
+    let answers = {};
+    let currentStep = 0;
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentStep];
+      document.getElementById('stepIndicator').textContent = `質問 ${currentStep + 1} / ${QUESTIONS.length}`;
+      document.getElementById('progressFill').style.width = `${((currentStep + 1) / QUESTIONS.length) * 100}%`;
+      document.getElementById('questionText').textContent = q.text;
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt.label;
+        btn.onclick = () => selectOption(q.id, opt.value);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectOption(questionId, value) {
+      answers[questionId] = value;
+      currentStep++;
+      if (currentStep < QUESTIONS.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quizSection').style.display = 'none';
+      const resultSection = document.getElementById('resultSection');
+      resultSection.style.display = 'block';
+      const recommended = getRecommendedCards();
+      const container = document.getElementById('resultCards');
+      container.innerHTML = '';
+      recommended.forEach((card, i) => {
+        container.innerHTML += `
+          <div class="result-card">
+            ${i === 0 ? '<span class="badge">⭐ 最もおすすめ</span>' : '<span class="badge">おすすめ</span>'}
+            <h2>${card.name}</h2>
+            <p><strong>年会費:</strong> ${card.annual_fee}</p>
+            <p><strong>還元率:</strong> ${card.points}</p>
+            <ul class="features-list" style="margin-top:12px;">
+              ${card.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+            <a href="${card.affiliate_url}" class="apply-btn" target="_blank" rel="nofollow">今すぐ申し込む（公式サイト）</a>
+          </div>
+        `;
+      });
+    }
+
+    function getRecommendedCards() {
+      let scored = CARDS.map(card => { return { ...card, score: 0 }; });
+      if (answers.usage === 'rakuten') scored.find(c => c.id === 'rakuten').score += 3;
+      if (answers.usage === 'amazon') scored.find(c => c.id === 'amazon').score += 3;
+      if (answers.usage === 'travel') scored.find(c => c.id === 'epos').score += 3;
+      if (answers.fee === 'free') scored = scored.map(c => c.annual_fee === '永年無料' ? {...c, score: c.score + 2} : c);
+      if (answers.fee === 'ok_paid' && answers.income === 'high') scored.find(c => c.id === 'sbi_platinum').score += 3;
+      if (answers.income === 'part') scored = scored.filter(c => c.difficulty === 'easy');
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, 2);
+    }
+
+    function resetQuiz() {
+      answers = {};
+      currentStep = 0;
+      document.getElementById('quizSection').style.display = 'block';
+      document.getElementById('resultSection').style.display = 'none';
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
