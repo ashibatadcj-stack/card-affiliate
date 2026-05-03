@@ -1,0 +1,36 @@
+name: A8.net 案件自動発見・記事生成
+
+on:
+  schedule:
+    - cron: '0 2 * * 3'  # 毎週水曜 午前11時(JST)
+  workflow_dispatch:       # 手動実行も可能
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 依存パッケージをインストール
+        run: pip install anthropic python-dotenv requests beautifulsoup4
+
+      - name: 案件を自動発見・記事生成
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          A8_COOKIE: ${{ secrets.A8_COOKIE }}
+        run: python auto_discover.py
+
+      - name: 変更をコミット・プッシュ
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/ processed_programs.json || true
+          git diff --cached --quiet || git commit -m "A8自動追加: $(date '+%Y年%m月%d日') 新着案件"
+          git push
