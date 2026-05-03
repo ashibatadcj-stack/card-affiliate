@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import date
 from articles_data import ARTICLES
-from cards_data import CARDS
+from cards_data import CARDS, BUSINESS_CARDS
 
 BASE_DIR = Path(__file__).parent
 DOCS_DIR = BASE_DIR / "docs"
@@ -20,6 +20,14 @@ def generate_sitemap():
   </url>""")
 
     for card in CARDS:
+        urls.append(f"""  <url>
+    <loc>{SITE_URL}/cards/{card['id']}.html</loc>
+    <lastmod>{TODAY}</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>""")
+
+    for card in BUSINESS_CARDS:
         urls.append(f"""  <url>
     <loc>{SITE_URL}/cards/{card['id']}.html</loc>
     <lastmod>{TODAY}</lastmod>

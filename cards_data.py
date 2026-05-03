@@ -45,6 +45,27 @@ CARDS = [
     },
 ]
 
+BUSINESS_CARDS = [
+    {
+        "id": "hojin_etc",
+        "name": "新会社でも作れる法人ETCカード",
+        "issuer": "高速情報協同組合",
+        "affiliate_url": "https://px.a8.net/svt/ejp?a8mat=4B3IIF+D8W8C2+1WW0+NTJWY",
+        "annual_fee": "出資金のみ（年会費なし）",
+        "discount": "高速料金30〜50%割引",
+        "features": [
+            "新会社・設立直後でも発行可能",
+            "高速道路料金が30〜50%割引",
+            "法人・個人事業主どちらも申込可",
+            "審査なしで発行しやすい",
+            "複数枚発行対応",
+        ],
+        "target": ["法人", "個人事業主", "新会社・設立直後", "高速道路をよく使う事業者"],
+        "apply_condition": "法人または個人事業主であること",
+        "reward": "新規成約5,000円",
+    },
+]
+
 QUIZ_QUESTIONS = [
     {
         "id": "usage",
