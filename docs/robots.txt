@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ashibatadcj-stack.github.io/card-affiliate/sitemap.xml
