@@ -1,6 +1,6 @@
 """
 A8.net 案件自動発見スクリプト（Playwright版）
-- 初回: ブラウザが開くのでA8.netにログイン → セッション保存
+- 初回: ブラウザが開くのでA8.netにログイン -> セッション保存
 - 2回目以降: 保存セッションを使って完全自動
 """
 import os
@@ -20,9 +20,11 @@ DOCS_DIR = BASE_DIR / "docs"
 SESSION_FILE = BASE_DIR / ".a8_session.json"
 PROCESSED_FILE = BASE_DIR / "processed_programs.json"
 
-A8_LOGIN_URL = "https://www.a8.net/a8v2/login.html"
-A8_SEARCH_URL = "https://pub.a8.net/a8v2/media/programSearch.action"
-A8_CATEGORY_FINANCE = "cat_0027"
+A8_SEARCH_URL = "https://pub.a8.net/a8v2/media/searchAction.do"
+# クレジットカード・ローンをキーワード検索（新着順）
+A8_SEARCH_FINANCE_URL = "https://pub.a8.net/a8v2/media/searchAction/keyword.do?action=search&viewType=0&keyword=%E3%82%AF%E3%83%AC%E3%82%B8%E3%83%83%E3%83%88%E3%82%AB%E3%83%BC%E3%83%89&sortColumn=newArrivalYmd"
+A8_SEARCH_LOAN_URL = "https://pub.a8.net/a8v2/media/searchAction/keyword.do?action=search&viewType=0&keyword=%E3%83%AD%E3%83%BC%E3%83%B3&sortColumn=newArrivalYmd"
+A8_ANCHOR_URL = "https://pub.a8.net/a8v2/media/programDetailAction.do?insId=s00000008928001"
 
 
 def load_processed() -> dict:
@@ -57,65 +59,59 @@ def login_and_save_session(playwright):
     browser.close()
 
 
+def _collect_programs_from_page(page) -> list[dict]:
+    """現在のページから案件リストを取得"""
+    results = []
+    links = page.query_selector_all("a[href*='insIds=']")
+    for link in links:
+        href = link.get_attribute("href") or ""
+        if "insIds=" not in href:
+            continue
+        prog_id = href.split("insIds=")[-1].split("&")[0]
+        if not prog_id:
+            continue
+        text = link.inner_text().strip()
+        if text in ("詳細を見る", "登録", ""):
+            continue
+        results.append({
+            "id": prog_id,
+            "name": text[:60] or f"案件_{prog_id}",
+            "detail_url": href if href.startswith("http") else f"https://pub.a8.net{href}",
+        })
+    return results
+
+
 def search_programs_pw(page, max_pages: int = 3) -> list[dict]:
-    """A8.netの金融カテゴリから案件一覧を取得"""
+    """クレジットカード・ローンのキーワードで案件を検索"""
     all_programs = []
+    seen_ids = set()
 
-    for p in range(1, max_pages + 1):
-        url = f"{A8_SEARCH_URL}?categoryId={A8_CATEGORY_FINANCE}&sort=new&page={p}"
-        page.goto(url, wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_timeout(2000)
+    for search_url, label in [
+        (A8_SEARCH_FINANCE_URL, "クレジットカード"),
+        (A8_SEARCH_LOAN_URL, "ローン"),
+    ]:
+        print(f"  [{label}] 検索中...")
+        for p in range(1, max_pages + 1):
+            url = f"{search_url}&viewPage={p}"
+            page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(2000)
 
-        # ログイン確認
-        if "login" in page.url.lower():
-            print("セッションが切れています。再ログインが必要です。")
-            SESSION_FILE.unlink(missing_ok=True)
-            return []
+            if "login" in page.url.lower() or "asLogin" in page.url:
+                print("  セッションが切れています。再ログインが必要です。")
+                return all_programs
 
-        # 案件一覧を取得
-        items = page.query_selector_all(
-            "li.programListItem, .program-list li, table.programListTable tr"
-        )
-
-        if not items:
-            # セレクタが合わない場合は全リンクから案件URLを探す
-            links = page.query_selector_all("a[href*='programDetail'], a[href*='insId=']")
-            for link in links:
-                href = link.get_attribute("href") or ""
-                text = link.inner_text().strip()
-                prog_id = ""
-                if "insId=" in href:
-                    prog_id = href.split("insId=")[-1].split("&")[0]
-                if prog_id and text:
-                    all_programs.append({
-                        "id": prog_id,
-                        "name": text[:50],
-                        "detail_url": href if href.startswith("http") else f"https://pub.a8.net{href}",
-                    })
-        else:
+            items = _collect_programs_from_page(page)
+            added = 0
             for item in items:
-                try:
-                    name_el = item.query_selector(".programName, .program-name, h3, h4, td.name")
-                    link_el = item.query_selector("a[href*='programDetail'], a[href*='insId=']")
-                    if not name_el or not link_el:
-                        continue
-                    href = link_el.get_attribute("href") or ""
-                    prog_id = href.split("insId=")[-1].split("&")[0] if "insId=" in href else ""
-                    all_programs.append({
-                        "id": prog_id,
-                        "name": name_el.inner_text().strip()[:50],
-                        "detail_url": href if href.startswith("http") else f"https://pub.a8.net{href}",
-                    })
-                except Exception:
-                    continue
+                if item["id"] not in seen_ids:
+                    seen_ids.add(item["id"])
+                    all_programs.append(item)
+                    added += 1
 
-        print(f"  ページ{p}: {len(all_programs)}件取得済み")
-
-        # 次ページがなければ終了
-        next_btn = page.query_selector("a.next, a[rel='next'], .pager-next a")
-        if not next_btn:
-            break
-        time.sleep(2)
+            print(f"    ページ{p}: +{added}件（合計{len(all_programs)}件）")
+            if added == 0:
+                break
+            time.sleep(2)
 
     return all_programs
 
@@ -128,38 +124,35 @@ def get_program_detail_pw(page, detail_url: str) -> dict:
     detail = {}
 
     try:
-        title = page.query_selector("h1, h2.program-title, .programTitle")
-        if title:
-            detail["name"] = title.inner_text().strip()
+        import re
+        body = page.evaluate("() => document.body.innerText")
+
+        # 案件名: 「提携状況」直前の行（A8詳細ページの構造に合わせた抽出）
+        m = re.search(r'\n(.{5,100})\n\n?提携状況', body)
+        if m:
+            detail["name"] = m.group(1).strip()
 
         # 成果報酬
-        reward_el = page.query_selector("td:has-text('成果報酬') + td, .reward-amount, .commission")
-        if reward_el:
-            detail["reward"] = reward_el.inner_text().strip()
+        m = re.search(r'成果報酬\s+(.+?)(?:\n|EPC)', body)
+        if m:
+            detail["reward"] = m.group(1).strip()[:80]
 
         # 成果条件
-        condition_el = page.query_selector(".condition, .seika-joken, td:has-text('成果条件') + td")
-        if condition_el:
-            detail["condition"] = condition_el.inner_text().strip()[:300]
+        m = re.search(r'成果条件\s*\n(.+?)(?:\n否認条件|\nA8\.net)', body, re.DOTALL)
+        if m:
+            detail["condition"] = m.group(1).strip()[:400]
 
-        # 説明文
-        desc_el = page.query_selector(".program-description, .pr-text, .programPr")
-        if desc_el:
-            detail["description"] = desc_el.inner_text().strip()[:500]
+        # 説明文（成果条件より前のPRテキスト）
+        m = re.search(r'提携状況.+?プログラムID.+?\n(.{20,}?)\n成果報酬', body, re.DOTALL)
+        if m:
+            detail["description"] = m.group(1).strip()[:400]
 
-        # アフィリエイトリンクURL
-        link_el = page.query_selector("a[href*='px.a8.net']")
-        if link_el:
-            detail["affiliate_url"] = link_el.get_attribute("href")
-
-        # テキストリンクのhref取得（リンク素材セクション）
-        if not detail.get("affiliate_url"):
-            all_links = page.query_selector_all("a[href*='a8.net']")
-            for lnk in all_links:
-                href = lnk.get_attribute("href") or ""
-                if "px.a8.net" in href or "a8mat" in href:
-                    detail["affiliate_url"] = href
-                    break
+        # アフィリエイトリンクURL（px.a8.net または a8mat含むリンク）
+        for lnk in page.query_selector_all("a[href]"):
+            href = lnk.get_attribute("href") or ""
+            if "px.a8.net" in href or "a8mat" in href:
+                detail["affiliate_url"] = href
+                break
 
     except Exception as e:
         print(f"    詳細取得エラー: {e}")
@@ -233,7 +226,7 @@ def git_push(message: str):
         ["git", "-C", str(BASE_DIR), "commit", "-m", message],
         ["git", "-C", str(BASE_DIR), "push"],
     ]:
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if r.returncode != 0 and "nothing to commit" not in r.stdout:
             print(f"  git: {r.stderr.strip()}")
 
@@ -250,26 +243,51 @@ def main():
             login_and_save_session(pw)
 
         session_data = json.loads(SESSION_FILE.read_text(encoding="utf-8"))
-        browser = pw.chromium.launch(headless=True)
+        # デバッグ用：headless=Falseで実際の画面を確認
+        browser = pw.chromium.launch(headless=False)
         context = browser.new_context(storage_state=session_data)
         page = context.new_page()
 
         print("[1/4] A8.netに接続中...")
+
+        # 認証確認：直接会員ページへ（pub.a8.net/ はリダイレクトされるため不可）
+        page.goto(A8_ANCHOR_URL, wait_until="domcontentloaded")
+        page.wait_for_timeout(2000)
+        logged_in = "pub.a8.net" in page.url and "login" not in page.url.lower()
+        status_str = "[OK] 有効" if logged_in else "[NG] 無効（セッション切れ）"
+        print(f"      ログイン状態: {status_str}")
+        print(f"      現在URL: {page.url}")
+
+        page.screenshot(path=str(BASE_DIR / "debug_screenshot.png"))
+
+        if not logged_in:
+            print("セッションが無効です。login_a8.py を再実行してください。")
+            browser.close()
+            return
+
         programs = search_programs_pw(page, max_pages=3)
 
         if not programs:
-            print("案件が取得できませんでした。再ログインが必要です。")
-            SESSION_FILE.unlink(missing_ok=True)
+            print("案件が取得できませんでした。")
+            print("debug_screenshot.png を確認してください。")
             browser.close()
-            print("もう一度実行すると再ログイン画面が開きます。")
             return
 
+        FINANCE_KW = [
+            "カード", "ローン", "キャッシング", "クレジット", "銀行", "証券", "投資",
+            "保険", "FX", "仮想通貨", "積立", "NISA", "iDeCo", "消費者金融",
+            "キャッシュレス", "電子マネー", "Pay", "ポイント", "資産", "節税",
+        ]
         print(f"\n[2/4] {len(programs)}件の案件を発見")
-        new_programs = [p for p in programs if p.get("id") and p["id"] not in done_ids]
-        print(f"      うち新着: {len(new_programs)}件")
+        new_programs = [
+            p for p in programs
+            if p.get("id") and p["id"] not in done_ids
+            and any(kw in p.get("name", "") for kw in FINANCE_KW)
+        ]
+        print(f"      うち新着の金融案件: {len(new_programs)}件")
 
         if not new_programs:
-            print("\n新しい案件はありません。")
+            print("\n新しい金融案件はありません。")
             browser.close()
             return
 
@@ -290,10 +308,10 @@ def main():
                 (cards_dir / f"a8_{safe_id}.html").write_text(page_html, encoding="utf-8")
                 done_ids.add(prog["id"])
                 added.append(prog)
-                print(f"       → docs/cards/a8_{safe_id}.html 作成")
+                print(f"       -> docs/cards/a8_{safe_id}.html 作成")
                 time.sleep(2)
             except Exception as e:
-                print(f"       → スキップ（{e}）")
+                print(f"       -> スキップ（{e}）")
 
         browser.close()
 
@@ -304,7 +322,7 @@ def main():
         git_push(f"A8自動追加: {len(added)}件 ({', '.join(p['name'][:15] for p in added)})")
         print(f"\n完了！ {len(added)}件を公開しました。")
         for p in added:
-            print(f"  → {DOCS_DIR}/cards/a8_{p['safe_id']}.html")
+            print(f"  -> {DOCS_DIR}/cards/a8_{p['safe_id']}.html")
     else:
         print("\n追加できる案件がありませんでした。")
 
