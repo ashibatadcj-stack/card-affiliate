@@ -3,191 +3,444 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>あなたに最適なクレジットカード診断 | カード比較ナビ</title>
-  <meta name="description" content="3つの質問に答えるだけで、あなたにぴったりのクレジットカードがわかります。年会費・ポイント還元・審査難易度を比較してご提案。">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Hiragino Sans', sans-serif; background: #f5f7fa; color: #333; }
-    header { background: #1a56db; color: white; padding: 20px; text-align: center; }
-    header h1 { font-size: 1.6rem; }
-    header p { margin-top: 8px; font-size: 0.95rem; opacity: 0.9; }
-    .container { max-width: 700px; margin: 40px auto; padding: 0 16px; }
-    .quiz-card { background: white; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-    .step-indicator { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
-    .progress-bar { height: 6px; background: #e0e0e0; border-radius: 3px; margin-bottom: 24px; }
-    .progress-fill { height: 100%; background: #1a56db; border-radius: 3px; transition: width 0.3s; }
-    .question { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
-    .options { display: flex; flex-direction: column; gap: 12px; }
-    .option-btn {
-      padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: 8px;
-      background: white; font-size: 1rem; cursor: pointer; text-align: left;
-      transition: all 0.2s;
-    }
-    .option-btn:hover { border-color: #1a56db; background: #f0f4ff; }
-    .result-section { display: none; }
-    .result-card {
-      background: white; border-radius: 12px; padding: 28px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px;
-    }
-    .result-card h2 { font-size: 1.3rem; color: #1a56db; margin-bottom: 8px; }
-    .badge { display: inline-block; background: #e8f0fe; color: #1a56db; border-radius: 4px; padding: 4px 10px; font-size: 0.8rem; margin-bottom: 12px; }
-    .apply-btn {
-      display: block; width: 100%; padding: 16px; background: #e53e3e;
-      color: white; text-align: center; border-radius: 8px; font-size: 1.1rem;
-      font-weight: bold; text-decoration: none; margin-top: 16px;
-    }
-    .apply-btn:hover { background: #c53030; }
-    .features-list { list-style: none; padding: 0; }
-    .features-list li::before { content: "✓ "; color: #38a169; }
-    .features-list li { padding: 4px 0; }
-    .retry-btn {
-      display: block; text-align: center; margin: 20px auto; padding: 12px 32px;
-      border: 2px solid #1a56db; color: #1a56db; border-radius: 8px;
-      background: white; cursor: pointer; font-size: 1rem;
-    }
-    footer { text-align: center; padding: 40px 16px; color: #888; font-size: 0.8rem; line-height: 1.8; }
-  </style>
+  <title>クレジットカードおすすめランキング2025年版 | カード比較ナビ</title>
+  <meta name="description" content="2025年最新！クレジットカードおすすめランキングTOP10。年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。">
   <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI" />
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWEHFB30XE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HWEHFB30XE');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HWEHFB30XE');</script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f7fa;color:#333;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+
+    /* ヘッダー */
+    header{background:#1a56db;color:white;padding:0 16px}
+    .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+    .site-logo{font-size:1.1rem;font-weight:bold}
+    nav{display:flex;gap:20px;font-size:0.85rem}
+    nav a{color:rgba(255,255,255,0.85);transition:color .2s}
+    nav a:hover{color:white}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px}
+
+    /* ヒーロー */
+    .hero{background:linear-gradient(135deg,#1a56db 0%,#1e40af 100%);color:white;padding:40px 16px;text-align:center}
+    .hero h1{font-size:1.7rem;font-weight:bold;line-height:1.4;margin-bottom:12px}
+    .hero p{font-size:0.95rem;opacity:0.9;margin-bottom:20px}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 16px;font-size:0.8rem}
+
+    /* コンテナ */
+    .container{max-width:960px;margin:0 auto;padding:0 16px}
+    .section{padding:32px 0}
+    .section-title{font-size:1.25rem;font-weight:bold;margin-bottom:20px;padding-bottom:10px;border-bottom:3px solid #1a56db;display:flex;align-items:center;gap:8px}
+
+    /* ランキングカード */
+    .rank-card{background:white;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-bottom:20px;overflow:hidden;transition:box-shadow .2s}
+    .rank-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.13)}
+    .rank-header{display:flex;align-items:center;padding:16px 20px;gap:16px;border-bottom:1px solid #f0f0f0}
+    .rank-badge{min-width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1rem;color:white;flex-shrink:0}
+    .rank-1{background:linear-gradient(135deg,#f6c90e,#e8a000)}
+    .rank-2{background:linear-gradient(135deg,#b0bec5,#78909c)}
+    .rank-3{background:linear-gradient(135deg,#ce8a56,#a0522d)}
+    .rank-n{background:linear-gradient(135deg,#5c7cfa,#1a56db)}
+    .rank-card-name{flex:1}
+    .rank-card-name h3{font-size:1.05rem;font-weight:bold;margin-bottom:4px}
+    .card-tag{display:inline-block;background:#e8f0fe;color:#1a56db;border-radius:4px;padding:2px 8px;font-size:0.75rem;margin-right:4px}
+    .card-tag.red{background:#fff0f0;color:#e53e3e}
+    .card-tag.green{background:#f0fff4;color:#38a169}
+    .rank-body{padding:16px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+    .spec-table{flex:1;min-width:200px}
+    .spec-row{display:flex;border-bottom:1px solid #f5f5f5;padding:6px 0;font-size:0.88rem}
+    .spec-label{color:#888;min-width:80px;flex-shrink:0}
+    .spec-value{font-weight:bold;color:#333}
+    .features-col{flex:1;min-width:180px}
+    .features-col ul{list-style:none;padding:0}
+    .features-col li{font-size:0.88rem;padding:4px 0;display:flex;gap:6px}
+    .features-col li::before{content:"✓";color:#38a169;font-weight:bold;flex-shrink:0}
+    .btn-apply{display:block;background:linear-gradient(135deg,#e53e3e,#c53030);color:white;text-align:center;padding:14px 20px;border-radius:8px;font-size:1rem;font-weight:bold;transition:opacity .2s;margin-top:8px}
+    .btn-apply:hover{opacity:.88}
+    .btn-detail{display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.85rem;color:#555;margin-top:8px;transition:background .2s}
+    .btn-detail:hover{background:#f5f5f5}
+    .btn-col{min-width:180px;flex-shrink:0}
+    .stars{color:#f6c90e;font-size:1rem;letter-spacing:2px}
+    .point-up{background:#fff3cd;border:1px solid #f6c90e;border-radius:4px;padding:3px 8px;font-size:0.78rem;color:#856404;margin-top:4px;display:inline-block}
+
+    /* 診断セクション */
+    .quiz-wrap{background:linear-gradient(135deg,#e8f0fe,#dbeafe);border-radius:16px;padding:32px;text-align:center}
+    .quiz-wrap h2{font-size:1.3rem;font-weight:bold;margin-bottom:8px;color:#1a56db}
+    .quiz-wrap p{font-size:0.9rem;color:#555;margin-bottom:20px}
+    .quiz-card{background:white;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.08);text-align:left;max-width:600px;margin:0 auto}
+    .step-indicator{font-size:0.85rem;color:#888;margin-bottom:8px}
+    .progress-bar{height:6px;background:#e0e0e0;border-radius:3px;margin-bottom:20px}
+    .progress-fill{height:100%;background:#1a56db;border-radius:3px;transition:width .3s}
+    .question{font-size:1.1rem;font-weight:bold;margin-bottom:16px}
+    .options{display:flex;flex-direction:column;gap:10px}
+    .option-btn{padding:12px 16px;border:2px solid #e0e0e0;border-radius:8px;background:white;font-size:0.95rem;cursor:pointer;text-align:left;transition:all .2s}
+    .option-btn:hover{border-color:#1a56db;background:#f0f4ff}
+    .result-section{display:none}
+    .result-card{background:white;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-bottom:16px}
+    .result-card h3{font-size:1.1rem;color:#1a56db;margin-bottom:8px}
+    .retry-btn{display:inline-block;margin-top:16px;padding:10px 28px;border:2px solid #1a56db;color:#1a56db;border-radius:8px;background:white;cursor:pointer;font-size:0.95rem;transition:all .2s}
+    .retry-btn:hover{background:#1a56db;color:white}
+
+    /* 記事リスト */
+    .article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .article-card{background:white;border-radius:10px;padding:16px 20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #1a56db;transition:box-shadow .2s}
+    .article-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+    .article-card a{color:#333;font-size:0.95rem;font-weight:500;line-height:1.5}
+
+    /* フッター */
+    footer{background:#1e2a3a;color:#aaa;padding:32px 16px;text-align:center;font-size:0.8rem;line-height:2}
+
+    /* スマホ */
+    @media(max-width:640px){
+      nav{display:none}
+      .hamburger{display:flex}
+      .hero h1{font-size:1.35rem}
+      .rank-body{flex-direction:column}
+      .btn-col{min-width:auto;width:100%}
+      .article-grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>クレジットカード診断</h1>
-    <p>3つの質問に答えるだけ！あなたに最適なカードがわかります</p>
-  </header>
 
-  <div class="container">
-    <div class="quiz-card" id="quizSection">
-      <div class="step-indicator" id="stepIndicator">質問 1 / 3</div>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:33%"></div></div>
-      <div class="question" id="questionText"></div>
-      <div class="options" id="optionsContainer"></div>
-    </div>
-
-    <div class="result-section" id="resultSection">
-      <h2 style="margin-bottom:20px; font-size:1.3rem;">診断結果</h2>
-      <div id="resultCards"></div>
-      <button class="retry-btn" onclick="resetQuiz()">もう一度診断する</button>
+<header>
+  <div class="header-inner">
+    <div class="site-logo">カード比較ナビ</div>
+    <nav>
+      <a href="#ranking">ランキング</a>
+      <a href="#quiz">3問診断</a>
+      <a href="#articles">記事</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
     </div>
   </div>
+</header>
 
-  <footer>
-    ※当サイトはアフィリエイト広告を掲載しています。<br>
-    ※掲載情報は記事作成時点のものです。最新情報は各カード公式サイトでご確認ください。<br>
-    ※審査結果は各カード会社の判断によります。
-  </footer>
+<div class="hero">
+  <h1>クレジットカード おすすめランキング<br>2025年最新版</h1>
+  <p>年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。</p>
+  <span class="hero-badge">2025年5月 最新情報</span>
+</div>
 
-  <script>
-    const CARDS = [{"id": "rakuten", "name": "楽天カード", "affiliate_url": "https://example.com/rakuten", "annual_fee": "永年無料", "points": "楽天ポイント 1%〜3%", "features": ["年会費無料", "楽天市場で還元率アップ", "審査が通りやすい"], "target": ["初めてクレジットカードを作る人", "楽天をよく使う人", "年会費を払いたくない人"], "income_required": "安定収入があれば可", "difficulty": "easy"}, {"id": "epos", "name": "エポスカード", "affiliate_url": "https://example.com/epos", "annual_fee": "永年無料", "points": "エポスポイント 0.5%", "features": ["年会費無料", "マルイで優待", "海外旅行保険付き（無料）"], "target": ["マルイをよく使う人", "海外旅行が多い人", "審査に不安がある人"], "income_required": "パート・アルバイトでも可", "difficulty": "easy"}, {"id": "amazon", "name": "Amazon Mastercard", "affiliate_url": "https://example.com/amazon", "annual_fee": "永年無料", "points": "Amazonポイント 1.5%〜2%", "features": ["Amazon利用者向け高還元", "年会費無料", "Primeと相性抜群"], "target": ["Amazonをよく使う人", "ネット通販が多い人"], "income_required": "安定収入があれば可", "difficulty": "easy"}, {"id": "sbi_platinum", "name": "三井住友カード プラチナプリファード", "affiliate_url": "https://example.com/sbi_platinum", "annual_fee": "33,000円（税込）", "points": "Vポイント 最大5%", "features": ["高還元率", "SBI証券との連携", "コンシェルジュサービス"], "target": ["年収500万円以上", "投資をしている人", "高ステータスを求める人"], "income_required": "年収500万円以上推奨", "difficulty": "hard"}];
-    const QUESTIONS = [{"id": "usage", "text": "クレジットカードを主にどこで使いますか？", "options": [{"value": "amazon", "label": "Amazon・ネット通販"}, {"value": "rakuten", "label": "楽天市場"}, {"value": "travel", "label": "旅行・海外"}, {"value": "general", "label": "特にこだわりなし"}]}, {"id": "fee", "text": "年会費についてどのようにお考えですか？", "options": [{"value": "free", "label": "絶対に無料がいい"}, {"value": "ok_paid", "label": "特典次第で有料でも可"}]}, {"id": "income", "text": "現在の収入状況は？", "options": [{"value": "part", "label": "パート・アルバイト"}, {"value": "full", "label": "正社員・公務員"}, {"value": "high", "label": "年収500万円以上"}]}];
-    let answers = {};
-    let currentStep = 0;
+<div class="container">
 
-    function renderQuestion() {
-      const q = QUESTIONS[currentStep];
-      document.getElementById('stepIndicator').textContent = `質問 ${currentStep + 1} / ${QUESTIONS.length}`;
-      document.getElementById('progressFill').style.width = `${((currentStep + 1) / QUESTIONS.length) * 100}%`;
-      document.getElementById('questionText').textContent = q.text;
-      const container = document.getElementById('optionsContainer');
-      container.innerHTML = '';
-      q.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = opt.label;
-        btn.onclick = () => selectOption(q.id, opt.value);
-        container.appendChild(btn);
-      });
-    }
+  <!-- ランキング -->
+  <div class="section" id="ranking">
+    <div class="section-title">
+      <span>🏆</span> おすすめカードランキング
+    </div>
 
-    function selectOption(questionId, value) {
-      answers[questionId] = value;
-      currentStep++;
-      if (currentStep < QUESTIONS.length) {
-        renderQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      document.getElementById('quizSection').style.display = 'none';
-      const resultSection = document.getElementById('resultSection');
-      resultSection.style.display = 'block';
-      const recommended = getRecommendedCards();
-      const container = document.getElementById('resultCards');
-      container.innerHTML = '';
-      recommended.forEach((card, i) => {
-        container.innerHTML += `
-          <div class="result-card">
-            ${i === 0 ? '<span class="badge">⭐ 最もおすすめ</span>' : '<span class="badge">おすすめ</span>'}
-            <h2>${card.name}</h2>
-            <p><strong>年会費:</strong> ${card.annual_fee}</p>
-            <p><strong>還元率:</strong> ${card.points}</p>
-            <ul class="features-list" style="margin-top:12px;">
-              ${card.features.map(f => `<li>${f}</li>`).join('')}
-            </ul>
-            <a href="${card.affiliate_url}" class="apply-btn" target="_blank" rel="nofollow">今すぐ申し込む（公式サイト）</a>
+    <!-- 1位 -->
+    <div class="rank-card">
+      <div class="rank-header">
+        <div class="rank-badge rank-1">1位</div>
+        <div class="rank-card-name">
+          <h3>dカード GOLD U</h3>
+          <div>
+            <span class="card-tag red">若者向け</span>
+            <span class="card-tag green">ゴールド</span>
           </div>
-        `;
-      });
-    }
-
-    function getRecommendedCards() {
-      let scored = CARDS.map(card => { return { ...card, score: 0 }; });
-      if (answers.usage === 'rakuten') scored.find(c => c.id === 'rakuten').score += 3;
-      if (answers.usage === 'amazon') scored.find(c => c.id === 'amazon').score += 3;
-      if (answers.usage === 'travel') scored.find(c => c.id === 'epos').score += 3;
-      if (answers.fee === 'free') scored = scored.map(c => c.annual_fee === '永年無料' ? {...c, score: c.score + 2} : c);
-      if (answers.fee === 'ok_paid' && answers.income === 'high') scored.find(c => c.id === 'sbi_platinum').score += 3;
-      if (answers.income === 'part') scored = scored.filter(c => c.difficulty === 'easy');
-      scored.sort((a, b) => b.score - a.score);
-      return scored.slice(0, 2);
-    }
-
-    function resetQuiz() {
-      answers = {};
-      currentStep = 0;
-      document.getElementById('quizSection').style.display = 'block';
-      document.getElementById('resultSection').style.display = 'none';
-      renderQuestion();
-    }
-
-    renderQuestion();
-  </script>
-
-  <div style="max-width:700px;margin:0 auto 40px;padding:0 16px;">
-    <div style="background:white;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-      <h2 style="font-size:1.2rem;margin-bottom:16px;color:#1a56db;">お役立ち記事</h2>
-      <ul style="padding-left:0;list-style:none;">
-        <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="articles/beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】申し込みから審査まで徹底解説</a></li>
-<li style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="articles/annual-fee-free.html">年会費無料クレジットカードおすすめ比較【2025年最新版】</a></li>
-<li style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="articles/rakuten-vs-epos.html">楽天カードvsエポスカードどっちがいい？徹底比較2025</a></li>
-<li style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="articles/high-points.html">ポイント還元率が高いクレジットカードランキング【2025年版】</a></li>
-<li style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="articles/student-card.html">学生向けクレジットカードおすすめ【審査が通りやすい・特典充実】</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div style="max-width:700px;margin:0 auto 40px;padding:0 16px;">
-    <div style="background:white;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-      <h2 style="font-size:1.2rem;margin-bottom:8px;color:#1a56db;">法人・個人事業主向け</h2>
-      <p style="font-size:0.9rem;color:#666;margin-bottom:16px;">事業で高速道路をよく使う方におすすめ</p>
-      <a href="cards/hojin_etc.html" style="display:flex;align-items:center;padding:16px;border:1px solid #e0e0e0;border-radius:8px;text-decoration:none;color:#333;gap:16px;">
-        <div style="flex:1;">
-          <div style="font-weight:bold;margin-bottom:4px;">新会社でも作れる法人ETCカード</div>
-          <div style="font-size:0.85rem;color:#e53e3e;font-weight:bold;">高速料金 30〜50%割引</div>
-          <div style="font-size:0.8rem;color:#888;margin-top:4px;">法人・個人事業主対象 / 新会社OK</div>
+          <div class="stars">★★★★★</div>
         </div>
-        <div style="color:#1a56db;font-size:0.85rem;">詳細を見る →</div>
-      </a>
+      </div>
+      <div class="rank-body">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-label">年会費</span><span class="spec-value">11,000円（税込）</span></div>
+          <div class="spec-row"><span class="spec-label">還元率</span><span class="spec-value">最大10%</span></div>
+          <div class="spec-row"><span class="spec-label">対象</span><span class="spec-value">18〜29歳限定</span></div>
+          <div class="spec-row"><span class="spec-label">報酬</span><span class="spec-value">発行で2,860円</span></div>
+          <div class="point-up">ドコモユーザーならポイント最大10倍</div>
+        </div>
+        <div class="features-col">
+          <ul>
+            <li>29歳以下限定のゴールドカード</li>
+            <li>dポイント高還元（ドコモ利用で最大10%）</li>
+            <li>国内主要空港ラウンジ無料</li>
+            <li>海外旅行傷害保険 最大1億円</li>
+            <li>ドコモのケータイ補償10万円</li>
+          </ul>
+        </div>
+        <div class="btn-col">
+          <a href="cards/a8_s00000013470008.html" class="btn-apply">公式サイトで申し込む</a>
+          <a href="cards/a8_s00000013470008.html" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2位 -->
+    <div class="rank-card">
+      <div class="rank-header">
+        <div class="rank-badge rank-2">2位</div>
+        <div class="rank-card-name">
+          <h3>三井ショッピングパークカード《セゾン》</h3>
+          <div>
+            <span class="card-tag">ショッピング</span>
+            <span class="card-tag green">高還元</span>
+          </div>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-label">年会費</span><span class="spec-value">永年無料</span></div>
+          <div class="spec-row"><span class="spec-label">還元率</span><span class="spec-value">1.0%〜5.0%</span></div>
+          <div class="spec-row"><span class="spec-label">ブランド</span><span class="spec-value">VISA / Master</span></div>
+          <div class="spec-row"><span class="spec-label">報酬</span><span class="spec-value">発行で3,500円</span></div>
+          <div class="point-up">三井アウトレットで常時5%還元</div>
+        </div>
+        <div class="features-col">
+          <ul>
+            <li>年会費完全無料</li>
+            <li>三井ショッピングパークで最大5%還元</li>
+            <li>全国のイオン系でもポイント貯まる</li>
+            <li>ショッピング保険付き</li>
+            <li>即日発行対応</li>
+          </ul>
+        </div>
+        <div class="btn-col">
+          <a href="cards/a8_s00000015597014.html" class="btn-apply">公式サイトで申し込む</a>
+          <a href="cards/a8_s00000015597014.html" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3位 -->
+    <div class="rank-card">
+      <div class="rank-header">
+        <div class="rank-badge rank-3">3位</div>
+        <div class="rank-card-name">
+          <h3>スルガJCBカード（スピード発番）</h3>
+          <div>
+            <span class="card-tag">スルガ銀行向け</span>
+            <span class="card-tag green">即日番号発行</span>
+          </div>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-label">年会費</span><span class="spec-value">無料〜</span></div>
+          <div class="spec-row"><span class="spec-label">ブランド</span><span class="spec-value">JCB</span></div>
+          <div class="spec-row"><span class="spec-label">特徴</span><span class="spec-value">カード到着前に使える</span></div>
+          <div class="spec-row"><span class="spec-label">報酬</span><span class="spec-value">発行で2,370円</span></div>
+          <div class="point-up">カード到着前にネットショッピング可能</div>
+        </div>
+        <div class="features-col">
+          <ul>
+            <li>申込後すぐにカード番号が発番される</li>
+            <li>スルガ銀行口座との連携で管理らく</li>
+            <li>JCBの国際ブランドで海外でも使える</li>
+            <li>WEB申込で30日以内発行完了</li>
+          </ul>
+        </div>
+        <div class="btn-col">
+          <a href="cards/a8_s00000026555003.html" class="btn-apply">公式サイトで申し込む</a>
+          <a href="cards/a8_s00000026555003.html" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4位 -->
+    <div class="rank-card">
+      <div class="rank-header">
+        <div class="rank-badge rank-n">4位</div>
+        <div class="rank-card-name">
+          <h3>バンドルカード（Visaプリペイド）</h3>
+          <div>
+            <span class="card-tag">審査なし</span>
+            <span class="card-tag green">即日発行</span>
+          </div>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-label">年会費</span><span class="spec-value">永年無料</span></div>
+          <div class="spec-row"><span class="spec-label">審査</span><span class="spec-value">審査なし</span></div>
+          <div class="spec-row"><span class="spec-label">ブランド</span><span class="spec-value">Visa</span></div>
+          <div class="spec-row"><span class="spec-label">報酬</span><span class="spec-value">チャージで2,200円</span></div>
+          <div class="point-up">アプリで最短1分！学生・主婦にも人気</div>
+        </div>
+        <div class="features-col">
+          <ul>
+            <li>審査なしで誰でも作れる</li>
+            <li>最短1分でアプリ発行</li>
+            <li>Visa加盟店ならどこでも使える</li>
+            <li>チャージ式で使いすぎない</li>
+            <li>高校生でも申込可能</li>
+          </ul>
+        </div>
+        <div class="btn-col">
+          <a href="cards/a8_s00000027217001.html" class="btn-apply">公式サイトで申し込む</a>
+          <a href="cards/a8_s00000027217001.html" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5位 -->
+    <div class="rank-card">
+      <div class="rank-header">
+        <div class="rank-badge rank-n">5位</div>
+        <div class="rank-card-name">
+          <h3>楽天カード</h3>
+          <div>
+            <span class="card-tag">定番</span>
+            <span class="card-tag green">年会費無料</span>
+          </div>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="spec-table">
+          <div class="spec-row"><span class="spec-label">年会費</span><span class="spec-value">永年無料</span></div>
+          <div class="spec-row"><span class="spec-label">還元率</span><span class="spec-value">1%〜3%</span></div>
+          <div class="spec-row"><span class="spec-label">ブランド</span><span class="spec-value">VISA / JCB 他</span></div>
+          <div class="point-up">楽天市場での利用でポイント最大3倍</div>
+        </div>
+        <div class="features-col">
+          <ul>
+            <li>年会費ずっと無料</li>
+            <li>楽天市場でポイント還元率アップ</li>
+            <li>申し込みやすく審査が通りやすい</li>
+            <li>楽天Payとの連携でさらにお得</li>
+          </ul>
+        </div>
+        <div class="btn-col">
+          <a href="cards/rakuten.html" class="btn-apply">公式サイトで申し込む</a>
+          <a href="cards/rakuten.html" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ranking -->
+
+  <!-- 診断 -->
+  <div class="section" id="quiz">
+    <div class="section-title"><span>🔍</span> 3問診断 ― あなたに最適なカードを提案</div>
+    <div class="quiz-wrap">
+      <h2>3つの質問に答えるだけ！</h2>
+      <p>あなたの使い方に合ったクレジットカードを無料で診断します。</p>
+      <div class="quiz-card" id="quizSection">
+        <div class="step-indicator" id="stepIndicator">質問 1 / 3</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:33%"></div></div>
+        <div class="question" id="questionText"></div>
+        <div class="options" id="optionsContainer"></div>
+      </div>
+      <div class="result-section" id="resultSection">
+        <div id="resultCards" style="max-width:600px;margin:0 auto;text-align:left"></div>
+        <button class="retry-btn" onclick="resetQuiz()">もう一度診断する</button>
+      </div>
     </div>
   </div>
+
+  <!-- 記事 -->
+  <div class="section" id="articles">
+    <div class="section-title"><span>📝</span> お役立ち記事</div>
+    <div class="article-grid">
+      <div class="article-card"><a href="articles/beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】申し込みから審査まで徹底解説</a></div>
+      <div class="article-card"><a href="articles/annual-fee-free.html">年会費無料クレジットカードおすすめ比較【2025年最新版】</a></div>
+      <div class="article-card"><a href="articles/rakuten-vs-epos.html">楽天カードvsエポスカードどっちがいい？徹底比較2025</a></div>
+      <div class="article-card"><a href="articles/high-points.html">ポイント還元率が高いクレジットカードランキング【2025年版】</a></div>
+      <div class="article-card"><a href="articles/student-card.html">学生向けクレジットカードおすすめ【審査が通りやすい・特典充実】</a></div>
+      <div class="article-card"><a href="cards/hojin_etc.html">法人・個人事業主向け ETCカード ― 新会社でも作れる高速料金30〜50%割引</a></div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>※当サイトはアフィリエイト広告を掲載しています。</p>
+  <p>※掲載情報は記事作成時点のものです。最新情報は各カード公式サイトでご確認ください。</p>
+  <p>※審査結果は各カード会社の判断によります。</p>
+  <p style="margin-top:12px;color:#666">&copy; 2025 カード比較ナビ</p>
+</footer>
+
+<script>
+const CARDS=[
+  {id:"dcardgold",name:"dカード GOLD U",url:"cards/a8_s00000013470008.html",fee:"11,000円",points:"最大10%",features:["29歳以下限定ゴールドカード","ドコモ利用で最大10%還元","空港ラウンジ無料"],difficulty:"初級"},
+  {id:"mitsui",name:"三井ショッピングパークカード",url:"cards/a8_s00000015597014.html",fee:"永年無料",points:"最大5%",features:["年会費無料","三井アウトレット5%還元","ショッピング保険付"],difficulty:"初級"},
+  {id:"suruga",name:"スルガJCBカード",url:"cards/a8_s00000026555003.html",fee:"無料〜",points:"JCBポイント",features:["即日番号発番","スルガ銀行口座連携","JCBブランド"],difficulty:"初級"},
+  {id:"bandle",name:"バンドルカード（Visaプリペイド）",url:"cards/a8_s00000027217001.html",fee:"永年無料",points:"なし",features:["審査なし","最短1分発行","チャージ式"],difficulty:"初級"},
+  {id:"rakuten",name:"楽天カード",url:"cards/rakuten.html",fee:"永年無料",points:"1%〜3%",features:["年会費無料","楽天市場で高還元","審査通りやすい"],difficulty:"初級"},
+  {id:"epos",name:"エポスカード",url:"cards/epos.html",fee:"永年無料",points:"0.5%",features:["年会費無料","海外旅行保険付","マルイ優待"],difficulty:"初級"},
+  {id:"sbi",name:"三井住友カード プラチナプリファード",url:"cards/sbi_platinum.html",fee:"33,000円",points:"最大5%",features:["SBI証券連携","コンシェルジュ","高ステータス"],difficulty:"上級"},
+];
+const QUESTIONS=[
+  {id:"usage",text:"クレジットカードを主にどこで使いますか？",options:[{value:"amazon",label:"Amazon・ネット通販"},{value:"rakuten",label:"楽天市場"},{value:"travel",label:"旅行・海外"},{value:"general",label:"特にこだわりなし"}]},
+  {id:"fee",text:"年会費についてどのようにお考えですか？",options:[{value:"free",label:"絶対に無料がいい"},{value:"ok_paid",label:"特典次第で有料でも可"}]},
+  {id:"income",text:"現在の収入・年齢状況は？",options:[{value:"student",label:"学生・収入なし"},{value:"part",label:"パート・アルバイト"},{value:"full",label:"正社員・公務員"},{value:"high",label:"年収500万円以上（29歳以下）"}]},
+];
+let answers={},step=0;
+
+function renderQuestion(){
+  const q=QUESTIONS[step];
+  document.getElementById('stepIndicator').textContent=`質問 ${step+1} / ${QUESTIONS.length}`;
+  document.getElementById('progressFill').style.width=`${((step+1)/QUESTIONS.length)*100}%`;
+  document.getElementById('questionText').textContent=q.text;
+  const c=document.getElementById('optionsContainer');
+  c.innerHTML='';
+  q.options.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='option-btn';
+    b.textContent=o.label;
+    b.onclick=()=>select(q.id,o.value);
+    c.appendChild(b);
+  });
+}
+
+function select(qid,val){
+  answers[qid]=val;
+  step++;
+  if(step<QUESTIONS.length){renderQuestion();}else{showResult();}
+}
+
+function showResult(){
+  document.getElementById('quizSection').style.display='none';
+  const rs=document.getElementById('resultSection');
+  rs.style.display='block';
+  let scored=CARDS.map(c=>({...c,score:0}));
+  if(answers.usage==='rakuten') scored.find(c=>c.id==='rakuten').score+=3;
+  if(answers.usage==='amazon') scored.find(c=>c.id==='rakuten').score+=2;
+  if(answers.usage==='travel') scored.find(c=>c.id==='epos').score+=3;
+  if(answers.fee==='free') scored=scored.map(c=>c.fee==='永年無料'?{...c,score:c.score+2}:c);
+  if(answers.income==='student'||answers.income==='part') scored=scored.filter(c=>c.difficulty==='初級');
+  if(answers.income==='high') scored.find(c=>c.id==='dcardgold').score+=3;
+  if(answers.income==='high'&&answers.fee==='ok_paid') scored.find(c=>c.id==='sbi').score+=3;
+  scored.sort((a,b)=>b.score-a.score);
+  const top=scored.slice(0,2);
+  document.getElementById('resultCards').innerHTML=top.map((c,i)=>`
+    <div class="result-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="rank-badge ${i===0?'rank-1':'rank-2'}" style="width:36px;height:36px;font-size:0.9rem">${i===0?'1位':'2位'}</div>
+        <h3 style="font-size:1.05rem;color:#1a56db">${c.name}</h3>
+      </div>
+      <p style="font-size:0.88rem;color:#555;margin-bottom:8px">年会費：${c.fee} ／ 還元率：${c.points}</p>
+      <ul style="list-style:none;padding:0;margin-bottom:12px">${c.features.map(f=>`<li style="font-size:0.88rem;padding:3px 0">✓ ${f}</li>`).join('')}</ul>
+      <a href="${c.url}" class="btn-apply" style="font-size:0.95rem;padding:12px">今すぐ申し込む（公式サイト）</a>
+    </div>
+  `).join('');
+}
+
+function resetQuiz(){
+  answers={};step=0;
+  document.getElementById('quizSection').style.display='block';
+  document.getElementById('resultSection').style.display='none';
+  renderQuestion();
+}
+
+function toggleMenu(){
+  const nav=document.querySelector('nav');
+  if(nav.style.display==='flex'){
+    nav.style.display='none';
+  } else {
+    nav.style.cssText='display:flex;flex-direction:column;position:fixed;top:56px;right:0;background:#1a56db;padding:16px;gap:12px;z-index:100;min-width:160px;border-radius:0 0 0 8px';
+  }
+}
+
+renderQuestion();
+</script>
 </body>
 </html>
