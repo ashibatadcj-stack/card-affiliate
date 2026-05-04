@@ -7,30 +7,13 @@
   <meta name="description" content="2026年最新！クレジットカードおすすめランキングTOP10。年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。">
   <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/common.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWEHFB30XE"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HWEHFB30XE');</script>
+  <!-- A8 brandsafe.js（エポスカード等のJS型バナー用） -->
+  <script type='text/javascript' src='https://ad-verification.a8.net/ad/js/brandsafe.js'></script>
   <style>
-    /* ===== Reset & Base ===== */
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:#f5f7fa;color:#333;line-height:1.7}
-    a{color:inherit;text-decoration:none}
-
-    /* ===== Sticky Header ===== */
-    header{
-      position:sticky;top:0;z-index:200;
-      background:#1a56db;color:white;
-      padding:0 16px;
-      transition:box-shadow .25s;
-    }
-    header.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.22)}
-    .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-    .site-logo{font-size:1.1rem;font-weight:bold;display:flex;align-items:center;gap:8px}
-    .site-logo i{opacity:0.85}
-    nav{display:flex;gap:24px;font-size:0.85rem}
-    nav a{color:rgba(255,255,255,0.85);transition:color .2s;padding:4px 0;border-bottom:2px solid transparent}
-    nav a:hover{color:white;border-bottom-color:rgba(255,255,255,0.5)}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px}
+    /* ===== index.html 固有スタイル（共通スタイルは assets/common.css） ===== */
 
     /* ===== Hero ===== */
     .hero{
@@ -295,22 +278,109 @@
     }
     .article-card-body a:hover{color:#1a56db}
 
-    /* ===== Footer ===== */
-    footer{background:#1e2a3a;color:#9aa5b4;padding:40px 16px 24px;font-size:0.82rem}
-    .footer-inner{max-width:960px;margin:0 auto}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-bottom:32px}
-    .footer-col h4{color:#e2e8f0;font-size:0.9rem;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #2d3f52}
-    .footer-col ul{list-style:none}
-    .footer-col li{margin-bottom:6px}
-    .footer-col a{color:#9aa5b4;transition:color .2s}
-    .footer-col a:hover{color:#90cdf4}
-    .footer-bottom{border-top:1px solid #2d3f52;padding-top:16px;text-align:center}
-    .footer-disclaimer{font-size:0.76rem;color:#6b7280;line-height:2}
-
     /* ===== Responsive ===== */
+    /* ===== Card Banners ===== */
+    .banner-section{background:#f0f4ff;padding:32px 0}
+    .banner-section .section-title{margin-bottom:18px}
+    .banner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+    .card-banner{
+      background:white;border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 2px 12px rgba(0,0,0,0.08);
+      border:1px solid #e8edf8;
+      transition:box-shadow .2s,transform .15s;
+      display:flex;flex-direction:column;
+    }
+    .card-banner:hover{box-shadow:0 6px 24px rgba(26,86,219,0.14);transform:translateY(-2px)}
+    .card-banner-header{
+      display:flex;align-items:center;gap:12px;
+      padding:14px 16px 12px;
+      background:linear-gradient(135deg,#f7f9ff 0%,#eef2ff 100%);
+      border-bottom:1px solid #e8edf8;
+      position:relative;
+    }
+    .card-banner-pr{
+      position:absolute;top:8px;right:10px;
+      background:#e8f0fe;color:#1a56db;
+      font-size:0.62rem;font-weight:bold;
+      border-radius:3px;padding:1px 5px;border:1px solid #c7d7fd;
+    }
+    .card-banner-art{
+      width:100px;height:64px;border-radius:8px;
+      flex-shrink:0;position:relative;overflow:hidden;
+      box-shadow:0 3px 10px rgba(0,0,0,0.2);
+      display:flex;align-items:center;justify-content:center;
+      font-family:monospace;
+    }
+    .card-banner-art .art-chip{
+      position:absolute;top:8px;left:8px;
+      width:18px;height:13px;
+      background:linear-gradient(135deg,#ffe066,#f5a623);
+      border-radius:2px;
+    }
+    .card-banner-art .art-num{
+      position:absolute;bottom:14px;left:7px;
+      font-size:0.42rem;color:rgba(255,255,255,0.65);letter-spacing:1px;
+    }
+    .card-banner-art .art-name{
+      position:absolute;bottom:5px;left:7px;
+      font-size:0.42rem;color:rgba(255,255,255,0.9);font-weight:bold;font-family:sans-serif;
+    }
+    .card-banner-art .art-brand{
+      position:absolute;top:7px;right:7px;
+      font-size:0.38rem;color:rgba(255,255,255,0.75);font-weight:bold;font-family:sans-serif;
+    }
+    .card-banner-info{flex:1;min-width:0}
+    .card-banner-name{font-size:0.98rem;font-weight:bold;color:#1a2a5e;margin-bottom:4px}
+    .card-banner-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:0}
+    .card-banner-tag{
+      font-size:0.67rem;background:#f0f4ff;color:#1a56db;
+      border-radius:3px;padding:1px 6px;font-weight:500;
+    }
+    .card-banner-tag.green{background:#f0fff4;color:#2d7a4f}
+    .card-banner-tag.red{background:#fff0f0;color:#c53030}
+    .card-banner-tag.orange{background:#fff8f0;color:#c05621}
+    .card-banner-body{padding:12px 16px}
+    .card-banner-specs{
+      display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;
+      margin-bottom:12px;
+    }
+    .card-banner-spec{font-size:0.8rem}
+    .card-banner-spec .spec-k{color:#999;font-size:0.74rem;display:block}
+    .card-banner-spec .spec-v{font-weight:bold;color:#222}
+    .card-banner-point{
+      background:#fff8e1;border:1px solid #ffe082;
+      border-radius:5px;padding:6px 10px;
+      font-size:0.78rem;color:#856404;margin-bottom:12px;
+      display:flex;align-items:center;gap:6px;
+    }
+    .card-banner-cta{
+      display:block;
+      background:linear-gradient(135deg,#e53e3e,#c53030);
+      color:white;text-align:center;
+      padding:12px 16px;border-radius:8px;
+      font-size:0.9rem;font-weight:bold;
+      box-shadow:0 3px 10px rgba(229,62,62,0.3);
+      transition:opacity .2s,transform .15s;
+      text-decoration:none;
+    }
+    .card-banner-cta:hover{opacity:.9;transform:translateY(-1px)}
+    .card-banner-cta.blue{
+      background:linear-gradient(135deg,#1a56db,#0d3a99);
+      box-shadow:0 3px 10px rgba(26,86,219,0.3);
+    }
+    .card-banner-cta.purple{
+      background:linear-gradient(135deg,#7c3aed,#4c1d95);
+      box-shadow:0 3px 10px rgba(124,58,237,0.3);
+    }
+    .card-banner-sub{
+      display:block;text-align:center;
+      font-size:0.75rem;color:#999;margin-top:6px;
+    }
+    /* バナー画像エリア（A8バナーコード貼り付け用） */
+    .a8-banner-wrap{text-align:center;margin:8px 0 4px;min-height:32px}
+
     @media(max-width:700px){
-      nav{display:none}
-      .hamburger{display:flex}
       .hero h1{font-size:1.45rem}
       .btn-hero-primary,.btn-hero-secondary{padding:11px 20px;font-size:0.9rem}
       .rank-body{grid-template-columns:1fr;gap:10px}
@@ -320,6 +390,7 @@
       .rank-card-name h3{font-size:0.92rem}
       .article-grid{grid-template-columns:1fr 1fr}
       .hero-stats{gap:20px}
+      .banner-grid{grid-template-columns:1fr}
     }
     @media(max-width:440px){
       .article-grid{grid-template-columns:1fr}
@@ -330,21 +401,163 @@
 <body>
 
 <header id="mainHeader">
-  <div class="header-inner">
-    <div class="site-logo">
-      <i class="fa-solid fa-credit-card"></i>
-      クレジットカード比較ナビ
+
+  <!-- トップバー -->
+  <div class="header-top">
+    <div class="header-top-inner">
+      <div class="header-top-links">
+        <a href="articles/beginner-guide.html">初心者ガイド</a>
+        <a href="articles/annual-fee-free.html">年会費無料カード</a>
+        <a href="articles/high-points.html">高還元率ランキング</a>
+      </div>
+      <div class="header-top-right">
+        <span><i class="fa-solid fa-calendar-check" style="margin-right:4px"></i>2026年5月 最新情報</span>
+      </div>
     </div>
-    <nav>
-      <a href="#ranking">ランキング</a>
-      <a href="#quiz">3問診断</a>
-      <a href="#articles">記事一覧</a>
-    </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+  </div>
+
+  <!-- メインバー -->
+  <div class="header-main">
+    <div class="header-main-inner">
+
+      <!-- ロゴ -->
+      <a href="index.html" class="site-logo">
+        <div class="site-logo-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <div class="site-logo-text">
+          <span class="logo-main">クレジットカード比較ナビ</span>
+          <span class="logo-sub">年会費・還元率・審査を徹底比較</span>
+        </div>
+      </a>
+
+      <!-- ドロップダウンナビ -->
+      <nav class="header-nav">
+
+        <div class="nav-item">
+          <a href="#ranking">クレジットカード<i class="fa-solid fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <div class="dropdown-label">カード比較</div>
+              <a href="#ranking"><i class="fa-solid fa-trophy"></i>おすすめランキング</a>
+              <a href="articles/annual-fee-free.html"><i class="fa-solid fa-circle-check"></i>年会費無料カード</a>
+              <a href="articles/high-points.html"><i class="fa-solid fa-star"></i>高還元率カード</a>
+              <a href="articles/student-card.html"><i class="fa-solid fa-graduation-cap"></i>学生向けカード</a>
+              <hr class="dropdown-divider">
+              <div class="dropdown-label">人気カード</div>
+              <a href="cards/a8_s00000015110002.html"><i class="fa-solid fa-credit-card"></i>エポスカード</a>
+              <a href="cards/a8_s00000023883002.html"><i class="fa-solid fa-gift"></i>Vanilla Visaギフト</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="cards/a8_s00000015135002.html">キャッシング<i class="fa-solid fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <div class="dropdown-label">消費者金融・キャッシング</div>
+              <a href="cards/a8_s00000015135002.html"><i class="fa-solid fa-bolt"></i>フタバ キャッシング</a>
+              <a href="cards/a8_s00000015135001.html"><i class="fa-solid fa-venus"></i>フタバ レディース</a>
+              <a href="cards/a8_s00000014787001.html"><i class="fa-solid fa-building-columns"></i>セントラル</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="cards/hojin_etc.html">法人向け<i class="fa-solid fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <div class="dropdown-label">法人・個人事業主向け</div>
+              <a href="cards/hojin_etc.html"><i class="fa-solid fa-road"></i>法人ETCカード</a>
+              <a href="cards/a8_s00000015923001.html"><i class="fa-solid fa-car"></i>ETC協同組合</a>
+              <a href="cards/a8_s00000015923003.html"><i class="fa-solid fa-gas-pump"></i>法人ガソリンカード</a>
+              <a href="cards/a8_s00000008928005.html"><i class="fa-solid fa-gas-pump"></i>高速情報協同組合</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#articles">記事・ガイド<i class="fa-solid fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <div class="dropdown-label">お役立ち記事</div>
+              <a href="articles/beginner-guide.html"><i class="fa-solid fa-book-open"></i>初心者完全ガイド</a>
+              <a href="articles/annual-fee-free.html"><i class="fa-solid fa-circle-check"></i>年会費無料カード比較</a>
+              <a href="articles/rakuten-vs-epos.html"><i class="fa-solid fa-scale-balanced"></i>楽天 vs エポス</a>
+              <a href="articles/high-points.html"><i class="fa-solid fa-chart-line"></i>高還元率ランキング</a>
+              <a href="articles/student-card.html"><i class="fa-solid fa-graduation-cap"></i>学生向けカード</a>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- 右側 -->
+      <div class="header-right">
+        <a href="#quiz" class="btn-quiz-header">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>3問診断
+        </a>
+        <div class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
     </div>
   </div>
 </header>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title" onclick="toggleSection(this)">
+      <i class="fa-solid fa-credit-card"></i>クレジットカード
+      <i class="fa-solid fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#ranking"><i class="fa-solid fa-trophy"></i>おすすめランキング</a>
+      <a href="articles/annual-fee-free.html"><i class="fa-solid fa-circle-check"></i>年会費無料カード</a>
+      <a href="articles/high-points.html"><i class="fa-solid fa-star"></i>高還元率カード</a>
+      <a href="articles/student-card.html"><i class="fa-solid fa-graduation-cap"></i>学生向けカード</a>
+      <a href="cards/a8_s00000015110002.html"><i class="fa-solid fa-credit-card"></i>エポスカード</a>
+    </div>
+  </div>
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title" onclick="toggleSection(this)">
+      <i class="fa-solid fa-yen-sign"></i>キャッシング
+      <i class="fa-solid fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="cards/a8_s00000015135002.html"><i class="fa-solid fa-bolt"></i>フタバ キャッシング</a>
+      <a href="cards/a8_s00000015135001.html"><i class="fa-solid fa-venus"></i>フタバ レディース</a>
+      <a href="cards/a8_s00000014787001.html"><i class="fa-solid fa-building-columns"></i>セントラル</a>
+    </div>
+  </div>
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title" onclick="toggleSection(this)">
+      <i class="fa-solid fa-building"></i>法人向け
+      <i class="fa-solid fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="cards/hojin_etc.html"><i class="fa-solid fa-road"></i>法人ETCカード</a>
+      <a href="cards/a8_s00000015923001.html"><i class="fa-solid fa-car"></i>ETC協同組合</a>
+      <a href="cards/a8_s00000015923003.html"><i class="fa-solid fa-gas-pump"></i>法人ガソリンカード</a>
+    </div>
+  </div>
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title" onclick="toggleSection(this)">
+      <i class="fa-solid fa-file-lines"></i>記事・ガイド
+      <i class="fa-solid fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="articles/beginner-guide.html"><i class="fa-solid fa-book-open"></i>初心者完全ガイド</a>
+      <a href="articles/annual-fee-free.html"><i class="fa-solid fa-circle-check"></i>年会費無料カード比較</a>
+      <a href="articles/rakuten-vs-epos.html"><i class="fa-solid fa-scale-balanced"></i>楽天 vs エポス</a>
+      <a href="articles/high-points.html"><i class="fa-solid fa-chart-line"></i>高還元率ランキング</a>
+      <a href="articles/student-card.html"><i class="fa-solid fa-graduation-cap"></i>学生向けカード</a>
+    </div>
+  </div>
+  <a href="#quiz" class="mobile-quiz-btn" onclick="closeMobileMenu()">
+    <i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px"></i>3問診断を始める（無料）
+  </a>
+</div>
 
 <!-- Hero -->
 <div class="hero">
@@ -393,6 +606,184 @@
   </div>
 </div>
 
+<!-- Card Banners （注目カード特集） -->
+<div class="banner-section" id="pickup">
+  <div class="container">
+    <div class="section-title"><span>💳</span> 今月の注目クレジットカード</div>
+    <p class="ad-note"><i class="fa-solid fa-circle-info"></i> 本セクションはアフィリエイト広告を含みます</p>
+    <div class="banner-grid">
+
+      <!-- エポスカード バナー -->
+      <div class="card-banner">
+        <div class="card-banner-header">
+          <span class="card-banner-pr">PR</span>
+          <div class="card-banner-art" style="background:linear-gradient(135deg,#c0392b,#e74c3c,#a93226)">
+            <div class="art-chip"></div>
+            <div class="art-num">**** **** **** 3312</div>
+            <div class="art-name">エポスカード</div>
+            <div class="art-brand">VISA</div>
+          </div>
+          <div class="card-banner-info">
+            <div class="card-banner-name">エポスカード</div>
+            <div class="card-banner-tags">
+              <span class="card-banner-tag green">年会費無料</span>
+              <span class="card-banner-tag">海外保険付帯</span>
+              <span class="card-banner-tag green">学生可</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-banner-body">
+          <div class="card-banner-specs">
+            <div class="card-banner-spec"><span class="spec-k">年会費</span><span class="spec-v">永年無料</span></div>
+            <div class="card-banner-spec"><span class="spec-k">ブランド</span><span class="spec-v">VISA</span></div>
+            <div class="card-banner-spec"><span class="spec-k">還元率</span><span class="spec-v">0.5%〜</span></div>
+            <div class="card-banner-spec"><span class="spec-k">即日発行</span><span class="spec-v">マルイ店頭◎</span></div>
+          </div>
+          <div class="card-banner-point">
+            <i class="fa-solid fa-star" style="color:#f6c90e"></i>
+            海外旅行傷害保険が<strong>年会費無料で自動付帯</strong>。全国10,000店以上で優待割引。
+          </div>
+          <div class="a8-banner-wrap">
+            <div id='div_admane_async_1734_658_2972'>
+            <script type='text/javascript'>
+            <!--
+            brandsafe_js_async('//ad-verification.a8.net/ad', '_site=1734&_article=658&_link=2972&_image=3219&_ns=1&sad=s00000015110002', '260504440080', '4B3IIG+1BMP6A+38L8+BXYE9');
+            //-->
+            </script>
+            </div>
+            <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B3IIG+1BMP6A+38L8+BXYE9" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5" class="card-banner-cta" target="_blank" rel="noopener nofollow">
+            <i class="fa-solid fa-arrow-right"></i> 公式サイトで申し込む（無料）
+          </a>
+          <a href="cards/a8_s00000015110002.html" class="card-banner-sub">詳細を確認する →</a>
+        </div>
+      </div>
+
+      <!-- ラボル カード払い バナー -->
+      <div class="card-banner">
+        <div class="card-banner-header">
+          <span class="card-banner-pr">PR</span>
+          <div class="card-banner-art" style="background:linear-gradient(135deg,#5b21b6,#7c3aed,#4c1d95)">
+            <div class="art-chip"></div>
+            <div class="art-num">**** **** **** 8821</div>
+            <div class="art-name">ラボル</div>
+            <div class="art-brand">LABOR</div>
+          </div>
+          <div class="card-banner-info">
+            <div class="card-banner-name">ラボル カード払い</div>
+            <div class="card-banner-tags">
+              <span class="card-banner-tag green">登録+審査で3,000円</span>
+              <span class="card-banner-tag">確定率91%</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-banner-body">
+          <div class="card-banner-specs">
+            <div class="card-banner-spec"><span class="spec-k">サービス</span><span class="spec-v">カード代行払い</span></div>
+            <div class="card-banner-spec"><span class="spec-k">登録</span><span class="spec-v">無料</span></div>
+            <div class="card-banner-spec"><span class="spec-k">着金速度</span><span class="spec-v">最短即日</span></div>
+            <div class="card-banner-spec"><span class="spec-k">運営</span><span class="spec-v">東証プライム上場</span></div>
+          </div>
+          <div class="card-banner-point">
+            <i class="fa-solid fa-bolt" style="color:#7c3aed"></i>
+            銀行振込・家賃・税金を<strong>カード払いに変換</strong>。ポイント・マイルが貯まる。
+          </div>
+          <div class="a8-banner-wrap">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5" rel="nofollow"><img border="0" width="300" height="250" alt="ラボル カード払い" src="https://www21.a8.net/svt/bgt?aid=260504439819&wid=001&eno=01&mid=s00000018733010003000&mc=1" style="max-width:100%;height:auto;border-radius:6px"></a>
+            <img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4B3IIF+DJM182+40JM+1NJZN5" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5" class="card-banner-cta purple" target="_blank" rel="noopener nofollow">
+            <i class="fa-solid fa-arrow-right"></i> 無料登録する
+          </a>
+          <a href="cards/a8_s00000018733010.html" class="card-banner-sub">詳細を確認する →</a>
+        </div>
+      </div>
+
+      <!-- フタバ キャッシング バナー -->
+      <div class="card-banner">
+        <div class="card-banner-header">
+          <span class="card-banner-pr">PR</span>
+          <div class="card-banner-art" style="background:linear-gradient(135deg,#0f4c81,#1565c0,#0a3d6b)">
+            <div class="art-chip"></div>
+            <div class="art-num">**** **** **** 5591</div>
+            <div class="art-name">フタバ</div>
+            <div class="art-brand">FUTABA</div>
+          </div>
+          <div class="card-banner-info">
+            <div class="card-banner-name">フタバ キャッシング</div>
+            <div class="card-banner-tags">
+              <span class="card-banner-tag red">急な資金に</span>
+              <span class="card-banner-tag">来店不要</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-banner-body">
+          <div class="card-banner-specs">
+            <div class="card-banner-spec"><span class="spec-k">融資限度額</span><span class="spec-v">最大200万円</span></div>
+            <div class="card-banner-spec"><span class="spec-k">金利</span><span class="spec-v">年14.959%〜</span></div>
+            <div class="card-banner-spec"><span class="spec-k">審査・融資</span><span class="spec-v">最短即日</span></div>
+            <div class="card-banner-spec"><span class="spec-k">申込方法</span><span class="spec-v">WEB完結</span></div>
+          </div>
+          <div class="card-banner-point">
+            <i class="fa-solid fa-bolt" style="color:#f59e0b"></i>
+            来店不要・スマホ完結。<strong>最短即日振込</strong>で急な出費に即対応。
+          </div>
+          <div class="a8-banner-wrap">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BXQOJ" rel="nofollow"><img border="0" width="300" height="250" alt="フタバ キャッシング" src="https://www22.a8.net/svt/bgt?aid=260504440135&wid=001&eno=01&mid=s00000015135002012000&mc=1" style="max-width:100%;height:auto;border-radius:6px"></a>
+            <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4B3IIG+28DJG2+38S6+BZ8OX" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BXQOJ" class="card-banner-cta blue" target="_blank" rel="noopener nofollow">
+            <i class="fa-solid fa-arrow-right"></i> 今すぐ申し込む
+          </a>
+          <a href="cards/a8_s00000015135002.html" class="card-banner-sub">詳細を確認する →</a>
+        </div>
+      </div>
+
+      <!-- Vanilla Visa バナー -->
+      <div class="card-banner">
+        <div class="card-banner-header">
+          <span class="card-banner-pr">PR</span>
+          <div class="card-banner-art" style="background:linear-gradient(135deg,#6d28d9,#db2777)">
+            <div class="art-chip"></div>
+            <div class="art-num">**** **** **** 9902</div>
+            <div class="art-name">Vanilla</div>
+            <div class="art-brand">VISA</div>
+          </div>
+          <div class="card-banner-info">
+            <div class="card-banner-name">Vanilla Visaギフトカード</div>
+            <div class="card-banner-tags">
+              <span class="card-banner-tag green">審査不要</span>
+              <span class="card-banner-tag">ギフトにも</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-banner-body">
+          <div class="card-banner-specs">
+            <div class="card-banner-spec"><span class="spec-k">年会費</span><span class="spec-v">なし（都度購入）</span></div>
+            <div class="card-banner-spec"><span class="spec-k">ブランド</span><span class="spec-v">Visa</span></div>
+            <div class="card-banner-spec"><span class="spec-k">審査</span><span class="spec-v">不要</span></div>
+            <div class="card-banner-spec"><span class="spec-k">利用先</span><span class="spec-v">全Visa加盟店</span></div>
+          </div>
+          <div class="card-banner-point">
+            <i class="fa-solid fa-gift" style="color:#db2777"></i>
+            クレカなしでも使える<strong>使い捨てVisa</strong>。海外サイト・オンラインで即使用可。
+          </div>
+          <div class="a8-banner-wrap">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE" rel="nofollow"><img border="0" width="300" height="250" alt="Vanilla Visaギフトカード" src="https://www24.a8.net/svt/bgt?aid=260504439942&wid=001&eno=01&mid=s00000023883002004000&mc=1" style="max-width:100%;height:auto;border-radius:6px"></a>
+            <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4B3IIF+FKUCMQ+54A6+BXIYP" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE" class="card-banner-cta" style="background:linear-gradient(135deg,#6d28d9,#db2777);box-shadow:0 3px 10px rgba(109,40,217,0.3)" target="_blank" rel="noopener nofollow">
+            <i class="fa-solid fa-arrow-right"></i> 公式サイトで購入する
+          </a>
+          <a href="cards/a8_s00000023883002.html" class="card-banner-sub">詳細を確認する →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- Ranking -->
 <div class="section" id="ranking">
   <div class="container">
@@ -436,7 +827,18 @@
           </ul>
         </div>
         <div class="btn-col">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5" class="btn-apply" target="_blank" rel="noopener">公式サイトで申し込む</a>
+          <div style="text-align:center;margin-bottom:8px">
+            <div id='div_admane_async_1734_658_2972b'>
+            <script type='text/javascript'>
+            <!--
+            brandsafe_js_async('//ad-verification.a8.net/ad', '_site=1734&_article=658&_link=2972&_image=3219&_ns=1&sad=s00000015110002', '260504440080', '4B3IIG+1BMP6A+38L8+BXYE9');
+            //-->
+            </script>
+            </div>
+            <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B3IIG+1BMP6A+38L8+BXYE9" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5" class="btn-apply" target="_blank" rel="noopener nofollow"><i class="fa-solid fa-external-link-alt" style="margin-right:5px;font-size:0.8rem"></i>公式サイトで申し込む</a>
+          <div style="font-size:0.7rem;color:#999;text-align:center;margin-top:-4px">※年会費無料・最短即日発行</div>
           <a href="cards/a8_s00000015110002.html" class="btn-detail">詳細を見る →</a>
         </div>
       </div>
@@ -478,7 +880,12 @@
           </ul>
         </div>
         <div class="btn-col">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5" class="btn-apply" target="_blank" rel="noopener">無料登録する</a>
+          <div style="text-align:center;margin-bottom:8px">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5" rel="nofollow"><img border="0" width="234" height="60" alt="ラボル カード払い" src="https://www21.a8.net/svt/bgt?aid=260504439819&wid=001&eno=01&mid=s00000018733010003000&mc=1" style="max-width:100%;height:auto;border-radius:4px"></a>
+            <img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4B3IIF+DJM182+40JM+1NJZN5" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5" class="btn-apply" target="_blank" rel="noopener nofollow" style="background:linear-gradient(135deg,#7c3aed,#4c1d95);box-shadow:0 3px 10px rgba(124,58,237,0.3)"><i class="fa-solid fa-external-link-alt" style="margin-right:5px;font-size:0.8rem"></i>無料登録する</a>
+          <div style="font-size:0.7rem;color:#999;text-align:center;margin-top:-4px">※登録+審査で3,000円</div>
           <a href="cards/a8_s00000018733010.html" class="btn-detail">詳細を見る →</a>
         </div>
       </div>
@@ -520,7 +927,12 @@
           </ul>
         </div>
         <div class="btn-col">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BWVTE" class="btn-apply" target="_blank" rel="noopener">今すぐ申し込む</a>
+          <div style="text-align:center;margin-bottom:8px">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BXQOJ" rel="nofollow"><img border="0" width="234" height="60" alt="フタバ キャッシング" src="https://www22.a8.net/svt/bgt?aid=260504440135&wid=001&eno=01&mid=s00000015135002012000&mc=1" style="max-width:100%;height:auto;border-radius:4px"></a>
+            <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4B3IIG+28DJG2+38S6+BZ8OX" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BXQOJ" class="btn-apply" target="_blank" rel="noopener nofollow" style="background:linear-gradient(135deg,#0f4c81,#1565c0);box-shadow:0 3px 10px rgba(15,76,129,0.3)"><i class="fa-solid fa-external-link-alt" style="margin-right:5px;font-size:0.8rem"></i>今すぐ申し込む</a>
+          <div style="font-size:0.7rem;color:#999;text-align:center;margin-top:-4px">※最短即日融資対応</div>
           <a href="cards/a8_s00000015135002.html" class="btn-detail">詳細を見る →</a>
         </div>
       </div>
@@ -562,7 +974,12 @@
           </ul>
         </div>
         <div class="btn-col">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+699KI" class="btn-apply" target="_blank" rel="noopener">今すぐ申し込む</a>
+          <div style="text-align:center;margin-bottom:8px">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+62ENL" rel="nofollow"><img border="0" width="234" height="60" alt="パーソナルクレジット セントラル" src="https://www20.a8.net/svt/bgt?aid=260504440091&wid=001&eno=01&mid=s00000014787001019000&mc=1" style="max-width:100%;height:auto;border-radius:4px"></a>
+            <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B3IIG+1I6GTU+363I+62ENL" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+699KI" class="btn-apply" target="_blank" rel="noopener nofollow" style="background:linear-gradient(135deg,#1a7a4a,#0d6b8a);box-shadow:0 3px 10px rgba(26,122,74,0.3)"><i class="fa-solid fa-external-link-alt" style="margin-right:5px;font-size:0.8rem"></i>今すぐ申し込む</a>
+          <div style="font-size:0.7rem;color:#999;text-align:center;margin-top:-4px">※年7.3%〜低金利</div>
           <a href="cards/a8_s00000014787001.html" class="btn-detail">詳細を見る →</a>
         </div>
       </div>
@@ -604,7 +1021,12 @@
           </ul>
         </div>
         <div class="btn-col">
-          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE" class="btn-apply" target="_blank" rel="noopener">公式サイトで購入する</a>
+          <div style="text-align:center;margin-bottom:8px">
+            <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE" rel="nofollow"><img border="0" width="234" height="60" alt="Vanilla Visaギフトカード" src="https://www24.a8.net/svt/bgt?aid=260504439942&wid=001&eno=01&mid=s00000023883002004000&mc=1" style="max-width:100%;height:auto;border-radius:4px"></a>
+            <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4B3IIF+FKUCMQ+54A6+BXIYP" alt="">
+          </div>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE" class="btn-apply" target="_blank" rel="noopener nofollow" style="background:linear-gradient(135deg,#6d28d9,#db2777);box-shadow:0 3px 10px rgba(109,40,217,0.3)"><i class="fa-solid fa-external-link-alt" style="margin-right:5px;font-size:0.8rem"></i>公式サイトで購入する</a>
+          <div style="font-size:0.7rem;color:#999;text-align:center;margin-top:-4px">※審査不要・即時利用可</div>
           <a href="cards/a8_s00000023883002.html" class="btn-detail">詳細を見る →</a>
         </div>
       </div>
@@ -680,6 +1102,38 @@
           <span class="article-cat purple">学生向け</span>
         </div>
         <div class="article-card-body"><a href="articles/student-card.html">学生向けクレジットカードおすすめ【審査が通りやすい・特典充実】</a></div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-card-img-wrap">
+          <img class="article-card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=70" alt="クレジットカード2枚持ち" loading="lazy">
+          <span class="article-cat">2枚持ち</span>
+        </div>
+        <div class="article-card-body"><a href="articles/two-cards.html">クレジットカード2枚持ちのおすすめ組み合わせ【2026年版】</a></div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-card-img-wrap">
+          <img class="article-card-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=70" alt="主婦向けクレジットカード" loading="lazy">
+          <span class="article-cat purple">主婦向け</span>
+        </div>
+        <div class="article-card-body"><a href="articles/housewife-card.html">主婦向けクレジットカードおすすめ【専業主婦・パートでも作れる】</a></div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-card-img-wrap">
+          <img class="article-card-img" src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=400&q=70" alt="海外旅行向けクレジットカード" loading="lazy">
+          <span class="article-cat green">海外旅行</span>
+        </div>
+        <div class="article-card-body"><a href="articles/overseas-travel.html">海外旅行向けクレジットカードおすすめ【保険・マイル・特典で比較】</a></div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-card-img-wrap">
+          <img class="article-card-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=70" alt="審査が通りやすいクレジットカード" loading="lazy">
+          <span class="article-cat orange">審査・申込</span>
+        </div>
+        <div class="article-card-body"><a href="articles/easy-approval.html">審査が通りやすいクレジットカードおすすめ【2026年版】審査落ちした人も必見</a></div>
       </div>
 
       <div class="article-card">
@@ -823,15 +1277,33 @@ window.addEventListener('scroll',()=>{
   document.getElementById('mainHeader').classList.toggle('scrolled',window.scrollY>10);
 });
 
-/* ===== Hamburger Menu ===== */
-function toggleMenu(){
-  const nav=document.querySelector('nav');
-  if(nav.style.display==='flex'){
-    nav.style.display='none';
-  }else{
-    nav.style.cssText='display:flex;flex-direction:column;position:fixed;top:56px;right:0;background:#1a56db;padding:16px 20px;gap:14px;z-index:100;min-width:170px;border-radius:0 0 0 8px;box-shadow:0 4px 16px rgba(0,0,0,0.2)';
-  }
+/* ===== Mobile Menu ===== */
+function toggleMobileMenu(){
+  const btn=document.getElementById('hamburgerBtn');
+  const menu=document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
 }
+function closeMobileMenu(){
+  document.getElementById('hamburgerBtn').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow='';
+}
+function toggleSection(el){
+  const links=el.nextElementSibling;
+  const arrow=el.querySelector('.toggle');
+  links.classList.toggle('open');
+  arrow.style.transform=links.classList.contains('open')?'rotate(180deg)':'';
+}
+/* メニュー外クリックで閉じる */
+document.addEventListener('click',e=>{
+  const menu=document.getElementById('mobileMenu');
+  const btn=document.getElementById('hamburgerBtn');
+  if(menu.classList.contains('open')&&!menu.contains(e.target)&&!btn.contains(e.target)){
+    closeMobileMenu();
+  }
+});
 
 /* ===== Quiz ===== */
 const CARDS=[

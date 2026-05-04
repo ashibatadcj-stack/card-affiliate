@@ -62,69 +62,285 @@ def generate_article_html(article: dict) -> str:
 
 
 def build_article_page(article: dict, article_html: str) -> str:
+    """新テンプレート（common.css / 2カラムレイアウト / TOC / サイドバー）で記事ページを生成"""
     related = [CARDS_MAP[cid] for cid in article["related_cards"] if cid in CARDS_MAP]
-    related_links = "\n".join([
-        f'<li><a href="../cards/{c["id"]}.html">{c["name"]}の詳細記事</a></li>'
-        for c in related
-    ])
+
+    # 関連カード：サイドバー人気記事リスト
+    popular_items = [
+        '<li><span class="popular-num">1</span><a href="beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】</a></li>',
+        '<li><span class="popular-num">2</span><a href="two-cards.html">2枚持ちのおすすめ組み合わせ【2026年版】</a></li>',
+        '<li><span class="popular-num">3</span><a href="annual-fee-free.html">年会費無料カードおすすめ比較</a></li>',
+        '<li><span class="popular-num">4</span><a href="rakuten-vs-epos.html">楽天カード vs エポスカード徹底比較</a></li>',
+        '<li><span class="popular-num">5</span><a href="overseas-travel.html">海外旅行向けクレジットカード</a></li>',
+    ]
+    popular_html = "\n        ".join(popular_items)
+
+    # 関連記事カード（最大3件：紹介カードの詳細ページ）
+    related_card_imgs = [
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=180&fit=crop",
+        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=180&fit=crop",
+        "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=400&h=180&fit=crop",
+    ]
+    related_cards_html = ""
+    for i, card in enumerate(related[:3]):
+        img = related_card_imgs[i % len(related_card_imgs)]
+        related_cards_html += f"""
+        <div class="related-card">
+          <img class="related-card-img" src="{img}" alt="{card['name']}" loading="lazy">
+          <div class="related-card-body">
+            <span class="related-card-cat">おすすめカード</span>
+            <a href="../cards/{card['id']}.html">{card['name']}の詳細・申し込み</a>
+          </div>
+        </div>"""
+
+    slug = article["slug"]
+    title = article["title"]
+    description = article["description"]
+    url = f"https://ashibatadcj-stack.github.io/card-affiliate/articles/{slug}.html"
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{article['title']} | カード比較ナビ</title>
-  <meta name="description" content="{article['description']}">
-  <style>
-    body {{ font-family: 'Hiragino Sans', sans-serif; max-width: 860px; margin: 0 auto; padding: 20px 16px; color: #333; line-height: 1.9; }}
-    header {{ background: #1a56db; color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 28px; }}
-    header a {{ color: #aac4ff; text-decoration: none; font-size: 0.9rem; }}
-    .article-content h1 {{ font-size: 1.7rem; margin-bottom: 20px; line-height: 1.4; }}
-    .article-content h2 {{ font-size: 1.25rem; margin: 32px 0 12px; border-left: 4px solid #1a56db; padding-left: 12px; color: #1a56db; }}
-    .article-content h3 {{ font-size: 1.05rem; margin: 20px 0 8px; }}
-    .article-content table {{ width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }}
-    .article-content th {{ background: #1a56db; color: white; padding: 10px; text-align: left; }}
-    .article-content td {{ padding: 10px; border: 1px solid #ddd; }}
-    .article-content tr:nth-child(even) td {{ background: #f5f7fa; }}
-    .apply-btn {{ display: block; width: 100%; padding: 16px; background: #e53e3e; color: white; text-align: center; border-radius: 8px; font-size: 1.05rem; font-weight: bold; text-decoration: none; margin: 16px 0; }}
-    .apply-btn:hover {{ background: #c53030; }}
-    .related-box {{ background: #f0f4ff; border-radius: 8px; padding: 20px; margin-top: 40px; }}
-    .related-box h3 {{ margin-bottom: 12px; color: #1a56db; }}
-    .related-box ul {{ padding-left: 20px; }}
-    .related-box li {{ margin-bottom: 6px; }}
-    .related-box a {{ color: #1a56db; }}
-    .diagnosis-banner {{
-      background: linear-gradient(135deg, #1a56db, #3b82f6);
-      color: white; border-radius: 8px; padding: 20px; margin: 32px 0; text-align: center;
-    }}
-    .diagnosis-banner a {{ display: inline-block; margin-top: 10px; background: white; color: #1a56db; padding: 10px 28px; border-radius: 6px; font-weight: bold; text-decoration: none; }}
-    footer {{ margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.8rem; color: #888; line-height: 1.8; }}
-  </style>
+  <title>{title} | クレジットカード比較ナビ</title>
+  <meta name="description" content="{description}">
+  <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWEHFB30XE"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-HWEHFB30XE');</script>
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{title}",
+    "description": "{description}",
+    "datePublished": "2026-05-05",
+    "dateModified": "2026-05-05",
+    "author": {{"@type": "Organization", "name": "クレジットカード比較ナビ編集部"}},
+    "publisher": {{"@type": "Organization", "name": "クレジットカード比較ナビ", "url": "https://ashibatadcj-stack.github.io/card-affiliate/"}},
+    "url": "{url}"
+  }}
+  </script>
 </head>
-<body>
-  <header>
-    <a href="../index.html">← カード診断トップに戻る</a>
-  </header>
+<body class="article-page">
 
-  {article_html}
-
-  <div class="diagnosis-banner">
-    <p>自分に合ったカードがわからない方は診断してみましょう</p>
-    <a href="../index.html">無料カード診断を試す →</a>
+<header id="site-header">
+  <div class="header-top">
+    <div class="header-top-inner">
+      <div class="header-top-links">
+        <a href="../index.html"><i class="fas fa-home"></i> トップ</a>
+        <a href="#">カード一覧</a>
+        <a href="#">比較ランキング</a>
+      </div>
+      <div class="header-top-right">
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#">お問い合わせ</a>
+      </div>
+    </div>
   </div>
-
-  <div class="related-box">
-    <h3>関連記事</h3>
-    <ul>
-      {related_links}
-    </ul>
+  <div class="header-main">
+    <div class="header-main-inner">
+      <a href="../index.html" class="site-logo">
+        <div class="site-logo-icon"><i class="fas fa-credit-card"></i></div>
+        <div class="site-logo-text">
+          <span class="logo-main">クレジットカード比較ナビ</span>
+          <span class="logo-sub">あなたに最適な1枚が見つかる</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <div class="nav-item">
+          <a href="#">おすすめカード <i class="fas fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <div class="dropdown-label">目的から選ぶ</div>
+              <a href="annual-fee-free.html"><i class="fas fa-star"></i> 年会費無料カード</a>
+              <a href="high-points.html"><i class="fas fa-gem"></i> 高還元率カード</a>
+              <hr class="dropdown-divider">
+              <div class="dropdown-label">属性から選ぶ</div>
+              <a href="student-card.html"><i class="fas fa-graduation-cap"></i> 学生向けカード</a>
+              <a href="housewife-card.html"><i class="fas fa-home"></i> 主婦向けカード</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">カード比較 <i class="fas fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <a href="rakuten-vs-epos.html"><i class="fas fa-balance-scale"></i> 楽天 vs エポス</a>
+              <a href="high-points.html"><i class="fas fa-chart-bar"></i> ポイント還元率比較</a>
+              <a href="annual-fee-free.html"><i class="fas fa-tag"></i> 年会費無料比較</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">お役立ち情報 <i class="fas fa-chevron-down nav-arrow"></i></a>
+          <div class="dropdown">
+            <div class="dropdown-inner">
+              <a href="beginner-guide.html"><i class="fas fa-book"></i> 初心者ガイド</a>
+              <a href="two-cards.html"><i class="fas fa-clone"></i> 2枚持ち</a>
+              <a href="overseas-travel.html"><i class="fas fa-plane"></i> 海外旅行向け</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <a href="../index.html#quiz" class="btn-quiz-header"><i class="fas fa-magic"></i> カード診断</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="メニュー">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </div>
+</header>
 
-  <footer>
-    ※当サイトはアフィリエイト広告を掲載しています。<br>
-    ※掲載情報は記事作成時点のものです。最新情報は各カード公式サイトでご確認ください。<br>
-    ※審査結果は各カード会社の判断によります。
-  </footer>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title">
+      <i class="fas fa-credit-card"></i> おすすめカード <i class="fas fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="annual-fee-free.html"><i class="fas fa-tag"></i> 年会費無料カード</a>
+      <a href="high-points.html"><i class="fas fa-gem"></i> 高還元率カード</a>
+      <a href="student-card.html"><i class="fas fa-graduation-cap"></i> 学生向けカード</a>
+    </div>
+  </div>
+  <div class="mobile-nav-section">
+    <div class="mobile-nav-section-title">
+      <i class="fas fa-balance-scale"></i> カード比較 <i class="fas fa-chevron-down toggle"></i>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="rakuten-vs-epos.html"><i class="fas fa-balance-scale"></i> 楽天 vs エポス</a>
+      <a href="high-points.html"><i class="fas fa-chart-bar"></i> ポイント還元率比較</a>
+    </div>
+  </div>
+  <a class="mobile-quiz-btn" href="../index.html#quiz"><i class="fas fa-magic"></i> 無料カード診断</a>
+</div>
+
+<nav class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">TOP</a>
+    <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+    <a href="#">お役立ち情報</a>
+    <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+    <span class="breadcrumb-current">{title}</span>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <main class="article-main">
+
+    <div class="article-header">
+      <div class="article-cat-badge"><i class="fas fa-file-alt"></i> クレジットカード</div>
+      <h1>{title}</h1>
+      <div class="article-meta">
+        <span class="updated"><i class="fas fa-sync-alt"></i> 2026年5月更新</span>
+        <span><i class="fas fa-user"></i> 編集部</span>
+      </div>
+    </div>
+
+    <div class="toc-box">
+      <div class="toc-box-title">
+        <i class="fas fa-list"></i> 目次 <i class="fas fa-chevron-down toc-toggle"></i>
+      </div>
+      <ul class="toc-list" id="toc-list"></ul>
+    </div>
+
+    <article class="article-body">
+      {article_html}
+    </article>
+
+    <div class="diagnosis-banner">
+      <p>自分に合ったカードが見つからない方は</p>
+      <small>質問に答えるだけで最適な1枚がわかります</small>
+      <a href="../index.html#quiz"><i class="fas fa-magic"></i> 無料カード診断を試す →</a>
+    </div>
+
+    <section class="related-section">
+      <h3><i class="fas fa-link"></i> 関連記事</h3>
+      <div class="related-grid">
+        {related_cards_html}
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="article-sidebar">
+    <div class="sidebar-toc">
+      <div class="sidebar-toc-title"><i class="fas fa-list"></i> 目次</div>
+      <ul class="sidebar-toc-list" id="sidebar-toc-list"></ul>
+    </div>
+    <div class="sidebar-cta">
+      <h4>カード選びに迷ったら</h4>
+      <p>3つの質問に答えるだけであなたに最適なカードがわかります</p>
+      <a href="../index.html#quiz"><i class="fas fa-magic"></i> 無料カード診断</a>
+    </div>
+    <div class="sidebar-popular">
+      <h4><i class="fas fa-fire"></i> 人気記事</h4>
+      <ul class="popular-list">
+        {popular_html}
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>クレジットカード比較ナビ</h4>
+        <ul>
+          <li><a href="../index.html">トップページ</a></li>
+          <li><a href="../index.html#quiz">カード診断</a></li>
+          <li><a href="../privacy.html">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>記事カテゴリ</h4>
+        <ul>
+          <li><a href="beginner-guide.html">初心者ガイド</a></li>
+          <li><a href="two-cards.html">2枚持ち</a></li>
+          <li><a href="annual-fee-free.html">年会費無料</a></li>
+          <li><a href="overseas-travel.html">海外旅行向け</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>人気カード</h4>
+        <ul>
+          <li><a href="../cards/rakuten.html">楽天カード</a></li>
+          <li><a href="../cards/epos.html">エポスカード</a></li>
+          <li><a href="../cards/amazon.html">Amazon Mastercard</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        ※当サイトはアフィリエイト広告を掲載しています。<br>
+        ※掲載情報は記事作成時点のものです。最新情報は各カード公式サイトでご確認ください。<br>
+        ※審査結果は各カード会社の判断によります。<br>
+        © 2026 クレジットカード比較ナビ
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{{document.getElementById('site-header').classList.toggle('scrolled',window.scrollY>10);}});
+function toggleMobileMenu(){{document.getElementById('mobile-menu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}}
+document.addEventListener('click',e=>{{const m=document.getElementById('mobile-menu'),b=document.getElementById('hamburger');if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target)){{m.classList.remove('open');b.classList.remove('open');}}}});
+document.querySelectorAll('.mobile-nav-section-title').forEach(t=>{{t.addEventListener('click',()=>{{const l=t.nextElementSibling;l.classList.toggle('open');const i=t.querySelector('i.toggle');if(i)i.style.transform=l.classList.contains('open')?'rotate(180deg)':'';}})}});
+(function(){{
+  const toc=document.getElementById('toc-list'),side=document.getElementById('sidebar-toc-list');
+  const hs=document.querySelectorAll('.article-body h2');
+  hs.forEach((h,i)=>{{
+    const id='sec-'+i;h.id=id;
+    [toc,side].forEach(list=>{{if(!list)return;const li=document.createElement('li');const a=document.createElement('a');a.href='#'+id;a.textContent=h.textContent;li.appendChild(a);list.appendChild(li);}});
+  }});
+  const obs=new IntersectionObserver(en=>{{en.forEach(e=>{{const id=e.target.id;[toc,side].forEach(list=>{{if(!list)return;const a=list.querySelector('a[href="#'+id+'"]');if(a)a.parentElement.classList.toggle('active',e.isIntersecting);}});}});}},{{rootMargin:'-20% 0px -70% 0px'}});
+  hs.forEach(h=>obs.observe(h));
+}})();
+</script>
 </body>
 </html>"""
 

@@ -2,7 +2,7 @@ CARDS = [
     {
         "id": "rakuten",
         "name": "楽天カード",
-        "affiliate_url": "https://example.com/rakuten",  # 実際のアフィリエイトURLに変更
+        "affiliate_url": "https://example.com/rakuten",  # TODO: A8またはafbの楽天カード提携URLに変更
         "annual_fee": "永年無料",
         "points": "楽天ポイント 1%〜3%",
         "features": ["年会費無料", "楽天市場で還元率アップ", "審査が通りやすい"],
@@ -13,7 +13,7 @@ CARDS = [
     {
         "id": "epos",
         "name": "エポスカード",
-        "affiliate_url": "https://example.com/epos",
+        "affiliate_url": "https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5",  # A8 エポスカード
         "annual_fee": "永年無料",
         "points": "エポスポイント 0.5%",
         "features": ["年会費無料", "マルイで優待", "海外旅行保険付き（無料）"],
@@ -24,7 +24,7 @@ CARDS = [
     {
         "id": "amazon",
         "name": "Amazon Mastercard",
-        "affiliate_url": "https://example.com/amazon",
+        "affiliate_url": "https://example.com/amazon",  # TODO: Amazon Mastercardの提携URLに変更
         "annual_fee": "永年無料",
         "points": "Amazonポイント 1.5%〜2%",
         "features": ["Amazon利用者向け高還元", "年会費無料", "Primeと相性抜群"],
@@ -35,7 +35,7 @@ CARDS = [
     {
         "id": "sbi_platinum",
         "name": "三井住友カード プラチナプリファード",
-        "affiliate_url": "https://example.com/sbi_platinum",
+        "affiliate_url": "https://example.com/sbi_platinum",  # TODO: 三井住友カード提携URLに変更
         "annual_fee": "33,000円（税込）",
         "points": "Vポイント 最大5%",
         "features": ["高還元率", "SBI証券との連携", "コンシェルジュサービス"],
