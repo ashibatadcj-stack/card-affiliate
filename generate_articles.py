@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import anthropic
 from cards_data import CARDS
 from articles_data import ARTICLES
+from a8_banner_fetcher import match_programs, fetch_banners, inject_banners_into_article
 
 BASE_DIR = Path(__file__).parent
 load_dotenv(BASE_DIR / ".env")
@@ -29,40 +30,55 @@ def load_research(keyword: str) -> dict | None:
     return None
 
 
+def _build_research_section(research: dict | None) -> tuple[str, str]:
+    """競合調査データからプロンプト挿入文と推奨文字数を返す"""
+    if not research:
+        return "", "1500〜2000"
+
+    target_words = f"{research.get('target_word_count', 2000):,}"
+    top_h2 = research.get('top_h2_topics', [])
+    outline = research.get('suggested_outline', [])
+
+    section = ""
+    if top_h2:
+        section += f"\n【競合サイト分析（参考）】\n"
+        section += f"競合の平均文字数: {research.get('avg_word_count', 0):,}文字\n"
+        section += f"競合サイトで頻出の見出しトピック:\n"
+        for h in top_h2[:6]:
+            section += f"  - {h}\n"
+
+    if outline:
+        section += f"\n競合分析に基づく推奨アウトライン:\n"
+        for i, sec in enumerate(outline, 1):
+            section += f"  H2 {i}: {sec['h2']}\n"
+            for pt in sec.get('points', []):
+                section += f"         ・{pt}\n"
+
+    if section:
+        section += "\n※ 上記競合分析を参考にしつつ、独自の視点・情報を加えて差別化してください。\n"
+
+    return section, target_words
+
+
 def generate_article_html(article: dict, research: dict | None = None) -> str:
-    related = [CARDS_MAP[cid] for cid in article["related_cards"] if cid in CARDS_MAP]
+    """カテゴリに応じて記事/カード詳細のHTMLコンテンツを生成"""
+    category_slug = article.get("category_slug", "guide")
+    if category_slug == "card-detail":
+        return _generate_card_detail_html(article, research)
+    return _generate_compare_article_html(article, research)
+
+
+def _generate_compare_article_html(article: dict, research: dict | None) -> str:
+    """比較・ガイド系記事（複数カードを紹介）"""
+    related = [CARDS_MAP[cid] for cid in article.get("related_cards", []) if cid in CARDS_MAP]
     related_text = "\n".join(
         [f"- {c['name']}（年会費:{c['annual_fee']}、還元率:{c['points']}）" for c in related]
     )
     sections_text = "\n".join([f"{i+1}. {s}" for i, s in enumerate(article["sections"])])
-
     card_placeholders = "\n".join(
         [f"  {c['name']} → href属性に AFFILIATE_{c['id'].upper()} と記述" for c in related]
     )
-
-    # 競合調査データがある場合は追加情報としてプロンプトに組み込む
-    research_section = ""
-    target_words = "1500〜2000"
-    if research:
-        target_words = f"{research.get('target_word_count', 2000):,}"
-        top_h2 = research.get('top_h2_topics', [])
-        outline = research.get('suggested_outline', [])
-
-        if top_h2:
-            research_section += f"\n【競合サイト分析（参考）】\n"
-            research_section += f"競合の平均文字数: {research.get('avg_word_count', 0):,}文字\n"
-            research_section += f"競合サイトで頻出の見出しトピック:\n"
-            for h in top_h2[:6]:
-                research_section += f"  - {h}\n"
-
-        if outline:
-            research_section += f"\n競合分析に基づく推奨アウトライン:\n"
-            for i, sec in enumerate(outline, 1):
-                research_section += f"  H2 {i}: {sec['h2']}\n"
-                for pt in sec.get('points', []):
-                    research_section += f"         ・{pt}\n"
-
-        research_section += "\n※ 上記競合分析を参考にしつつ、独自の視点・情報を加えて差別化してください。\n"
+    research_section, target_words = _build_research_section(research)
 
     prompt = (
         "あなたはSEOに詳しいアフィリエイターです。以下の条件でクレジットカード比較記事をHTMLで生成してください。\n\n"
@@ -82,13 +98,16 @@ def generate_article_html(article: dict, research: dict | None = None) -> str:
         f"- 申し込みボタンは各カード紹介の後に設置（hrefのプレースホルダー）:\n{card_placeholders}\n"
         "- 読者目線の自然な文体、結論を明確に\n"
         "- <article class=\"article-content\">タグで全体を囲む\n"
-        "- 冒頭に「この記事でわかること」を箇条書きで3点\n"
-        "- 最後に「まとめ」セクションを入れる\n"
+        "- h1の直後に <div class=\"article-intro\"> でラップした導入文を入れ、その中で <h3>この記事でわかること</h3> として箇条書きで3点を提示する\n"
+        "- 最後に <h2>まとめ</h2> セクションを必ず入れる\n"
+        "- 【重要】各h2をラップする <section class=\"...\"> タグは一切使わない（フラットな構造）\n"
+        "- 【重要】<style>タグ・インラインstyle属性は一切含めないこと\n"
+        "- HTMLのみを返し、```htmlなどのコードフェンスは不要\n"
     )
 
     message = client.messages.create(
         model="claude-haiku-4-5-20251001",
-        max_tokens=3000,
+        max_tokens=6000,
         messages=[{"role": "user", "content": prompt}],
     )
     content = message.content[0].text
@@ -100,11 +119,114 @@ def generate_article_html(article: dict, research: dict | None = None) -> str:
     return content
 
 
-def build_article_page(article: dict, article_html: str) -> str:
-    """新テンプレート（common.css / 2カラムレイアウト / TOC / サイドバー）で記事ページを生成"""
-    related = [CARDS_MAP[cid] for cid in article["related_cards"] if cid in CARDS_MAP]
+def _generate_card_detail_html(article: dict, research: dict | None) -> str:
+    """カード詳細ページ（単一カード/サービスを深掘り）"""
+    sections_text = "\n".join([f"{i+1}. {s}" for i, s in enumerate(article["sections"])])
+    aff_url = article.get("aff_url", "")
+    research_section, target_words = _build_research_section(research)
+    if not research:
+        target_words = "1800〜2500"
 
-    # 関連カード：サイドバー人気記事リスト
+    if aff_url:
+        cta_instruction = (
+            "- 申し込みボタンは各セクション末と記事末尾に設置\n"
+            "  href属性に CARD_AFF_URL と記述（後で実URLに置換）\n"
+            "  ボタンテキスト例: 「公式サイトで詳細を見る →」「今すぐ申し込む →」\n"
+        )
+    else:
+        cta_instruction = (
+            "- 申し込みボタンは記事末尾に1か所のみ設置\n"
+            "  href属性に CARD_AFF_URL_PLACEHOLDER と記述\n"
+        )
+
+    prompt = (
+        "あなたはSEOに詳しいアフィリエイターです。以下の条件でカード/金融サービスの詳細解説ページをHTMLで生成してください。\n\n"
+        f"【ページ情報】\n"
+        f"タイトル: {article['title']}\n"
+        f"狙いキーワード: {article['keyword']}\n"
+        f"想定読者: {article['target_reader']}\n"
+        f"ページの説明: {article['description']}\n\n"
+        f"【構成（必ずこの順番で書く）】\n{sections_text}\n\n"
+        f"{research_section}\n"
+        "【要件】\n"
+        f"- 文字数: {target_words}文字以上（しっかりとした解説ページにする）\n"
+        "- h1はタイトルをそのまま使う\n"
+        "- h2で各セクションを区切る\n"
+        "- 比較表・スペック表はHTMLのtableタグで作る\n"
+        "- メリット・デメリットはulタグのリストで整理する\n"
+        f"{cta_instruction}"
+        "- 読者目線の自然な文体で、結論を明確に書く\n"
+        "- <article class=\"article-content\">タグで全体を囲む\n"
+        "- h1の直後に <div class=\"article-intro\"> でラップした導入文を入れ、その中で <h3>このページでわかること</h3> として箇条書きで3〜4点を提示する（h2ではなくh3を使う）\n"
+        "- 最後に <h2>まとめ</h2> セクションを必ず入れる\n"
+        "- 【重要】各h2をラップする <section class=\"...\"> タグは一切使わない（フラットな構造）\n"
+        "- 【重要】HTML要素にカスタムclass属性を付けない（article-intro と article-content 以外）\n"
+        "- 【重要】<style>タグ・インラインstyle属性は一切含めないこと\n"
+        "- HTMLのみを返し、```htmlなどのコードフェンスは不要\n"
+    )
+
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=7000,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    content = message.content[0].text
+
+    if aff_url:
+        content = content.replace("CARD_AFF_URL", aff_url)
+
+    return content
+
+
+def build_article_page(article: dict, article_html: str) -> str:
+    """新テンプレート（common.css / 2カラムレイアウト / TOC / サイドバー）で記事/カード詳細ページを生成"""
+    from articles_data import CATEGORIES
+
+    category_slug = article.get("category_slug", "guide")
+    is_card_detail = (category_slug == "card-detail")
+    cat_label = CATEGORIES.get(category_slug, {}).get("label", "クレジットカード")
+    cat_breadcrumb = CATEGORIES.get(category_slug, {}).get("breadcrumb", "お役立ち情報")
+
+    # 関連記事カード（最大3件）
+    related_card_imgs = [
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=180&fit=crop",
+        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=180&fit=crop",
+        "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=400&h=180&fit=crop",
+    ]
+    related_cards_html = ""
+
+    if is_card_detail:
+        # カード詳細：関連する比較記事を3件提示
+        related_articles = [
+            ("annual-fee-free.html", "年会費無料クレジットカードおすすめ比較【2026年版】", "比較記事"),
+            ("high-points.html", "ポイント還元率が高いクレジットカードランキング", "比較記事"),
+            ("beginner-guide.html", "クレジットカードの作り方【初心者完全ガイド】", "ガイド"),
+        ]
+        for i, (href, atitle, cat) in enumerate(related_articles):
+            img = related_card_imgs[i % len(related_card_imgs)]
+            related_cards_html += f"""
+        <div class="related-card">
+          <img class="related-card-img" src="{img}" alt="{atitle}" loading="lazy">
+          <div class="related-card-body">
+            <span class="related-card-cat">{cat}</span>
+            <a href="{href}">{atitle}</a>
+          </div>
+        </div>"""
+    else:
+        # 比較・ガイド系：紹介カードの詳細ページへリンク
+        related = [CARDS_MAP[cid] for cid in article.get("related_cards", []) if cid in CARDS_MAP]
+        for i, card in enumerate(related[:3]):
+            img = related_card_imgs[i % len(related_card_imgs)]
+            related_cards_html += f"""
+        <div class="related-card">
+          <img class="related-card-img" src="{img}" alt="{card['name']}" loading="lazy">
+          <div class="related-card-body">
+            <span class="related-card-cat">おすすめカード</span>
+            <a href="{card['id']}.html">{card['name']}の詳細・申し込み</a>
+          </div>
+        </div>"""
+
+    # サイドバー人気記事
     popular_items = [
         '<li><span class="popular-num">1</span><a href="beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】</a></li>',
         '<li><span class="popular-num">2</span><a href="two-cards.html">2枚持ちのおすすめ組み合わせ【2026年版】</a></li>',
@@ -114,28 +236,29 @@ def build_article_page(article: dict, article_html: str) -> str:
     ]
     popular_html = "\n        ".join(popular_items)
 
-    # 関連記事カード（最大3件：紹介カードの詳細ページ）
-    related_card_imgs = [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=180&fit=crop",
-        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=180&fit=crop",
-        "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=400&h=180&fit=crop",
-    ]
-    related_cards_html = ""
-    for i, card in enumerate(related[:3]):
-        img = related_card_imgs[i % len(related_card_imgs)]
-        related_cards_html += f"""
-        <div class="related-card">
-          <img class="related-card-img" src="{img}" alt="{card['name']}" loading="lazy">
-          <div class="related-card-body">
-            <span class="related-card-cat">おすすめカード</span>
-            <a href="../cards/{card['id']}.html">{card['name']}の詳細・申し込み</a>
-          </div>
-        </div>"""
+    # CTA / 診断バナー（カード詳細でaff_urlありの場合は申し込みボタンに置き換え）
+    aff_url = article.get("aff_url", "")
+    if is_card_detail and aff_url:
+        diagnosis_banner = f"""
+    <div class="diagnosis-banner">
+      <p>今すぐ申し込む</p>
+      <small>公式サイトで詳細をご確認いただけます</small>
+      <a href="{aff_url}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> 公式サイトで申し込む →</a>
+    </div>"""
+    else:
+        diagnosis_banner = """
+    <div class="diagnosis-banner">
+      <p>自分に合ったカードが見つからない方は</p>
+      <small>質問に答えるだけで最適な1枚がわかります</small>
+      <a href="../index.html#quiz"><i class="fas fa-magic"></i> 無料カード診断を試す →</a>
+    </div>"""
+
+    cat_icon = "fa-credit-card" if is_card_detail else "fa-file-alt"
 
     slug = article["slug"]
     title = article["title"]
     description = article["description"]
-    url = f"https://ashibatadcj-stack.github.io/card-affiliate/articles/{slug}.html"
+    url = f"https://cardshindan.com/articles/{slug}.html"
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -261,7 +384,7 @@ def build_article_page(article: dict, article_html: str) -> str:
   <div class="breadcrumb-inner">
     <a href="../index.html">TOP</a>
     <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
-    <a href="#">お役立ち情報</a>
+    <a href="#">{cat_breadcrumb}</a>
     <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
     <span class="breadcrumb-current">{title}</span>
   </div>
@@ -271,7 +394,7 @@ def build_article_page(article: dict, article_html: str) -> str:
   <main class="article-main">
 
     <div class="article-header">
-      <div class="article-cat-badge"><i class="fas fa-file-alt"></i> クレジットカード</div>
+      <div class="article-cat-badge"><i class="fas {cat_icon}"></i> {cat_label}</div>
       <h1>{title}</h1>
       <div class="article-meta">
         <span class="updated"><i class="fas fa-sync-alt"></i> 2026年5月更新</span>
@@ -289,12 +412,7 @@ def build_article_page(article: dict, article_html: str) -> str:
     <article class="article-body">
       {article_html}
     </article>
-
-    <div class="diagnosis-banner">
-      <p>自分に合ったカードが見つからない方は</p>
-      <small>質問に答えるだけで最適な1枚がわかります</small>
-      <a href="../index.html#quiz"><i class="fas fa-magic"></i> 無料カード診断を試す →</a>
-    </div>
+{diagnosis_banner}
 
     <section class="related-section">
       <h3><i class="fas fa-link"></i> 関連記事</h3>
@@ -347,9 +465,9 @@ def build_article_page(article: dict, article_html: str) -> str:
       <div class="footer-col">
         <h4>人気カード</h4>
         <ul>
-          <li><a href="../cards/rakuten.html">楽天カード</a></li>
-          <li><a href="../cards/epos.html">エポスカード</a></li>
-          <li><a href="../cards/amazon.html">Amazon Mastercard</a></li>
+          <li><a href="rakuten.html">楽天カード</a></li>
+          <li><a href="epos.html">エポスカード</a></li>
+          <li><a href="amazon.html">Amazon Mastercard</a></li>
         </ul>
       </div>
     </div>
@@ -425,10 +543,22 @@ def main():
     for i, article in enumerate(targets, 1):
         print(f"\n[{i}/{len(targets)}] 「{article['title'][:30]}...」を生成中...")
 
-        # 競合調査データを自動読込
+        # Step 1: 競合調査データを自動読込
         research = load_research(article.get('keyword', ''))
 
+        # Step 2: 関連A8プログラムをマッチング＆バナー取得
+        matched_ids = match_programs(article)
+        banners = fetch_banners(matched_ids)
+
+        # Step 3: Claude で記事HTML生成
         article_html = generate_article_html(article, research)
+
+        # Step 4: A8バナーを記事に注入
+        if banners:
+            article_html = inject_banners_into_article(article_html, banners)
+            print(f"  💰 A8バナー {len(banners)}件を注入しました")
+
+        # Step 5: フルページHTML生成・保存
         full_page = build_article_page(article, article_html)
         out_path = ARTICLES_DIR / f"{article['slug']}.html"
         out_path.write_text(full_page, encoding="utf-8")

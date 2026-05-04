@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- トップページ -->
   <url>
     <loc>https://cardshindan.com/</loc>
     <lastmod>2026-05-05</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
-
-  <!-- ポリシーページ -->
   <url>
     <loc>https://cardshindan.com/privacy.html</loc>
     <lastmod>2026-05-05</lastmod>
@@ -16,13 +13,15 @@
     <changefreq>yearly</changefreq>
   </url>
 
-  <!-- 記事ページ -->
+  <!-- ガイド -->
   <url>
     <loc>https://cardshindan.com/articles/beginner-guide.html</loc>
     <lastmod>2026-05-05</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
+
+  <!-- 比較・ランキング -->
   <url>
     <loc>https://cardshindan.com/articles/annual-fee-free.html</loc>
     <lastmod>2026-05-05</lastmod>
@@ -41,6 +40,8 @@
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
+
+  <!-- 属性別 -->
   <url>
     <loc>https://cardshindan.com/articles/student-card.html</loc>
     <lastmod>2026-05-05</lastmod>
@@ -48,13 +49,15 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/articles/two-cards.html</loc>
+    <loc>https://cardshindan.com/articles/housewife-card.html</loc>
     <lastmod>2026-05-05</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
+
+  <!-- 目的別 -->
   <url>
-    <loc>https://cardshindan.com/articles/housewife-card.html</loc>
+    <loc>https://cardshindan.com/articles/two-cards.html</loc>
     <lastmod>2026-05-05</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
@@ -72,205 +75,161 @@
     <changefreq>monthly</changefreq>
   </url>
 
-  <!-- 主要カードページ -->
+  <!-- カード詳細 -->
   <url>
-    <loc>https://cardshindan.com/cards/rakuten.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/epos.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/amazon.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/sbi_platinum.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/hojin_etc.html</loc>
+    <loc>https://cardshindan.com/articles/rakuten.html</loc>
     <lastmod>2026-05-05</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
-
-  <!-- A8アフィリエイト カードページ -->
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000008928002.html</loc>
+    <loc>https://cardshindan.com/articles/epos.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000008928004.html</loc>
+    <loc>https://cardshindan.com/articles/amazon.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000008928005.html</loc>
+    <loc>https://cardshindan.com/articles/sbi_platinum.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000013470008.html</loc>
+    <loc>https://cardshindan.com/articles/hojin_etc.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000014787001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000015923001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015110002.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000015923003.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015135001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000008928005.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015135002.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000015135002.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015597014.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000015135001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015923001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000014787001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015923003.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000023883002.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000016469001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000016469001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000018733010.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000018733010.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000023883002.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000018733005.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000026555003.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000016537001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000026615001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000012115029.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000027217001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000012115008.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000027422001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000023727001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000027494001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000013470008.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000008928001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000015597014.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015923002.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000026555003.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015923005.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000026615001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000015923006.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000027217001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000018733005.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000027422001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cardshindan.com/cards/a8_s00000023727001.html</loc>
+    <loc>https://cardshindan.com/articles/a8_s00000027494001.html</loc>
     <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/a8_s00000016537001.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/a8_s00000012115029.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cardshindan.com/cards/a8_s00000012115008.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>
