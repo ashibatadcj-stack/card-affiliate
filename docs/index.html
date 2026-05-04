@@ -65,6 +65,20 @@
     .stars{color:#f6c90e;font-size:1rem;letter-spacing:2px}
     .point-up{background:#fff3cd;border:1px solid #f6c90e;border-radius:4px;padding:3px 8px;font-size:0.78rem;color:#856404;margin-top:4px;display:inline-block}
 
+    /* クレジットカードビジュアル */
+    .cv{width:140px;height:88px;border-radius:10px;position:relative;flex-shrink:0;box-shadow:0 6px 16px rgba(0,0,0,0.22);overflow:hidden;font-family:monospace}
+    .cv::after{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.08)}
+    .cv-chip{position:absolute;top:14px;left:14px;width:26px;height:20px;background:linear-gradient(135deg,#ffe066,#f5a623);border-radius:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.2)}
+    .cv-chip::after{content:'';position:absolute;top:7px;left:0;right:0;height:1px;background:rgba(0,0,0,0.15)}
+    .cv-num{position:absolute;bottom:24px;left:12px;font-size:0.6rem;color:rgba(255,255,255,0.75);letter-spacing:1.5px}
+    .cv-label{position:absolute;bottom:8px;left:12px;font-size:0.6rem;color:rgba(255,255,255,0.9);font-weight:bold;font-family:sans-serif;max-width:110px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+    .cv-brand{position:absolute;top:12px;right:10px;font-size:0.55rem;color:rgba(255,255,255,0.8);font-weight:bold;letter-spacing:0.5px;font-family:sans-serif}
+    .cv-1{background:linear-gradient(135deg,#b8860b 0%,#c0392b 60%,#8e1a10 100%)}
+    .cv-2{background:linear-gradient(135deg,#1a7a4a 0%,#0d6b8a 100%)}
+    .cv-3{background:linear-gradient(135deg,#1a3a8a 0%,#2563eb 100%)}
+    .cv-4{background:linear-gradient(135deg,#5b21b6 0%,#db2777 100%)}
+    .cv-5{background:linear-gradient(135deg,#b91c1c 0%,#dc2626 60%,#9a1414 100%)}
+
     /* 診断セクション */
     .quiz-wrap{background:linear-gradient(135deg,#e8f0fe,#dbeafe);border-radius:16px;padding:32px;text-align:center}
     .quiz-wrap h2{font-size:1.3rem;font-weight:bold;margin-bottom:8px;color:#1a56db}
@@ -97,6 +111,8 @@
       nav{display:none}
       .hamburger{display:flex}
       .hero h1{font-size:1.35rem}
+      .rank-header{flex-wrap:wrap;gap:10px}
+      .cv{width:110px;height:70px}
       .rank-body{flex-direction:column}
       .btn-col{min-width:auto;width:100%}
       .article-grid{grid-template-columns:1fr}
@@ -137,6 +153,12 @@
     <div class="rank-card">
       <div class="rank-header">
         <div class="rank-badge rank-1">1位</div>
+        <div class="cv cv-1">
+          <div class="cv-chip"></div>
+          <div class="cv-num">**** **** **** 4892</div>
+          <div class="cv-label">dカード GOLD U</div>
+          <div class="cv-brand">NTT DOCOMO</div>
+        </div>
         <div class="rank-card-name">
           <h3>dカード GOLD U</h3>
           <div>
@@ -174,6 +196,12 @@
     <div class="rank-card">
       <div class="rank-header">
         <div class="rank-badge rank-2">2位</div>
+        <div class="cv cv-2">
+          <div class="cv-chip"></div>
+          <div class="cv-num">**** **** **** 2741</div>
+          <div class="cv-label">三井ショッピングパーク</div>
+          <div class="cv-brand">SAISON</div>
+        </div>
         <div class="rank-card-name">
           <h3>三井ショッピングパークカード《セゾン》</h3>
           <div>
@@ -211,6 +239,12 @@
     <div class="rank-card">
       <div class="rank-header">
         <div class="rank-badge rank-3">3位</div>
+        <div class="cv cv-3">
+          <div class="cv-chip"></div>
+          <div class="cv-num">**** **** **** 5503</div>
+          <div class="cv-label">スルガJCBカード</div>
+          <div class="cv-brand">JCB</div>
+        </div>
         <div class="rank-card-name">
           <h3>スルガJCBカード（スピード発番）</h3>
           <div>
@@ -247,6 +281,12 @@
     <div class="rank-card">
       <div class="rank-header">
         <div class="rank-badge rank-n">4位</div>
+        <div class="cv cv-4">
+          <div class="cv-chip"></div>
+          <div class="cv-num">**** **** **** 7218</div>
+          <div class="cv-label">バンドルカード</div>
+          <div class="cv-brand">Visa</div>
+        </div>
         <div class="rank-card-name">
           <h3>バンドルカード（Visaプリペイド）</h3>
           <div>
@@ -284,6 +324,12 @@
     <div class="rank-card">
       <div class="rank-header">
         <div class="rank-badge rank-n">5位</div>
+        <div class="cv cv-5">
+          <div class="cv-chip"></div>
+          <div class="cv-num">**** **** **** 3301</div>
+          <div class="cv-label">楽天カード</div>
+          <div class="cv-brand">Rakuten</div>
+        </div>
         <div class="rank-card-name">
           <h3>楽天カード</h3>
           <div>
