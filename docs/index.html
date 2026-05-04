@@ -6,6 +6,7 @@
   <title>クレジットカードおすすめランキング2026年版 | カード比較ナビ</title>
   <meta name="description" content="2026年最新！クレジットカードおすすめランキングTOP10。年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。">
   <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWEHFB30XE"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HWEHFB30XE');</script>
   <style>
@@ -24,10 +25,29 @@
     .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px}
 
     /* ヒーロー */
-    .hero{background:linear-gradient(135deg,#1a56db 0%,#1e40af 100%);color:white;padding:40px 16px;text-align:center}
-    .hero h1{font-size:1.7rem;font-weight:bold;line-height:1.4;margin-bottom:12px}
-    .hero p{font-size:0.95rem;opacity:0.9;margin-bottom:20px}
+    .hero{position:relative;color:white;padding:60px 16px;text-align:center;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&q=80');background-size:cover;background-position:center;filter:brightness(0.35)}
+    .hero-content{position:relative;z-index:1;max-width:700px}
+    .hero h1{font-size:1.9rem;font-weight:bold;line-height:1.4;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,0.4)}
+    .hero p{font-size:1rem;opacity:0.92;margin-bottom:20px;text-shadow:0 1px 4px rgba(0,0,0,0.3)}
     .hero-badge{display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:6px 16px;font-size:0.8rem}
+    .hero-stats{display:flex;justify-content:center;gap:32px;margin-top:24px;flex-wrap:wrap}
+    .hero-stat{text-align:center}
+    .hero-stat .num{font-size:1.8rem;font-weight:bold;display:block}
+    .hero-stat .lbl{font-size:0.75rem;opacity:0.8}
+
+    /* 特徴セクション */
+    .features-strip{background:white;border-bottom:1px solid #eee}
+    .features-inner{max-width:960px;margin:0 auto;padding:24px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+    .feat-item{display:flex;align-items:center;gap:12px}
+    .feat-icon{width:44px;height:44px;border-radius:10px;background:#e8f0fe;color:#1a56db;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .feat-text strong{display:block;font-size:0.9rem;font-weight:bold}
+    .feat-text span{font-size:0.78rem;color:#888}
+
+    /* カード画像エリア */
+    .card-img-wrap{width:100%;height:140px;overflow:hidden;border-radius:8px;margin-bottom:12px}
+    .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+    .card-img-wrap:hover img{transform:scale(1.04)}
 
     /* コンテナ */
     .container{max-width:960px;margin:0 auto;padding:0 16px}
@@ -55,8 +75,8 @@
     .spec-value{font-weight:bold;color:#333}
     .features-col{flex:1;min-width:180px}
     .features-col ul{list-style:none;padding:0}
-    .features-col li{font-size:0.88rem;padding:4px 0;display:flex;gap:6px}
-    .features-col li::before{content:"✓";color:#38a169;font-weight:bold;flex-shrink:0}
+    .features-col li{font-size:0.88rem;padding:4px 0;display:flex;align-items:center;gap:6px}
+    .features-col li i{color:#38a169;font-size:0.8rem;flex-shrink:0;width:14px}
     .btn-apply{display:block;background:linear-gradient(135deg,#e53e3e,#c53030);color:white;text-align:center;padding:14px 20px;border-radius:8px;font-size:1rem;font-weight:bold;transition:opacity .2s;margin-top:8px}
     .btn-apply:hover{opacity:.88}
     .btn-detail{display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.85rem;color:#555;margin-top:8px;transition:background .2s}
@@ -99,9 +119,12 @@
 
     /* 記事リスト */
     .article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-    .article-card{background:white;border-radius:10px;padding:16px 20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #1a56db;transition:box-shadow .2s}
+    .article-card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow .2s}
     .article-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-    .article-card a{color:#333;font-size:0.95rem;font-weight:500;line-height:1.5}
+    .article-card-img{width:100%;height:120px;object-fit:cover;display:block;transition:transform .3s}
+    .article-card:hover .article-card-img{transform:scale(1.04)}
+    .article-card-body{padding:12px 16px 16px;border-left:4px solid #1a56db}
+    .article-card-body a{color:#333;font-size:0.9rem;font-weight:500;line-height:1.5;display:block}
 
     /* フッター */
     footer{background:#1e2a3a;color:#aaa;padding:32px 16px;text-align:center;font-size:0.8rem;line-height:2}
@@ -136,9 +159,38 @@
 </header>
 
 <div class="hero">
-  <h1>クレジットカード おすすめランキング<br>2026年最新版</h1>
-  <p>年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。</p>
-  <span class="hero-badge">2026年5月 最新情報</span>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1><i class="fa-solid fa-credit-card" style="margin-right:10px;opacity:0.9"></i>クレジットカード<br>おすすめランキング 2026年最新版</h1>
+    <p>年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。</p>
+    <span class="hero-badge"><i class="fa-solid fa-calendar-check" style="margin-right:6px"></i>2026年5月 最新情報</span>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">17+</span><span class="lbl">掲載カード数</span></div>
+      <div class="hero-stat"><span class="num">3問</span><span class="lbl">かんたん診断</span></div>
+      <div class="hero-stat"><span class="num">無料</span><span class="lbl">完全無料で比較</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="features-strip">
+  <div class="features-inner">
+    <div class="feat-item">
+      <div class="feat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="feat-text"><strong>安心の情報源</strong><span>最新スペックを掲載</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+      <div class="feat-text"><strong>徹底比較</strong><span>年会費・還元率・特典</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div class="feat-text"><strong>3問で診断</strong><span>あなたに合った1枚を提案</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="fa-solid fa-tags"></i></div>
+      <div class="feat-text"><strong>全て無料</strong><span>比較・診断費用なし</span></div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
@@ -178,11 +230,11 @@
         </div>
         <div class="features-col">
           <ul>
-            <li>29歳以下限定のゴールドカード</li>
-            <li>dポイント高還元（ドコモ利用で最大10%）</li>
-            <li>国内主要空港ラウンジ無料</li>
-            <li>海外旅行傷害保険 最大1億円</li>
-            <li>ドコモのケータイ補償10万円</li>
+            <li><i class="fa-solid fa-check"></i>29歳以下限定のゴールドカード</li>
+            <li><i class="fa-solid fa-check"></i>dポイント高還元（ドコモ利用で最大10%）</li>
+            <li><i class="fa-solid fa-check"></i>国内主要空港ラウンジ無料</li>
+            <li><i class="fa-solid fa-check"></i>海外旅行傷害保険 最大1億円</li>
+            <li><i class="fa-solid fa-check"></i>ドコモのケータイ補償10万円</li>
           </ul>
         </div>
         <div class="btn-col">
@@ -221,11 +273,11 @@
         </div>
         <div class="features-col">
           <ul>
-            <li>年会費完全無料</li>
-            <li>三井ショッピングパークで最大5%還元</li>
-            <li>全国のイオン系でもポイント貯まる</li>
-            <li>ショッピング保険付き</li>
-            <li>即日発行対応</li>
+            <li><i class="fa-solid fa-check"></i>年会費完全無料</li>
+            <li><i class="fa-solid fa-star" style="color:#f6c90e"></i>三井ショッピングパークで最大5%還元</li>
+            <li><i class="fa-solid fa-check"></i>全国のイオン系でもポイント貯まる</li>
+            <li><i class="fa-solid fa-shield-halved" style="color:#1a56db"></i>ショッピング保険付き</li>
+            <li><i class="fa-solid fa-bolt" style="color:#f59e0b"></i>即日発行対応</li>
           </ul>
         </div>
         <div class="btn-col">
@@ -264,10 +316,10 @@
         </div>
         <div class="features-col">
           <ul>
-            <li>申込後すぐにカード番号が発番される</li>
-            <li>スルガ銀行口座との連携で管理らく</li>
-            <li>JCBの国際ブランドで海外でも使える</li>
-            <li>WEB申込で30日以内発行完了</li>
+            <li><i class="fa-solid fa-bolt" style="color:#f59e0b"></i>申込後すぐにカード番号が発番される</li>
+            <li><i class="fa-solid fa-check"></i>スルガ銀行口座との連携で管理らく</li>
+            <li><i class="fa-solid fa-globe" style="color:#1a56db"></i>JCBの国際ブランドで海外でも使える</li>
+            <li><i class="fa-solid fa-check"></i>WEB申込で30日以内発行完了</li>
           </ul>
         </div>
         <div class="btn-col">
@@ -306,11 +358,11 @@
         </div>
         <div class="features-col">
           <ul>
-            <li>審査なしで誰でも作れる</li>
-            <li>最短1分でアプリ発行</li>
-            <li>Visa加盟店ならどこでも使える</li>
-            <li>チャージ式で使いすぎない</li>
-            <li>高校生でも申込可能</li>
+            <li><i class="fa-solid fa-check"></i>審査なしで誰でも作れる</li>
+            <li><i class="fa-solid fa-bolt" style="color:#f59e0b"></i>最短1分でアプリ発行</li>
+            <li><i class="fa-solid fa-globe" style="color:#1a56db"></i>Visa加盟店ならどこでも使える</li>
+            <li><i class="fa-solid fa-piggy-bank" style="color:#e879f9"></i>チャージ式で使いすぎない</li>
+            <li><i class="fa-solid fa-graduation-cap" style="color:#0ea5e9"></i>高校生でも申込可能</li>
           </ul>
         </div>
         <div class="btn-col">
@@ -348,10 +400,10 @@
         </div>
         <div class="features-col">
           <ul>
-            <li>年会費ずっと無料</li>
-            <li>楽天市場でポイント還元率アップ</li>
-            <li>申し込みやすく審査が通りやすい</li>
-            <li>楽天Payとの連携でさらにお得</li>
+            <li><i class="fa-solid fa-check"></i>年会費ずっと無料</li>
+            <li><i class="fa-solid fa-star" style="color:#f6c90e"></i>楽天市場でポイント還元率アップ</li>
+            <li><i class="fa-solid fa-check"></i>申し込みやすく審査が通りやすい</li>
+            <li><i class="fa-solid fa-mobile-screen-button" style="color:#e53e3e"></i>楽天Payとの連携でさらにお得</li>
           </ul>
         </div>
         <div class="btn-col">
@@ -386,12 +438,30 @@
   <div class="section" id="articles">
     <div class="section-title"><span>📝</span> お役立ち記事</div>
     <div class="article-grid">
-      <div class="article-card"><a href="articles/beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】申し込みから審査まで徹底解説</a></div>
-      <div class="article-card"><a href="articles/annual-fee-free.html">年会費無料クレジットカードおすすめ比較【2026年最新版】</a></div>
-      <div class="article-card"><a href="articles/rakuten-vs-epos.html">楽天カードvsエポスカードどっちがいい？徹底比較2026</a></div>
-      <div class="article-card"><a href="articles/high-points.html">ポイント還元率が高いクレジットカードランキング【2026年版】</a></div>
-      <div class="article-card"><a href="articles/student-card.html">学生向けクレジットカードおすすめ【審査が通りやすい・特典充実】</a></div>
-      <div class="article-card"><a href="cards/hojin_etc.html">法人・個人事業主向け ETCカード ― 新会社でも作れる高速料金30〜50%割引</a></div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&q=70" alt="クレジットカード初心者ガイド" loading="lazy">
+        <div class="article-card-body"><a href="articles/beginner-guide.html">クレジットカードの作り方【初心者完全ガイド】申し込みから審査まで徹底解説</a></div>
+      </div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=400&q=70" alt="年会費無料カード比較" loading="lazy">
+        <div class="article-card-body"><a href="articles/annual-fee-free.html">年会費無料クレジットカードおすすめ比較【2026年最新版】</a></div>
+      </div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&q=70" alt="楽天カードvsエポスカード" loading="lazy">
+        <div class="article-card-body"><a href="articles/rakuten-vs-epos.html">楽天カードvsエポスカードどっちがいい？徹底比較2026</a></div>
+      </div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=70" alt="ポイント還元率ランキング" loading="lazy">
+        <div class="article-card-body"><a href="articles/high-points.html">ポイント還元率が高いクレジットカードランキング【2026年版】</a></div>
+      </div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&q=70" alt="学生向けクレジットカード" loading="lazy">
+        <div class="article-card-body"><a href="articles/student-card.html">学生向けクレジットカードおすすめ【審査が通りやすい・特典充実】</a></div>
+      </div>
+      <div class="article-card">
+        <img class="article-card-img" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=70" alt="法人ETCカード" loading="lazy">
+        <div class="article-card-body"><a href="cards/hojin_etc.html">法人・個人事業主向け ETCカード ― 新会社でも作れる高速料金30〜50%割引</a></div>
+      </div>
     </div>
   </div>
 
