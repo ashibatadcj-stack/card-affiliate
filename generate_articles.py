@@ -1,5 +1,7 @@
 import os
 import json
+import re
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 import anthropic
@@ -11,11 +13,23 @@ load_dotenv(BASE_DIR / ".env")
 client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 DOCS_DIR = BASE_DIR / "docs"
 ARTICLES_DIR = DOCS_DIR / "articles"
+RESEARCH_DIR = BASE_DIR / "research"
 
 CARDS_MAP = {c["id"]: c for c in CARDS}
 
 
-def generate_article_html(article: dict) -> str:
+def load_research(keyword: str) -> dict | None:
+    """キーワードに対応する競合調査データをロード"""
+    safe_kw = re.sub(r'[^\w\-]', '_', keyword)[:40]
+    json_path = RESEARCH_DIR / f'{safe_kw}.json'
+    if json_path.exists():
+        data = json.loads(json_path.read_text(encoding='utf-8'))
+        print(f'  📊 競合調査データ読込: {json_path.name}')
+        return data
+    return None
+
+
+def generate_article_html(article: dict, research: dict | None = None) -> str:
     related = [CARDS_MAP[cid] for cid in article["related_cards"] if cid in CARDS_MAP]
     related_text = "\n".join(
         [f"- {c['name']}（年会費:{c['annual_fee']}、還元率:{c['points']}）" for c in related]
@@ -26,6 +40,30 @@ def generate_article_html(article: dict) -> str:
         [f"  {c['name']} → href属性に AFFILIATE_{c['id'].upper()} と記述" for c in related]
     )
 
+    # 競合調査データがある場合は追加情報としてプロンプトに組み込む
+    research_section = ""
+    target_words = "1500〜2000"
+    if research:
+        target_words = f"{research.get('target_word_count', 2000):,}"
+        top_h2 = research.get('top_h2_topics', [])
+        outline = research.get('suggested_outline', [])
+
+        if top_h2:
+            research_section += f"\n【競合サイト分析（参考）】\n"
+            research_section += f"競合の平均文字数: {research.get('avg_word_count', 0):,}文字\n"
+            research_section += f"競合サイトで頻出の見出しトピック:\n"
+            for h in top_h2[:6]:
+                research_section += f"  - {h}\n"
+
+        if outline:
+            research_section += f"\n競合分析に基づく推奨アウトライン:\n"
+            for i, sec in enumerate(outline, 1):
+                research_section += f"  H2 {i}: {sec['h2']}\n"
+                for pt in sec.get('points', []):
+                    research_section += f"         ・{pt}\n"
+
+        research_section += "\n※ 上記競合分析を参考にしつつ、独自の視点・情報を加えて差別化してください。\n"
+
     prompt = (
         "あなたはSEOに詳しいアフィリエイターです。以下の条件でクレジットカード比較記事をHTMLで生成してください。\n\n"
         f"【記事情報】\n"
@@ -34,9 +72,10 @@ def generate_article_html(article: dict) -> str:
         f"想定読者: {article['target_reader']}\n"
         f"記事の説明: {article['description']}\n\n"
         f"【構成（必ずこの順番で書く）】\n{sections_text}\n\n"
-        f"【紹介するカード】\n{related_text}\n\n"
+        f"【紹介するカード】\n{related_text}\n"
+        f"{research_section}\n"
         "【要件】\n"
-        "- 文字数: 1500〜2000字\n"
+        f"- 文字数: {target_words}文字以上\n"
         "- h1は記事タイトルをそのまま使う\n"
         "- h2で各セクションを区切る\n"
         "- 比較表はHTMLのtableタグで作る\n"
@@ -375,9 +414,21 @@ def main():
     print("=== SEO記事生成開始 ===")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
 
-    for i, article in enumerate(ARTICLES, 1):
-        print(f"\n[{i}/{len(ARTICLES)}] 「{article['title'][:30]}...」を生成中...")
-        article_html = generate_article_html(article)
+    # コマンドライン引数でslug指定可能（例: python generate_articles.py student-card）
+    target_slug = sys.argv[1] if len(sys.argv) > 1 else None
+    targets = [a for a in ARTICLES if not target_slug or a['slug'] == target_slug]
+
+    if not targets:
+        print(f"[ERROR] slug '{target_slug}' が articles_data.py に見つかりません")
+        return
+
+    for i, article in enumerate(targets, 1):
+        print(f"\n[{i}/{len(targets)}] 「{article['title'][:30]}...」を生成中...")
+
+        # 競合調査データを自動読込
+        research = load_research(article.get('keyword', ''))
+
+        article_html = generate_article_html(article, research)
         full_page = build_article_page(article, article_html)
         out_path = ARTICLES_DIR / f"{article['slug']}.html"
         out_path.write_text(full_page, encoding="utf-8")
@@ -387,7 +438,7 @@ def main():
     update_index_with_articles()
 
     print("\n=== 全記事生成完了 ===")
-    print(f"生成記事数: {len(ARTICLES)}本")
+    print(f"生成記事数: {len(targets)}本")
 
 
 if __name__ == "__main__":
