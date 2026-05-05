@@ -271,9 +271,14 @@ def build_article_page(article: dict, article_html: str) -> str:
 
     cat_icon = "fa-credit-card" if is_card_detail else "fa-file-alt"
 
+    import html as _html
     slug = article["slug"]
-    title = article["title"]
-    description = article["description"]
+    # HTMLエスケープ（" や < などを安全な形式に変換し、属性値早期終了を防ぐ）
+    title = _html.escape(article["title"], quote=True)
+    description = _html.escape(article["description"], quote=True)
+    # JSON-LD用に " をJSON文字列リテラル向けにエスケープ
+    title_json = article["title"].replace('\\', '\\\\').replace('"', '\\"')
+    description_json = article["description"].replace('\\', '\\\\').replace('"', '\\"')
     url = f"https://cardshindan.com/articles/{slug}.html"
 
     return f"""<!DOCTYPE html>
@@ -293,8 +298,8 @@ def build_article_page(article: dict, article_html: str) -> str:
   {{
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "{title}",
-    "description": "{description}",
+    "headline": "{title_json}",
+    "description": "{description_json}",
     "datePublished": "2026-05-05",
     "dateModified": "2026-05-05",
     "author": {{"@type": "Organization", "name": "クレジットカード比較ナビ編集部"}},
