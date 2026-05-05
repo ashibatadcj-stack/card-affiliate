@@ -569,16 +569,66 @@ footer{background:#1e2a3a;color:#9aa5b4;padding:40px 16px 24px;font-size:0.82rem
   .header-nav{display:none}
   .hamburger{display:flex}
   .site-logo-text .logo-sub{display:none}
-  .article-wrap{grid-template-columns:1fr}
-  .article-sidebar{display:none}
+  /* サイドバーを非表示→記事下に移動 */
+  .article-wrap{
+    grid-template-columns:1fr;
+    padding:16px 12px 32px;
+    gap:16px;
+  }
+  /* サイドバーは非表示ではなく記事下に表示 */
+  .article-sidebar{
+    display:block;
+    order:2;
+  }
+  .article-main{order:1}
   .pros-cons{grid-template-columns:1fr}
+  /* スペックテーブル横スクロール */
+  .spec-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .spec-table-wrap table{min-width:480px}
+  /* 診断バナー padding 縮小 */
+  .diagnosis-banner{padding:18px 16px}
+}
+@media(max-width:768px){
+  /* TOC: モバイルでは折り畳んだ状態で表示 */
+  .toc-box{margin-bottom:16px}
+  .toc-list{display:none}
+  .toc-list.open{display:block}
+  /* ヒーローエリア */
+  .hero-section{padding:28px 16px}
+  .hero-section h1,.hero-section .hero-title{font-size:1.4rem}
+  .hero-cta-wrap{flex-direction:column;align-items:stretch}
+  /* カードグリッド */
+  .card-grid{grid-template-columns:1fr 1fr}
+  /* 申し込みボタン タッチ最適化 */
+  .btn-apply-article{padding:16px 20px;font-size:1rem;min-height:52px}
+  .apply-btn{min-height:48px;font-size:0.9rem}
+  /* CTAボタン */
+  .cta-btn{min-height:52px;font-size:1rem;width:100%}
+  /* インデックスページ */
+  .index-hero{padding:32px 16px}
+  .index-hero h1{font-size:1.5rem}
+  .index-grid{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  .article-header{padding:20px}
-  .article-body{padding:20px}
-  .article-header h1{font-size:1.25rem}
+  .article-header{padding:18px 16px}
+  .article-body{padding:18px 16px}
+  .article-header h1{font-size:1.2rem;line-height:1.45}
   .related-grid{grid-template-columns:1fr 1fr}
+  /* 比較テーブル */
+  .article-body .table-wrap{margin:12px -16px;border-radius:0}
+  .article-body table{font-size:0.82rem}
+  /* A8バナー */
+  .a8-banner-grid{grid-template-columns:1fr}
+  .a8-banner-script-wrap{width:100%;max-width:300px;margin:0 auto}
+  /* pros-cons */
+  .pros-cons{grid-template-columns:1fr}
+  /* パンくず */
+  .breadcrumb-inner{font-size:0.72rem}
 }
 @media(max-width:420px){
   .related-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr}
+  .article-header h1{font-size:1.1rem}
 }

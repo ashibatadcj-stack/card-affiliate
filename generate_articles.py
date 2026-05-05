@@ -498,6 +498,7 @@ document.querySelectorAll('.mobile-nav-section-title').forEach(t=>{{t.addEventLi
   hs.forEach(h=>obs.observe(h));
 }})();
 </script>
+<script src="../assets/common.js"></script>
 </body>
 </html>"""
 
