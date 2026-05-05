@@ -64,6 +64,16 @@ def _build_research_section(research: dict | None) -> tuple[str, str]:
     return section, target_words
 
 
+def _strip_html_wrapper(content: str) -> str:
+    """Claude が誤って返した <!DOCTYPE>/<html>/<head>/<body> ラッパーを除去する"""
+    import re
+    # <!DOCTYPE から最初の <body...> タグの末尾までを削除
+    content = re.sub(r'<!DOCTYPE html>.*?<body[^>]*>', '', content, flags=re.DOTALL | re.IGNORECASE)
+    # 末尾の </body></html> を削除
+    content = re.sub(r'</body>\s*</html>\s*$', '', content, flags=re.DOTALL | re.IGNORECASE)
+    return content.strip()
+
+
 def generate_article_html(article: dict, research: dict | None = None) -> str:
     """カテゴリに応じて記事/カード詳細のHTMLコンテンツを生成"""
     category_slug = article.get("category_slug", "guide")
@@ -106,6 +116,7 @@ def _generate_compare_article_html(article: dict, research: dict | None) -> str:
         "- 最後に <h2>まとめ</h2> セクションを必ず入れる\n"
         "- 【重要】各h2をラップする <section class=\"...\"> タグは一切使わない（フラットな構造）\n"
         "- 【重要】<style>タグ・インラインstyle属性は一切含めないこと\n"
+        "- 【絶対厳守】<!DOCTYPE html>、<html>、<head>、<body>タグは一切含めないこと。<article>タグで始まる本文HTMLのみを返す\n"
         "- HTMLのみを返し、```htmlなどのコードフェンスは不要\n"
     )
 
@@ -114,7 +125,7 @@ def _generate_compare_article_html(article: dict, research: dict | None) -> str:
         max_tokens=6000,
         messages=[{"role": "user", "content": prompt}],
     )
-    content = message.content[0].text
+    content = _strip_html_wrapper(message.content[0].text)
 
     for card in related:
         placeholder = f"AFFILIATE_{card['id'].upper()}"
@@ -166,6 +177,7 @@ def _generate_card_detail_html(article: dict, research: dict | None) -> str:
         "- 【重要】各h2をラップする <section class=\"...\"> タグは一切使わない（フラットな構造）\n"
         "- 【重要】HTML要素にカスタムclass属性を付けない（article-intro と article-content 以外）\n"
         "- 【重要】<style>タグ・インラインstyle属性は一切含めないこと\n"
+        "- 【絶対厳守】<!DOCTYPE html>、<html>、<head>、<body>タグは一切含めないこと。<article>タグで始まる本文HTMLのみを返す\n"
         "- HTMLのみを返し、```htmlなどのコードフェンスは不要\n"
     )
 
@@ -174,7 +186,7 @@ def _generate_card_detail_html(article: dict, research: dict | None) -> str:
         max_tokens=7000,
         messages=[{"role": "user", "content": prompt}],
     )
-    content = message.content[0].text
+    content = _strip_html_wrapper(message.content[0].text)
 
     if aff_url:
         content = content.replace("CARD_AFF_URL", aff_url)

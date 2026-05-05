@@ -75,6 +75,44 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- 活用法記事 -->
+  <url>
+    <loc>https://cardshindan.com/articles/epos-kaigai-hoken.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cardshindan.com/articles/yachin-card-hikaku.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cardshindan.com/articles/cashing-hikaku.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cardshindan.com/articles/hojin-etc-guide.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cardshindan.com/articles/factoring-guide.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cardshindan.com/articles/vanilla-visa-guide.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
   <!-- カード詳細 -->
   <url>
     <loc>https://cardshindan.com/articles/rakuten.html</loc>
