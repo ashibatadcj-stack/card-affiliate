@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>ページが見つかりません | クレジットカード比較ナビ</title>
+  <link rel="stylesheet" href="/assets/common.css">
+  <script>
+    // 旧URLからの自動リダイレクト処理
+    (function () {
+      var path = window.location.pathname;
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+      var newPath = null;
+
+      // パターン1: /card-affiliate/ プレフィックスを除去
+      // 例: /card-affiliate/index.html → /index.html
+      //     /card-affiliate/articles/foo.html → /articles/foo.html
+      if (path.indexOf('/card-affiliate/') === 0) {
+        newPath = path.replace(/^\/card-affiliate\//, '/');
+      }
+
+      // パターン2: /cards/ → /articles/ （旧ディレクトリ名）
+      if (newPath && newPath.indexOf('/cards/') === 0) {
+        newPath = newPath.replace(/^\/cards\//, '/articles/');
+      } else if (path.indexOf('/cards/') === 0) {
+        newPath = path.replace(/^\/cards\//, '/articles/');
+      }
+
+      // パターン3: ルート末尾なら / にする
+      if (newPath === '/' || newPath === '') {
+        newPath = '/';
+      }
+
+      if (newPath && newPath !== path) {
+        // 自動リダイレクト（301相当の挙動）
+        window.location.replace(newPath + search + hash);
+      }
+    })();
+  </script>
+  <style>
+    .err-wrap{max-width:680px;margin:80px auto;padding:0 20px;text-align:center;font-family:'Hiragino Sans','Meiryo',sans-serif}
+    .err-code{font-size:6rem;font-weight:800;color:#3b82f6;margin:0;line-height:1}
+    .err-msg{font-size:1.4rem;color:#1f2937;margin:16px 0 8px}
+    .err-sub{color:#6b7280;margin-bottom:32px}
+    .err-links{display:grid;gap:12px;text-align:left;margin-top:32px}
+    .err-links a{display:block;padding:14px 18px;background:#f3f4f6;border-radius:8px;text-decoration:none;color:#1e3a8a;font-weight:600;border:1px solid #d1d5db}
+    .err-links a:hover{background:#e5e7eb}
+    .err-home{display:inline-block;margin-top:24px;padding:14px 32px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:8px;font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="err-wrap">
+    <p class="err-code">404</p>
+    <h1 class="err-msg">お探しのページが見つかりません</h1>
+    <p class="err-sub">URLが間違っているか、ページが移動・削除された可能性があります。</p>
+    <a href="/" class="err-home">トップページへ戻る</a>
+
+    <div class="err-links">
+      <a href="/articles/beginner-guide.html">📘 クレジットカード初心者ガイド</a>
+      <a href="/articles/annual-fee-free.html">💳 年会費無料カード比較</a>
+      <a href="/articles/high-points.html">⭐ ポイント還元率ランキング</a>
+      <a href="/articles/easy-approval.html">✅ 審査通りやすいカード</a>
+      <a href="/articles/epos-kaigai-hoken.html">✈ エポスカード海外旅行保険</a>
+    </div>
+  </div>
+</body>
+</html>
