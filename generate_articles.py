@@ -283,6 +283,7 @@ def build_article_page(article: dict, article_html: str) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | クレジットカード比較ナビ</title>
   <meta name="description" content="{description}">
+  <link rel="canonical" href="{url}">
   <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../assets/common.css">
@@ -297,7 +298,7 @@ def build_article_page(article: dict, article_html: str) -> str:
     "datePublished": "2026-05-05",
     "dateModified": "2026-05-05",
     "author": {{"@type": "Organization", "name": "クレジットカード比較ナビ編集部"}},
-    "publisher": {{"@type": "Organization", "name": "クレジットカード比較ナビ", "url": "https://ashibatadcj-stack.github.io/card-affiliate/"}},
+    "publisher": {{"@type": "Organization", "name": "クレジットカード比較ナビ", "url": "https://cardshindan.com/"}},
     "url": "{url}"
   }}
   </script>
