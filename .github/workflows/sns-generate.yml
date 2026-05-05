@@ -1,0 +1,57 @@
+name: SNS投稿キュー月次生成
+
+on:
+  schedule:
+    - cron: '0 15 28 * *'  # 毎月28日 JST 00:00 (UTC 15:00) に翌月分を生成
+  workflow_dispatch:
+    inputs:
+      month:
+        description: '対象月 YYYY-MM（空欄=今月）'
+        required: false
+        default: ''
+      force:
+        description: '既存キューを上書き (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: キュー生成
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.month }}" ]; then
+            ARGS="$ARGS --month ${{ github.event.inputs.month }}"
+          else
+            # スケジュール起動時は翌月を生成
+            NEXT_MONTH=$(date -u -d '+1 month' +'%Y-%m')
+            ARGS="$ARGS --month $NEXT_MONTH"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          python sns/generate_posts.py $ARGS
+
+      - name: キューを commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sns/queue/
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "chore(sns): 投稿キュー生成 $(date -u +'%Y-%m-%d') [skip ci]"
+            git push
+          fi

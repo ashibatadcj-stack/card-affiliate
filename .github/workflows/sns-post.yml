@@ -1,0 +1,70 @@
+name: SNS自動投稿
+
+on:
+  schedule:
+    # GitHub Actions の cron は UTC。JST = UTC + 9
+    - cron: '0 23 * * *'  # JST 08:00 (前日UTC 23:00)
+    - cron: '0 3 * * *'   # JST 12:00
+    - cron: '0 11 * * *'  # JST 20:00
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'スロット（morning/noon/night、空欄=自動判定）'
+        required: false
+        default: ''
+      date:
+        description: '対象日 YYYY-MM-DD（空欄=今日）'
+        required: false
+        default: ''
+
+permissions:
+  contents: write  # posted_log / queue を commit するため
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: sns/requirements.txt
+
+      - name: 依存パッケージをインストール
+        run: pip install -r sns/requirements.txt
+
+      - name: 投稿実行
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.slot }}" ]; then
+            ARGS="$ARGS --slot ${{ github.event.inputs.slot }}"
+          fi
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.date }}"
+          fi
+          python sns/scheduler.py $ARGS
+
+      - name: 投稿状態を commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sns/queue/
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "chore(sns): 投稿状態を更新 $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
+            git push
+          fi

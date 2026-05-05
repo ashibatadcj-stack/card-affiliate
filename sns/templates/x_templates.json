@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "platform": "x",
+    "max_length": 280,
+    "url_length": 23,
+    "note": "プレースホルダ: {name} {annual_fee} {points} {feature} {target} {url} {hashtags}"
+  },
+  "templates": [
+    "💳 {name} の特徴\n年会費: {annual_fee}\nポイント: {points}\n\n{feature}\n\n👉 {url}\n\n{hashtags} #PR",
+    "「{target}」におすすめ\n\n👉 {name}\n・{annual_fee}\n・{points}\n・{feature}\n\n詳細はこちら\n{url}\n\n{hashtags} #PR",
+    "クレカ選びで迷ったら…\n\n{name} はいかがですか？\n✅ {annual_fee}\n✅ {feature}\n\n比較・診断はこちら 👇\n{url}\n\n{hashtags} #PR",
+    "【{name}】\n\n{feature}\n\nこんな人におすすめ:\n👤 {target}\n\n申し込み・詳細 → {url}\n\n{hashtags} #PR",
+    "💡 知ってましたか？\n{name} は「{feature}」が魅力。\n\n年会費は {annual_fee}。\n\n詳しい比較は 👉 {url}\n\n{hashtags} #PR",
+    "今日のおすすめカード🃏\n\n{name}\n→ {points}\n→ {feature}\n\n年会費 {annual_fee} で持てる\n\n{url}\n\n{hashtags} #PR",
+    "{target} に朗報🎉\n\n{name} なら {feature}。\n\n年会費 {annual_fee} で始められます。\n\n{url}\n\n{hashtags} #PR",
+    "クレカは「目的」で選ぶ時代。\n\n{name} の強みは:\n→ {feature}\n→ {points}\n\n👇 30秒診断もどうぞ\n{url}\n\n{hashtags} #PR"
+  ],
+  "hashtag_pool": [
+    "#クレジットカード",
+    "#クレカ",
+    "#節約",
+    "#ポイ活",
+    "#家計管理",
+    "#お得情報",
+    "#キャッシュレス",
+    "#クレカ比較",
+    "#楽天経済圏",
+    "#キャンペーン情報"
+  ]
+}

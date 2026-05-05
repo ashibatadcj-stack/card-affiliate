@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "platform": "threads",
+    "max_length": 500,
+    "note": "プレースホルダ: {name} {annual_fee} {points} {feature} {target} {url} {hashtags}"
+  },
+  "templates": [
+    "💳 {name} を解説\n\n年会費: {annual_fee}\nポイント還元: {points}\nおすすめポイント: {feature}\n\nこんな方に向いています:\n👤 {target}\n\n気になった方はこちらから詳細をどうぞ。\n👉 {url}\n\n{hashtags}\n#PR",
+    "クレカ選びは「自分に合うか」が全てです。\n\n今回紹介する {name} は、\n・年会費 {annual_fee}\n・{points}\n・{feature}\n\nが特徴。\n特に「{target}」の方には相性が良いカードです。\n\n👇 詳しい比較や口コミはこちら\n{url}\n\n{hashtags}\n#PR",
+    "【今日の1枚】{name}\n\n年会費 {annual_fee} で {feature} という、コスパに優れた1枚。\nポイント還元は {points}。\n\n「{target}」に当てはまる方は、検討する価値ありです。\n\n📖 サイトで詳しく解説しています\n→ {url}\n\n{hashtags}\n#PR",
+    "「クレカ多すぎて選べない…」という方へ。\n\n用途別に絞って選ぶのがコツです。\n\n例えば {name} なら:\n✅ {annual_fee}\n✅ {feature}\n✅ {points}\n\n「{target}」の方は最初の1枚にも◎\n\n比較・診断はサイトで 👇\n{url}\n\n{hashtags}\n#PR",
+    "💡 ポイ活する上で意外と大事なのが「メインカードの選定」。\n\n{name} は {points} と還元率が高く、{feature} という強みも。\n\n年会費 {annual_fee} なので、{target} の方なら長く使える1枚。\n\n他のカードとの比較もサイトに載せています👇\n{url}\n\n{hashtags}\n#PR"
+  ],
+  "hashtag_pool": [
+    "#クレジットカード",
+    "#クレカ",
+    "#節約術",
+    "#ポイ活",
+    "#家計管理",
+    "#お得情報",
+    "#キャッシュレス決済",
+    "#クレカ比較",
+    "#マネーリテラシー",
+    "#暮らしの知恵"
+  ]
+}
