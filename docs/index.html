@@ -1353,44 +1353,6 @@ window.addEventListener('scroll',()=>{
   document.getElementById('mainHeader').classList.toggle('scrolled',window.scrollY>10);
 });
 
-/* ===== Header Dropdown (click + hover hybrid) =====
-   ホバーだけだとマウス移動中に閉じる事故があるため、クリックでも開閉できるようにする。
-   親リンクは初回クリックで dropdown を開く（ナビゲーションは抑止）、2回目クリックで遷移。
-   タッチデバイスでも確実に動作。 */
-(function(){
-  const navItems = document.querySelectorAll('.header-nav .nav-item');
-  navItems.forEach(item => {
-    const trigger = item.querySelector(':scope > a');
-    const dropdown = item.querySelector(':scope > .dropdown');
-    if (!trigger || !dropdown) return;
-
-    trigger.addEventListener('click', e => {
-      // デスクトップ幅でのみクリック時のドロップダウン制御（モバイルは別メニュー）
-      if (window.innerWidth > 860) {
-        if (!item.classList.contains('open')) {
-          e.preventDefault();
-          // 他のドロップダウンを閉じる
-          navItems.forEach(o => { if (o !== item) o.classList.remove('open'); });
-          item.classList.add('open');
-        }
-        // 既にopen状態なら何もせず通常の遷移を許可
-      }
-    });
-  });
-
-  // 外側クリックで全閉じ
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.header-nav .nav-item')) {
-      navItems.forEach(o => o.classList.remove('open'));
-    }
-  });
-
-  // Esc で閉じる
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') navItems.forEach(o => o.classList.remove('open'));
-  });
-})();
-
 /* ===== Mobile Menu ===== */
 function toggleMobileMenu(){
   const btn=document.getElementById('hamburgerBtn');
