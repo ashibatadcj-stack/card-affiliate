@@ -10,8 +10,12 @@ from articles_data import ARTICLES
 from a8_banner_fetcher import match_programs, fetch_banners, inject_banners_into_article
 
 BASE_DIR = Path(__file__).parent
-load_dotenv(BASE_DIR / ".env")
-client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+load_dotenv(BASE_DIR / ".env", override=True)
+api_key = os.environ.get("ANTHROPIC_API_KEY") or ""
+if not api_key:
+    from dotenv import dotenv_values
+    api_key = dotenv_values(BASE_DIR / ".env").get("ANTHROPIC_API_KEY", "")
+client = anthropic.Anthropic(api_key=api_key)
 DOCS_DIR = BASE_DIR / "docs"
 ARTICLES_DIR = DOCS_DIR / "articles"
 RESEARCH_DIR = BASE_DIR / "research"
