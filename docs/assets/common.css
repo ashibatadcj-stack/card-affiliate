@@ -74,7 +74,11 @@ header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.28)}
   border-top:3px solid #1a56db;
   z-index:300;
 }
-.nav-item:hover .dropdown{display:block}
+.nav-item:hover .dropdown,
+.nav-item.open .dropdown,
+.nav-item:focus-within .dropdown{display:block}
+/* ドロップダウン自身はホバー受付＆クリック透過対象から外す（hoverギャップ事故防止） */
+.dropdown a{pointer-events:auto}
 .dropdown-inner{padding:8px 0}
 .dropdown a{
   display:flex;align-items:center;gap:10px;
