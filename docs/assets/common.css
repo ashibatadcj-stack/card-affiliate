@@ -636,3 +636,24 @@ footer{background:#1e2a3a;color:#9aa5b4;padding:40px 16px 24px;font-size:0.82rem
   .feature-grid{grid-template-columns:1fr}
   .article-header h1{font-size:1.1rem}
 }
+
+/* ===== モバイル Sticky CTA バー（離脱率対策） ===== */
+.mobile-sticky-cta{display:none}
+@media(max-width:768px){
+  .mobile-sticky-cta{
+    display:block;position:fixed;bottom:0;left:0;right:0;
+    background:white;box-shadow:0 -4px 16px rgba(0,0,0,0.12);
+    padding:10px 12px;z-index:150;
+    border-top:1px solid #e5e7eb;
+  }
+  .mobile-sticky-cta .msc-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(135deg,#e53e3e,#c53030);
+    color:white;font-weight:bold;font-size:0.95rem;
+    padding:14px 16px;border-radius:8px;
+    text-decoration:none;min-height:48px;
+    box-shadow:0 2px 10px rgba(229,62,62,0.3);
+  }
+  /* sticky 分の下余白（足元被り防止） */
+  body{padding-bottom:80px}
+}

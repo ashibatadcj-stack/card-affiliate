@@ -76,7 +76,14 @@
       padding:20px 16px;
       display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;
     }
-    .feat-item{display:flex;align-items:center;gap:12px}
+    .feat-item{
+      display:flex;align-items:center;gap:12px;
+      padding:14px 16px;border-radius:10px;
+      background:transparent;color:inherit;text-decoration:none;
+      border:1px solid transparent;
+      transition:background .15s,border-color .15s,transform .15s;
+    }
+    .feat-item:hover{background:#f0f4ff;border-color:#dbe7ff;transform:translateY(-1px)}
     .feat-icon{
       width:42px;height:42px;border-radius:10px;
       background:#e8f0fe;color:#1a56db;
@@ -593,25 +600,25 @@
   </div>
 </div>
 
-<!-- Features -->
+<!-- Category Quick Links（旧 Features をクリック可能化） -->
 <div class="features-strip">
   <div class="features-inner">
-    <div class="feat-item">
-      <div class="feat-icon"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="feat-text"><strong>最新情報を掲載</strong><span>随時情報を更新</span></div>
-    </div>
-    <div class="feat-item">
-      <div class="feat-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-      <div class="feat-text"><strong>徹底比較</strong><span>年会費・還元率・特典</span></div>
-    </div>
-    <div class="feat-item">
+    <a class="feat-item" href="articles/beginner-guide.html">
+      <div class="feat-icon"><i class="fa-solid fa-book-open"></i></div>
+      <div class="feat-text"><strong>初心者ガイド</strong><span>選び方〜申込まで完全解説</span></div>
+    </a>
+    <a class="feat-item" href="articles/annual-fee-free.html">
+      <div class="feat-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <div class="feat-text"><strong>年会費無料カード</strong><span>コスト0で使える1枚</span></div>
+    </a>
+    <a class="feat-item" href="articles/high-points.html">
+      <div class="feat-icon"><i class="fa-solid fa-star"></i></div>
+      <div class="feat-text"><strong>高還元率ランキング</strong><span>ポイントが貯まる比較</span></div>
+    </a>
+    <a class="feat-item" href="articles/easy-approval.html">
       <div class="feat-icon"><i class="fa-solid fa-bolt"></i></div>
-      <div class="feat-text"><strong>3問で診断</strong><span>あなたに合った1枚を提案</span></div>
-    </div>
-    <div class="feat-item">
-      <div class="feat-icon"><i class="fa-solid fa-tags"></i></div>
-      <div class="feat-text"><strong>完全無料</strong><span>比較・診断費用なし</span></div>
-    </div>
+      <div class="feat-text"><strong>審査が通りやすい</strong><span>無職・主婦・学生も対象</span></div>
+    </a>
   </div>
 </div>
 
@@ -1456,6 +1463,10 @@ function resetQuiz(){
 
 renderQuestion();
 </script>
+<!-- モバイル Sticky CTA -->
+<div class="mobile-sticky-cta">
+  <a href="#quiz" class="msc-btn"><i class="fa-solid fa-wand-magic-sparkles"></i>3問診断であなたに最適なカードを見つける →</a>
+</div>
 <script src="assets/common.js?v=202605051857"></script>
 </body>
 </html>
