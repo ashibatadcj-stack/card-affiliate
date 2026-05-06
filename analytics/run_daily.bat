@@ -37,12 +37,18 @@ python submit_indexnow.py >> analytics\output\cycle.log 2>&1
 set NOW_EXIT=%ERRORLEVEL%
 echo [%DATE% %TIME%] submit_indexnow.py exit=%NOW_EXIT% >> analytics\output\cycle.log
 
-REM ---- Step 7: Slack 通知 ----
+REM ---- Step 7: Slack 通知（日次レポート） ----
 echo [%DATE% %TIME%] === Step 7: notify_slack.py === >> analytics\output\cycle.log
 python analytics\notify_slack.py >> analytics\output\cycle.log 2>&1
 set SLACK_EXIT=%ERRORLEVEL%
 echo [%DATE% %TIME%] notify_slack.py exit=%SLACK_EXIT% >> analytics\output\cycle.log
 
-echo [%DATE% %TIME%] === DAILY RUN COMPLETE: cycle=%CYCLE_EXIT% indexing=%IDX_EXIT% indexnow=%NOW_EXIT% slack=%SLACK_EXIT% === >> analytics\output\cycle.log
+REM ---- Step 8: アクション自動 Issue 化 ----
+echo [%DATE% %TIME%] === Step 8: auto_action.py === >> analytics\output\cycle.log
+python analytics\auto_action.py >> analytics\output\cycle.log 2>&1
+set AUTO_EXIT=%ERRORLEVEL%
+echo [%DATE% %TIME%] auto_action.py exit=%AUTO_EXIT% >> analytics\output\cycle.log
+
+echo [%DATE% %TIME%] === DAILY RUN COMPLETE: cycle=%CYCLE_EXIT% indexing=%IDX_EXIT% indexnow=%NOW_EXIT% slack=%SLACK_EXIT% auto=%AUTO_EXIT% === >> analytics\output\cycle.log
 
 endlocal & exit /b %CYCLE_EXIT%

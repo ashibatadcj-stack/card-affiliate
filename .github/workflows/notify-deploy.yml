@@ -1,0 +1,86 @@
+name: Notify Slack on PR/Deploy
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, closed]
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+
+jobs:
+  notify-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack (PR opened)
+        if: github.event.action == 'opened' || github.event.action == 'ready_for_review'
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$(cat <<JSON
+          {
+            "text": "📝 PR が作成されました（レビュー待ち）",
+            "blocks": [
+              {"type":"header","text":{"type":"plain_text","text":"📝 PR が作成されました"}},
+              {"type":"section","text":{"type":"mrkdwn","text":"*${{ github.event.pull_request.title }}*\n\nIssue: #${{ github.event.pull_request.number }}\nレビューしてマージしてください。"}},
+              {"type":"actions","elements":[
+                {"type":"button","text":{"type":"plain_text","text":"📋 PR を見る"},"url":"${{ github.event.pull_request.html_url }}","style":"primary"},
+                {"type":"button","text":{"type":"plain_text","text":"📂 変更ファイル"},"url":"${{ github.event.pull_request.html_url }}/files"}
+              ]}
+            ]
+          }
+          JSON
+          )" \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack (PR merged)
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$(cat <<JSON
+          {
+            "text": "✅ PR がマージされました",
+            "blocks": [
+              {"type":"section","text":{"type":"mrkdwn","text":"✅ *PR マージ完了*\n*${{ github.event.pull_request.title }}*\n\n約1〜2分後に GitHub Pages へデプロイされます。"}},
+              {"type":"actions","elements":[
+                {"type":"button","text":{"type":"plain_text","text":"🌐 サイトを見る"},"url":"https://cardshindan.com/"}
+              ]}
+            ]
+          }
+          JSON
+          )" \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  notify-deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages deploy (60s)
+        run: sleep 60
+
+      - name: Verify site is up
+        run: |
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" https://cardshindan.com/)
+            if [ "$code" = "200" ]; then
+              echo "Site OK: $code"
+              break
+            fi
+            echo "Attempt $i: $code, retrying..."
+            sleep 30
+          done
+
+      - name: Notify Slack (deploy complete)
+        run: |
+          COMMIT_MSG=$(echo "${{ github.event.head_commit.message }}" | head -1 | sed 's/"/\\"/g')
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$(cat <<JSON
+          {
+            "text": "🚀 サイトにデプロイされました",
+            "blocks": [
+              {"type":"section","text":{"type":"mrkdwn","text":"🚀 *デプロイ完了*\n${COMMIT_MSG}\n\n本番反映: <https://cardshindan.com/|cardshindan.com>"}}
+            ]
+          }
+          JSON
+          )" \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
