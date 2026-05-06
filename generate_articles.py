@@ -65,12 +65,24 @@ def _build_research_section(research: dict | None) -> tuple[str, str]:
 
 
 def _strip_html_wrapper(content: str) -> str:
-    """Claude が誤って返した <!DOCTYPE>/<html>/<head>/<body> ラッパーを除去する"""
+    """Claude が誤って返した <!DOCTYPE>/<html>/<head>/<body> ラッパーやコードフェンスを除去する"""
     import re
+    # ```html / ``` のコードフェンスを除去（行頭・行中・前後空白対応）
+    content = re.sub(r'^\s*```(?:html|HTML)?\s*$', '', content, flags=re.MULTILINE)
+    # 残った先頭/末尾のコードフェンス断片
+    content = content.strip()
+    if content.startswith('```'):
+        first_nl = content.find('\n')
+        if first_nl >= 0:
+            content = content[first_nl+1:]
+    if content.endswith('```'):
+        content = content[:content.rfind('```')].rstrip()
     # <!DOCTYPE から最初の <body...> タグの末尾までを削除
     content = re.sub(r'<!DOCTYPE html>.*?<body[^>]*>', '', content, flags=re.DOTALL | re.IGNORECASE)
     # 末尾の </body></html> を削除
     content = re.sub(r'</body>\s*</html>\s*$', '', content, flags=re.DOTALL | re.IGNORECASE)
+    # 連続空行を圧縮
+    content = re.sub(r'\n{3,}', '\n\n', content)
     return content.strip()
 
 
