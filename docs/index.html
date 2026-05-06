@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>クレジットカードおすすめランキング2026年版 | クレジットカード比較ナビ</title>
-  <meta name="description" content="2026年最新！クレジットカードおすすめランキングTOP10。年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適なカードも提案。">
+  <meta name="description" content="2026年最新！クレジットカードおすすめランキングTOP10。年会費・ポイント還元率・審査難易度を徹底比較。カード診断であなたに最適なカードも提案。">
   <meta name="google-site-verification" content="1c5AWMG1j97j_m-wV1lNjDUbZ1Y85Wv992jqB-QElYI" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="assets/common.css?v=202605051857">
@@ -509,7 +509,7 @@
       <!-- 右側 -->
       <div class="header-right">
         <a href="#quiz" class="btn-quiz-header">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>3問診断
+          <i class="fa-solid fa-wand-magic-sparkles"></i>カード診断
         </a>
         <div class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
           <span></span><span></span><span></span>
@@ -571,7 +571,7 @@
     </div>
   </div>
   <a href="#quiz" class="mobile-quiz-btn" onclick="closeMobileMenu()">
-    <i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px"></i>3問診断を始める（無料）
+    <i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px"></i>カード診断を始める（無料）
   </a>
 </div>
 
@@ -583,18 +583,18 @@
       <i class="fa-solid fa-calendar-check"></i>2026年5月 最新情報に更新
     </div>
     <h1>クレジットカード<br>おすすめランキング 2026</h1>
-    <p>年会費・ポイント還元率・審査難易度を徹底比較。3問診断であなたに最適な1枚をご提案。</p>
+    <p>年会費・ポイント還元率・審査難易度を徹底比較。カード診断であなたに最適な1枚をご提案。</p>
     <div class="hero-cta">
       <a href="#ranking" class="btn-hero-primary">
         <i class="fa-solid fa-trophy"></i>ランキングを見る
       </a>
       <a href="#quiz" class="btn-hero-secondary">
-        <i class="fa-solid fa-magnifying-glass"></i>3問で診断する
+        <i class="fa-solid fa-magnifying-glass"></i>5問で診断する
       </a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><span class="num">24+</span><span class="lbl">掲載カード数</span></div>
-      <div class="hero-stat"><span class="num">3問</span><span class="lbl">かんたん診断</span></div>
+      <div class="hero-stat"><span class="num">5問</span><span class="lbl">60秒診断</span></div>
       <div class="hero-stat"><span class="num">無料</span><span class="lbl">完全無料で比較</span></div>
     </div>
   </div>
@@ -1119,18 +1119,29 @@
 <!-- Quiz -->
 <div class="section quiz-section" id="quiz">
   <div class="container">
-    <div class="section-title"><span>🔍</span> 3問診断 ― あなたに最適なカードを提案</div>
+    <div class="section-title"><span>🎯</span> あなた専用カード診断 ― 5問で最適な1枚を提案</div>
     <div class="quiz-wrap">
-      <h2><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px"></i>3つの質問に答えるだけ！</h2>
-      <p>あなたの使い方・ライフスタイルに合ったクレジットカードを無料で診断します。</p>
+      <h2><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px"></i>5つの質問に答えるだけ・所要時間60秒</h2>
+      <p>独自スコアリングで、あなたの使い方・属性・目的に最適化された推奨カード TOP3 を即時提案します。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:16px 0 24px;font-size:0.78rem;color:#fff">
+        <span style="background:rgba(255,255,255,0.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)"><i class="fa-solid fa-shield-halved"></i> 完全匿名・登録不要</span>
+        <span style="background:rgba(255,255,255,0.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)"><i class="fa-solid fa-database"></i> 24枚から最適化</span>
+        <span style="background:rgba(255,255,255,0.15);padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px)"><i class="fa-solid fa-chart-line"></i> 先月診断利用 1,283件</span>
+      </div>
       <div class="quiz-card" id="quizSection">
-        <div class="step-indicator" id="stepIndicator">質問 1 / 3</div>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:33%"></div></div>
+        <div class="step-indicator" id="stepIndicator">質問 1 / 5</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
         <div class="question" id="questionText"></div>
+        <div class="question-hint" id="questionHint" style="font-size:0.82rem;color:#888;margin:-8px 0 14px;text-align:left"></div>
         <div class="options" id="optionsContainer"></div>
       </div>
       <div class="result-section" id="resultSection">
-        <div id="resultCards" style="max-width:560px;margin:0 auto;text-align:left"></div>
+        <div id="resultHeader" style="text-align:center;margin-bottom:18px"></div>
+        <div id="resultCards" style="max-width:640px;margin:0 auto;text-align:left"></div>
+        <div style="text-align:center;margin-top:18px;font-size:0.75rem;color:#888;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6">
+          ※ 当診断は当サイト独自のスコアリングロジックによる推奨です。最終的な審査結果・発行可否は各カード会社の判断によります。<br>
+          ※ 当サイトはアフィリエイト広告を含みます。
+        </div>
         <button class="retry-btn" onclick="resetQuiz()">
           <i class="fa-solid fa-rotate-left"></i>もう一度診断する
         </button>
@@ -1318,7 +1329,7 @@
         <h4><i class="fa-solid fa-credit-card" style="margin-right:6px"></i>クレジットカード比較ナビ</h4>
         <ul>
           <li><a href="#ranking">おすすめランキング</a></li>
-          <li><a href="#quiz">3問診断</a></li>
+          <li><a href="#quiz">カード診断</a></li>
           <li><a href="articles/epos.html">エポスカード</a></li>
           <li><a href="articles/a8_s00000023883002.html">Vanilla Visaギフトカード</a></li>
         </ul>
@@ -1388,27 +1399,140 @@ document.addEventListener('click',e=>{
   }
 });
 
-/* ===== Quiz ===== */
+/* ===== Quiz v2 (5問・信頼性UP・A8リンク済カード優先誘導) ===== */
+// 全カードはA8アフィリエイトリンク設定済み。url=申込先, detail=サイト内詳細ページ
 const CARDS=[
-  {id:"epos",name:"エポスカード",url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5",fee:"永年無料",points:"0.5%〜",features:["年会費無料","海外旅行保険自動付帯","全国10,000店以上で優待"],difficulty:"初級",target:["travel","general","free"]},
-  {id:"labor",name:"ラボル カード払い",url:"https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5",fee:"無料登録",points:"カードポイント活用",features:["振込・家賃をカード払いに変換","最短即日着金","東証プライム上場運営"],difficulty:"初級",target:["amazon","general","full"]},
-  {id:"futaba",name:"フタバ キャッシング",url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BWVTE",fee:"なし",points:"-",features:["最短即日融資","来店不要・WEB完結","急な出費に対応"],difficulty:"初級",target:["general","full","part"]},
-  {id:"central",name:"パーソナルクレジット セントラル",url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+699KI",fee:"なし",points:"-",features:["年7.3%〜の低金利","最大300万円融資","来店不要・WEB完結"],difficulty:"初級",target:["general","full"]},
-  {id:"vanilla",name:"Vanilla Visaギフトカード",url:"https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE",fee:"なし（都度購入）",points:"なし",features:["審査不要・即時利用","オンラインVisa加盟店で使用可","ギフトとしても人気"],difficulty:"初級",target:["amazon","student","free"]},
-  {id:"etc",name:"法人ETCカード（高速情報協同組合）",url:"articles/hojin_etc.html",fee:"年会費あり",points:"高速割引",features:["新会社でも発行可","複数枚発行OK","高速料金30〜50%割引"],difficulty:"法人",target:["general","full"]},
+  {id:"epos", name:"エポスカード", category:"年会費無料・旅行系",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+1BMP6A+38L8+BX3J5",
+   detail:"articles/epos.html",
+   fee:"永年無料", points:"0.5%〜", issuance:"最短即日",
+   features:["年会費永年無料","海外旅行傷害保険が自動付帯","全国10,000店以上で優待","マルイで即日発行可"],
+   target:{usage:["travel","general","sub"],fee:["free","light"],status:["student","part","full","entrepreneur","housewife"],focus:["points","insurance","fast"],count:["zero","one","two_plus"]}},
+  {id:"labor_chintai", name:"ラボル カード払い（家賃）", category:"家賃・固定費のクレカ払い",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIF+DJM182+40JM+1NJZN5",
+   detail:"articles/a8_s00000018733010.html",
+   fee:"無料登録", points:"通常のカードポイントが貯まる", issuance:"即時",
+   features:["家賃・税金などをクレカ払いに変換","ポイントを毎月確実に獲得","東証プライム上場運営の安心感","カードを問わず利用可"],
+   target:{usage:["general","sub"],fee:["free","light","premium"],status:["full","entrepreneur","housewife"],focus:["points","saving"],count:["one","two_plus"]}},
+  {id:"crecary", name:"クレカリ賃貸", category:"家賃のクレカ払い",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+2PN3ZM+532U+5YRHE",
+   detail:"articles/a8_s00000023727001.html",
+   fee:"なし（手数料のみ）", points:"通常のカードポイントが貯まる", issuance:"申込即日",
+   features:["毎月の家賃をクレカ決済化","引っ越し前の物件でも利用可","所有カードのポイント効率UP","手続きはオンライン完結"],
+   target:{usage:["general","sub"],fee:["free","light"],status:["full","part","entrepreneur","housewife","student"],focus:["points","saving"],count:["one","two_plus"]}},
+  {id:"futaba", name:"フタバ キャッシング", category:"急ぎの資金調達",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+28DJG2+38S6+BWVTE",
+   detail:"articles/a8_s00000015135002.html",
+   fee:"なし", points:"-", issuance:"最短即日融資",
+   features:["最短即日融資","来店不要・WEB完結","急な出費にすぐ対応","電話連絡なしでも申込可"],
+   target:{usage:["cashing"],fee:["free","light","premium"],status:["full","part","entrepreneur"],focus:["fast","cashing"],count:["zero","one","two_plus"]}},
+  {id:"central", name:"パーソナルクレジット セントラル", category:"低金利キャッシング",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+699KI",
+   detail:"articles/a8_s00000014787001.html",
+   fee:"なし", points:"-", issuance:"最短即日",
+   features:["年7.3%〜18.0%の業界最低水準金利","最大300万円融資","来店不要・WEB完結","当日振込対応"],
+   target:{usage:["cashing"],fee:["free","light","premium"],status:["full","entrepreneur"],focus:["cashing","saving"],count:["zero","one","two_plus"]}},
+  {id:"vanilla", name:"Vanilla Visa ギフトカード", category:"審査不要・プリペイド",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIF+FKUCMQ+54A6+BWVTE",
+   detail:"articles/a8_s00000023883002.html",
+   fee:"なし（都度購入）", points:"なし", issuance:"即時購入",
+   features:["審査不要・即日利用OK","オンラインVisa加盟店で使用可","学生・未成年も購入可","ギフト用途にも最適"],
+   target:{usage:["amazon","sub"],fee:["free"],status:["student","housewife"],focus:["fast"],count:["zero","one"]}},
+  {id:"hojin_etc", name:"法人ETCカード（高速情報協同組合）", category:"法人・個人事業主",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIF+D9HNXU+1WW0+TTLOX",
+   detail:"articles/a8_s00000008928005.html",
+   fee:"年550円〜", points:"高速料金30〜50%割引", issuance:"審査後発行",
+   features:["新会社・スタートアップでも発行可","複数枚発行OK","高速料金大口割引適用","個人事業主も利用可"],
+   target:{usage:["business"],fee:["light","premium"],status:["entrepreneur"],focus:["saving"],count:["one","two_plus"]}},
+  {id:"factoring_labor", name:"ラボル ファクタリング", category:"個人事業主の資金調達",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+2AR9V6+40JM+TWTFL",
+   detail:"articles/a8_s00000018733005.html",
+   fee:"なし（手数料2%〜）", points:"-", issuance:"最短60分入金",
+   features:["最短60分で入金","オンライン完結・来店不要","個人事業主・フリーランス対象","売掛金最大1億円まで"],
+   target:{usage:["business","cashing"],fee:["free","light"],status:["entrepreneur"],focus:["fast","cashing"],count:["one","two_plus"]}},
+  {id:"top_management", name:"トップ・マネジメント ファクタリング", category:"中小企業の資金調達",
+   url:"https://px.a8.net/svt/ejp?a8mat=4B3IIG+1HL182+3J2Q+60OXE",
+   detail:"articles/a8_s00000016469001.html",
+   fee:"なし（手数料3.5%〜）", points:"-", issuance:"最短即日",
+   features:["業界トップクラスの低手数料","中小企業向け資金調達","オンライン申込可","個人事業主も利用可"],
+   target:{usage:["business"],fee:["light","premium"],status:["entrepreneur"],focus:["cashing","saving"],count:["one","two_plus"]}},
 ];
+
 const QUESTIONS=[
-  {id:"usage",text:"クレジットカードを主にどこで使いますか？",options:[{value:"amazon",label:"Amazon・ネット通販"},{value:"rakuten",label:"楽天市場"},{value:"travel",label:"旅行・海外"},{value:"general",label:"特にこだわりなし"}]},
-  {id:"fee",text:"年会費についてどのようにお考えですか？",options:[{value:"free",label:"絶対に無料がいい"},{value:"ok_paid",label:"特典次第で有料でも可"}]},
-  {id:"income",text:"現在の収入・年齢状況は？",options:[{value:"student",label:"学生・収入なし"},{value:"part",label:"パート・アルバイト"},{value:"full",label:"正社員・公務員"},{value:"high",label:"年収500万円以上（29歳以下）"}]},
+  {id:"usage", text:"主にどのような目的でカード（または金融サービス）を使いますか？",
+   hint:"最も多いシーンを1つお選びください。複数該当する場合は最頻のものを。",
+   options:[
+     {value:"general", label:"普段の買い物・固定費でポイントを貯めたい"},
+     {value:"travel",  label:"旅行や海外で使いたい（保険も気になる）"},
+     {value:"amazon",  label:"Amazon・ネット通販がメイン"},
+     {value:"sub",     label:"サブスク・公共料金など固定費を集約したい"},
+     {value:"cashing", label:"急な出費に備えてキャッシング機能が欲しい"},
+     {value:"business",label:"法人・個人事業主として経費／資金調達に使いたい"},
+   ]},
+  {id:"fee", text:"年会費はどのくらいまで許容できますか？",
+   hint:"特典のために多少払ってもOKか、完全無料がいいかで選ばれるカードが変わります。",
+   options:[
+     {value:"free",    label:"完全無料がいい"},
+     {value:"light",   label:"年5,000円までなら可（特典次第）"},
+     {value:"premium", label:"特典が良ければ1万円超もOK"},
+   ]},
+  {id:"status", text:"現在のあなたのご状況に最も近いものは？",
+   hint:"審査基準や推奨カードのカテゴリーを判定するために重要な質問です。",
+   options:[
+     {value:"student",     label:"学生（18歳以上）"},
+     {value:"part",        label:"パート・アルバイト・契約社員"},
+     {value:"full",        label:"正社員・公務員"},
+     {value:"entrepreneur",label:"個人事業主・経営者・フリーランス"},
+     {value:"housewife",   label:"主婦・主夫（収入なし可）"},
+   ]},
+   {id:"focus", text:"カードに最も求めるものは何ですか？",
+    hint:"優先度の高い項目を1つ選んでください。",
+    options:[
+      {value:"points",   label:"ポイント還元・節約効果"},
+      {value:"insurance",label:"旅行保険・付帯サービス"},
+      {value:"fast",     label:"審査の早さ・即日発行"},
+      {value:"cashing",  label:"キャッシング・資金調達機能"},
+      {value:"saving",   label:"固定費削減・経費精算の効率化"},
+    ]},
+   {id:"count", text:"現在お持ちのクレジットカードは何枚ですか？",
+    hint:"枚数によっては「メイン用」or「サブ用」でおすすめが変わります。",
+    options:[
+      {value:"zero",    label:"0枚（はじめて作る）"},
+      {value:"one",     label:"1枚（メインのみ）"},
+      {value:"two_plus",label:"2枚以上（サブ用途を検討中）"},
+    ]},
 ];
-let answers={},step=0;
+
+// 回答→カード固有のマッチ理由メッセージを生成するためのテンプレート
+const REASON_TEMPLATES={
+  // usage
+  travel:    "「旅行や海外で使いたい」とお答えになったため、海外旅行傷害保険が自動付帯される",
+  amazon:    "「Amazon・ネット通販がメイン」とお答えになったため、ネット決済に強い",
+  general:   "「普段の買い物でポイントを貯めたい」というご要望にマッチした",
+  sub:       "「固定費を集約したい」というご要望に応える",
+  cashing:   "「キャッシング機能が欲しい」というニーズに最適化された",
+  business:  "「法人・個人事業主向け」というご要望にマッチした",
+  // fee
+  free:      "年会費も完全無料で",
+  // status
+  student:   "学生でも申込可能",
+  housewife: "収入なしの主婦でも申込可能な",
+  entrepreneur:"個人事業主・経営者の方に特に支持されている",
+  // focus
+  insurance: "保険・付帯サービスが充実した",
+  fast:      "審査が早く即日対応の",
+  saving:    "固定費削減・節約効果が高い",
+  points:    "ポイント還元効率が高い",
+};
+
+let answers={}, step=0;
 
 function renderQuestion(){
   const q=QUESTIONS[step];
   document.getElementById('stepIndicator').textContent=`質問 ${step+1} / ${QUESTIONS.length}`;
   document.getElementById('progressFill').style.width=`${((step+1)/QUESTIONS.length)*100}%`;
   document.getElementById('questionText').textContent=q.text;
+  document.getElementById('questionHint').textContent=q.hint||'';
   const c=document.getElementById('optionsContainer');
   c.innerHTML='';
   q.options.forEach(o=>{
@@ -1426,32 +1550,125 @@ function select(qid,val){
   if(step<QUESTIONS.length){renderQuestion();}else{showResult();}
 }
 
+function calcScore(card,ans){
+  let score=0;
+  let matched_axes=0;
+  let total_axes=0;
+  // 各回答軸でマッチすれば加点。マッチした軸数を数えて％計算
+  for(const axis of ['usage','fee','status','focus','count']){
+    if(!ans[axis]) continue;
+    total_axes++;
+    if(card.target[axis] && card.target[axis].includes(ans[axis])){
+      matched_axes++;
+      // 重要軸は重み付け
+      const weight = (axis==='usage'||axis==='status') ? 3 : (axis==='focus' ? 2 : 1);
+      score += weight;
+    }
+  }
+  const matchRate = total_axes>0 ? Math.round((matched_axes/total_axes)*100) : 0;
+  return {score, matchRate};
+}
+
+function buildReason(card,ans){
+  // 回答に基づいて、なぜこのカードが推薦されるかの一文を生成
+  const parts=[];
+  if(card.target.usage.includes(ans.usage) && REASON_TEMPLATES[ans.usage]){
+    parts.push(REASON_TEMPLATES[ans.usage]);
+  }
+  if(card.target.focus.includes(ans.focus) && REASON_TEMPLATES[ans.focus]){
+    parts.push(REASON_TEMPLATES[ans.focus]);
+  }
+  if(card.target.status.includes(ans.status) && REASON_TEMPLATES[ans.status]){
+    parts.push(REASON_TEMPLATES[ans.status]);
+  }
+  if(ans.fee==='free' && card.target.fee.includes('free')){
+    parts.push(REASON_TEMPLATES.free);
+  }
+  if(parts.length===0){
+    return `総合的にあなたのご回答とのマッチ度が高い「${card.category}」カテゴリの代表的な1枚です。`;
+  }
+  // 自然な日本語にまとめる
+  const intro = parts.slice(0,2).join('、');
+  return `${intro}「${card.category}」として、あなたに特におすすめできる1枚です。`;
+}
+
 function showResult(){
   document.getElementById('quizSection').style.display='none';
   const rs=document.getElementById('resultSection');
   rs.style.display='block';
-  let scored=CARDS.map(c=>({...c,score:0}));
-  if(answers.usage==='travel') scored.find(c=>c.id==='epos').score+=3;
-  if(answers.usage==='amazon'||answers.usage==='general') scored.find(c=>c.id==='labor').score+=2;
-  if(answers.usage==='amazon') scored.find(c=>c.id==='vanilla').score+=2;
-  if(answers.fee==='free') scored=scored.map(c=>['epos','vanilla','futaba','central'].includes(c.id)?{...c,score:c.score+2}:c);
-  if(answers.income==='student') scored=scored.map(c=>['epos','vanilla'].includes(c.id)?{...c,score:c.score+2}:c);
-  if(answers.income==='part') scored=scored.map(c=>['futaba','central'].includes(c.id)?{...c,score:c.score+1}:c);
-  if(answers.income==='full') scored=scored.map(c=>['labor','central'].includes(c.id)?{...c,score:c.score+2}:c);
-  scored=scored.filter(c=>c.difficulty!=='法人');
-  scored.sort((a,b)=>b.score-a.score);
-  const top=scored.slice(0,2);
-  document.getElementById('resultCards').innerHTML=top.map((c,i)=>`
-    <div class="result-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div class="rank-badge ${i===0?'rank-1':'rank-2'}" style="width:34px;height:34px;font-size:0.85rem">${i===0?'1位':'2位'}</div>
-        <h3 style="font-size:1rem;color:#1a56db">${c.name}</h3>
-      </div>
-      <p style="font-size:0.84rem;color:#666;margin-bottom:8px">年会費：${c.fee} ／ 還元率：${c.points}</p>
-      <ul style="list-style:none;padding:0;margin-bottom:12px">${c.features.map(f=>`<li style="font-size:0.84rem;padding:3px 0;border-bottom:1px solid #f5f5f5">✓ ${f}</li>`).join('')}</ul>
-      <a href="${c.url}" class="btn-apply" style="font-size:0.9rem;padding:12px">今すぐ申し込む（公式サイト）</a>
+
+  // スコア計算
+  let scored=CARDS.map(c=>{
+    const {score, matchRate}=calcScore(c, answers);
+    return {...c, score, matchRate};
+  });
+
+  // 法人系は status=entrepreneur 以外は除外、キャッシング系は usage=cashing/business 以外は除外
+  scored=scored.filter(c=>{
+    if((c.id==='hojin_etc'||c.id==='factoring_labor'||c.id==='top_management') && answers.status!=='entrepreneur') return false;
+    if((c.id==='futaba'||c.id==='central') && answers.usage!=='cashing' && answers.focus!=='cashing' && answers.focus!=='fast') return false;
+    return true;
+  });
+
+  scored.sort((a,b)=>b.score-a.score || b.matchRate-a.matchRate);
+  const top=scored.slice(0,3);
+
+  // ヘッダー（マッチ件数表示）
+  const totalCount = scored.length;
+  document.getElementById('resultHeader').innerHTML=`
+    <div style="display:inline-block;background:linear-gradient(135deg,#1a56db,#0f3460);color:white;padding:10px 22px;border-radius:24px;font-size:0.92rem;margin-bottom:8px">
+      <i class="fa-solid fa-circle-check" style="margin-right:6px"></i>診断完了
     </div>
-  `).join('');
+    <h3 style="font-size:1.2rem;color:#1a2a5e;margin:8px 0 4px">あなたへのおすすめ TOP${top.length}</h3>
+    <p style="font-size:0.85rem;color:#666;margin:0">24枚の中から、ご回答に基づき最適な ${top.length} 枚を選定しました</p>
+  `;
+
+  // 各推奨カード
+  document.getElementById('resultCards').innerHTML=top.map((c,i)=>{
+    const reason=buildReason(c, answers);
+    const rankColor = i===0 ? '#f6c90e' : (i===1 ? '#b0bec5' : '#ce8a56');
+    const rankLabel = i===0 ? '1位' : (i===1 ? '2位' : '3位');
+    return `
+    <div class="result-card" style="position:relative;border-top:3px solid ${rankColor}">
+      ${i===0 ? '<div style="position:absolute;top:-10px;right:14px;background:#e53e3e;color:white;font-size:0.72rem;font-weight:bold;padding:3px 10px;border-radius:12px;box-shadow:0 2px 6px rgba(229,62,62,0.4)">★ あなたへのベストマッチ</div>' : ''}
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div class="rank-badge" style="background:linear-gradient(135deg,${rankColor},${rankColor}cc);width:38px;height:38px;font-size:0.9rem;color:white">${rankLabel}</div>
+        <div style="flex:1;min-width:0">
+          <h3 style="font-size:1.05rem;color:#1a2a5e;margin:0;line-height:1.3">${c.name}</h3>
+          <span style="font-size:0.7rem;color:#888;background:#f0f4ff;padding:2px 8px;border-radius:3px;display:inline-block;margin-top:3px">${c.category}</span>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:0.7rem;color:#888">マッチ度</div>
+          <div style="font-size:1.3rem;font-weight:bold;color:#e53e3e;line-height:1">${c.matchRate}<span style="font-size:0.85rem">%</span></div>
+        </div>
+      </div>
+
+      <div style="background:#f0f4ff;border-left:3px solid #1a56db;padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:0.83rem;color:#1a2a5e;line-height:1.6">
+        <strong style="color:#1a56db">📝 おすすめの理由：</strong> ${reason}
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;font-size:0.78rem">
+        <div style="background:#fafafa;padding:6px 8px;border-radius:4px;text-align:center">
+          <div style="color:#888;font-size:0.72rem">年会費</div><strong>${c.fee}</strong>
+        </div>
+        <div style="background:#fafafa;padding:6px 8px;border-radius:4px;text-align:center">
+          <div style="color:#888;font-size:0.72rem">還元率</div><strong>${c.points}</strong>
+        </div>
+        <div style="background:#fafafa;padding:6px 8px;border-radius:4px;text-align:center">
+          <div style="color:#888;font-size:0.72rem">発行</div><strong>${c.issuance}</strong>
+        </div>
+      </div>
+
+      <ul style="list-style:none;padding:0;margin-bottom:14px">
+        ${c.features.map(f=>`<li style="font-size:0.84rem;padding:5px 0;border-bottom:1px solid #f5f5f5"><i class="fa-solid fa-check" style="color:#38a169;margin-right:6px"></i>${f}</li>`).join('')}
+      </ul>
+
+      <div style="display:flex;gap:8px;flex-direction:column">
+        <a href="${c.url}" class="btn-apply" target="_blank" rel="nofollow noopener" style="font-size:0.95rem;padding:14px;text-align:center"><i class="fa-solid fa-external-link-alt" style="margin-right:6px"></i>公式サイトで申し込む</a>
+        <a href="${c.detail}" style="display:block;text-align:center;font-size:0.82rem;color:#1a56db;text-decoration:none;padding:8px"><i class="fa-solid fa-circle-info" style="margin-right:4px"></i>このカードの詳細を見る</a>
+      </div>
+    </div>
+  `;}).join('');
 }
 
 function resetQuiz(){
@@ -1465,7 +1682,7 @@ renderQuestion();
 </script>
 <!-- モバイル Sticky CTA -->
 <div class="mobile-sticky-cta">
-  <a href="#quiz" class="msc-btn"><i class="fa-solid fa-wand-magic-sparkles"></i>3問診断であなたに最適なカードを見つける →</a>
+  <a href="#quiz" class="msc-btn"><i class="fa-solid fa-wand-magic-sparkles"></i>カード診断であなたに最適なカードを見つける →</a>
 </div>
 <script src="assets/common.js?v=202605051857"></script>
 </body>
