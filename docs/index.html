@@ -15,39 +15,43 @@
   <style>
     /* ===== index.html 固有スタイル（共通スタイルは assets/common.css?v=202605051857） ===== */
 
-    /* ===== Hero ===== */
+    /* ===== Hero（方針2：明るいイラスト＋濃紺文字） ===== */
     .hero{
-      position:relative;color:white;
+      position:relative;color:#0a2540;
       padding:64px 16px 56px;
       text-align:center;overflow:hidden;
       display:flex;align-items:center;justify-content:center;
-      min-height:310px;
+      min-height:340px;
     }
     .hero-bg{
       position:absolute;inset:0;
-      background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&q=80');
+      background-image:url('assets/hero.jpg?v=202605061');
       background-size:cover;background-position:center;
-      filter:brightness(0.28);
+      /* 明るさは維持（イラストの黄色を活かす） */
     }
     .hero-content{position:relative;z-index:1;max-width:680px}
     .hero-badge{
       display:inline-flex;align-items:center;gap:6px;
-      background:rgba(255,255,255,0.15);
-      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(255,255,255,0.85);
+      border:1px solid rgba(10,37,64,0.15);
       border-radius:20px;padding:5px 14px;
-      font-size:0.78rem;margin-bottom:16px;
+      font-size:0.78rem;margin-bottom:16px;color:#0a2540;
       backdrop-filter:blur(4px);
+      box-shadow:0 1px 4px rgba(0,0,0,0.06);
     }
     .hero h1{
       font-size:2rem;font-weight:bold;line-height:1.35;
-      margin-bottom:12px;
-      text-shadow:0 2px 10px rgba(0,0,0,0.4);
+      margin-bottom:12px;color:#0a2540;
+      text-shadow:0 2px 8px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5);
     }
-    .hero p{font-size:0.95rem;opacity:0.9;margin-bottom:28px;text-shadow:0 1px 4px rgba(0,0,0,0.3)}
+    .hero p{
+      font-size:0.95rem;margin-bottom:28px;color:#1a2a5e;
+      text-shadow:0 1px 4px rgba(255,255,255,0.7);
+    }
     .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
     .btn-hero-primary{
       display:inline-flex;align-items:center;gap:8px;
-      background:#e53e3e;color:white;
+      background:linear-gradient(135deg,#e53e3e,#c53030);color:white;
       padding:14px 28px;border-radius:8px;
       font-size:1rem;font-weight:bold;
       box-shadow:0 4px 14px rgba(229,62,62,0.45);
@@ -56,18 +60,21 @@
     .btn-hero-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,62,62,0.5)}
     .btn-hero-secondary{
       display:inline-flex;align-items:center;gap:8px;
-      background:rgba(255,255,255,0.15);color:white;
-      border:2px solid rgba(255,255,255,0.6);
+      background:rgba(255,255,255,0.9);color:#0a2540;
+      border:2px solid #0a2540;
       padding:12px 24px;border-radius:8px;
-      font-size:0.95rem;font-weight:500;
+      font-size:0.95rem;font-weight:600;
       backdrop-filter:blur(4px);
-      transition:background .15s;
+      transition:background .15s,transform .15s;
     }
-    .btn-hero-secondary:hover{background:rgba(255,255,255,0.25)}
+    .btn-hero-secondary:hover{background:#0a2540;color:white;transform:translateY(-1px)}
     .hero-stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
     .hero-stat{text-align:center}
-    .hero-stat .num{font-size:1.9rem;font-weight:bold;display:block;line-height:1}
-    .hero-stat .lbl{font-size:0.72rem;opacity:0.75;margin-top:4px;display:block}
+    .hero-stat .num{
+      font-size:1.9rem;font-weight:bold;display:block;line-height:1;color:#0a2540;
+      text-shadow:0 1px 4px rgba(255,255,255,0.6);
+    }
+    .hero-stat .lbl{font-size:0.72rem;color:#1a2a5e;opacity:0.85;margin-top:4px;display:block}
 
     /* ===== Features strip ===== */
     .features-strip{background:white;border-bottom:1px solid #eee}
