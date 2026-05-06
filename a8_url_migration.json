@@ -1,0 +1,174 @@
+{
+  "mappings": {
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+62ENL": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7CCHDE+363I+699KI",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+1I6GTU+363I+699KI": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7CCHDE+363I+699KI",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2AR9V6+40JM+TUGK1": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7H3Y7M+40JM+TWTFL",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2AR9V6+40JM+TWTFL": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7H3Y7M+40JM+TWTFL"
+  },
+  "by_program": {
+    "s00000015110002": {
+      "label": "エポスカード",
+      "old_section2": "1BMP6A",
+      "new_section2": "CJW0XE",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CJW0XE+38L8+BX3J5"
+    },
+    "s00000015135002": {
+      "label": "フタバ キャッシング",
+      "old_section2": "28DJG2",
+      "new_section2": "CWE4MQ",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CWE4MQ+38S6+BXQOJ"
+    },
+    "s00000015135001": {
+      "label": "フタバ レディースキャッシング",
+      "old_section2": "27S3UA",
+      "new_section2": "CV79F6",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CV79F6+38S6+614CX"
+    },
+    "s00000014787001": {
+      "label": "セントラル キャッシング",
+      "old_section2": "1I6GTU",
+      "new_section2": "7CCHDE",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7CCHDE+363I+699KI"
+    },
+    "s00000023883002": {
+      "label": "Vanilla Visa ギフトカード",
+      "old_section2": "FKUCMQ",
+      "new_section2": "CYRV1U",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CYRV1U+54A6+BWVTE"
+    },
+    "s00000016469001": {
+      "label": "金券ねっと",
+      "old_section2": "1HL182",
+      "new_section2": "CI3Q42",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CI3Q42+3J2Q+60OXE"
+    },
+    "s00000018733010": {
+      "label": "ラボル カード払い",
+      "old_section2": "DJM182",
+      "new_section2": "D15LGY",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+D15LGY+40JM+1NJZN5"
+    },
+    "s00000018733005": {
+      "label": "ラボル ファクタリング",
+      "old_section2": "2AR9V6",
+      "new_section2": "7H3Y7M",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2O+7H3Y7M+40JM+TWTFL"
+    },
+    "s00000015923001": {
+      "label": "ETC協同組合 法人ETC",
+      "old_section2": "FEW0KY",
+      "new_section2": "EO3ICY",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+EO3ICY+3EV2+5YZ77"
+    },
+    "s00000015923003": {
+      "label": "ETC協同組合 法人ガソリン",
+      "old_section2": "DBVECY",
+      "new_section2": "CY6FG2",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CY6FG2+3EV2+HVNAR"
+    },
+    "s00000008928005": {
+      "label": "高速情報協同組合 法人ETC",
+      "old_section2": "D9HNXU",
+      "new_section2": "CF4K36",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CF4K36+1WW0+TTLOX"
+    },
+    "s00000026555003": {
+      "label": "高速情報協同組合 法人ETC決定版",
+      "old_section2": "FCIA5U",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000013470008": {
+      "label": "d カード GOLD U",
+      "old_section2": "DEUKDU",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000015597014": {
+      "label": "スルガJCB",
+      "old_section2": "DGMV76",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000026615001": {
+      "label": "PayCAS Mobile",
+      "old_section2": "2VLG1E",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000027217001": {
+      "label": "一括.jp",
+      "old_section2": "2J3CC2",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000027422001": {
+      "label": "EMEAO",
+      "old_section2": "2J3CC2",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000023727001": {
+      "label": "クレカリ賃貸",
+      "old_section2": "2PN3ZM",
+      "new_section2": "CP8XDE",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CP8XDE+532U+5YRHE"
+    },
+    "s00000012115008": {
+      "label": "バンドルカード",
+      "old_section2": "1JDC1E",
+      "new_section2": "CVSP0Y",
+      "new_url": "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CVSP0Y+2LHA+1BQR01"
+    },
+    "s00000012115029": {
+      "label": "バンドルカード(別)",
+      "old_section2": "2J3CC2",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    },
+    "s00000027494001": {
+      "label": "SkyeSiM",
+      "old_section2": "2VLG1E",
+      "new_url": null,
+      "error": "提携未承認の可能性"
+    }
+  },
+  "unmigrated_old_urls": [
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIF+DEUKDU+1WW0+61RI9",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIF+DGMV76+1WW0+C5O69",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIF+FCIA5U+3EV2+TTTEP",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2J3CC2+2LHA+4SNX5E",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2J3CC2+2LHA+4SPF5T",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2VLG1E+3JLM+609HT",
+    "https://px.a8.net/svt/ejp?a8mat=4B3IIG+2VLG1E+3JLM+63H8I",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CF4K36+1WW0+TTLOX",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CI3Q42+3J2Q+60OXE",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CJW0XE+38L8+BX3J5",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CP8XDE+532U+5YRHE",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CV79F6+38S6+614CX",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CVSP0Y+2LHA+1BQR01",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CWE4MQ+38S6+BXQOJ",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CY6FG2+3EV2+HVNAR",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+CYRV1U+54A6+BWVTE",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+D15LGY+40JM+1NJZN5",
+    "https://px.a8.net/svt/ejp?a8mat=4B3K2N+EO3ICY+3EV2+5YZ77"
+  ],
+  "unmigrated_programs": [
+    "[s00000012115029] バンドルカード(別)",
+    "[s00000013470008] d カード GOLD U",
+    "[s00000015597014] スルガJCB",
+    "[s00000026555003] 高速情報協同組合 法人ETC決定版",
+    "[s00000026615001] PayCAS Mobile",
+    "[s00000027217001] 一括.jp",
+    "[s00000027422001] EMEAO",
+    "[s00000027494001] SkyeSiM"
+  ],
+  "stats": {
+    "total_programs": 21,
+    "programs_migrated": 13,
+    "programs_failed": 8,
+    "total_old_urls": 22,
+    "urls_migrated": 4,
+    "urls_unmigrated": 18
+  }
+}

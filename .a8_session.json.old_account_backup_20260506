@@ -1,0 +1,232 @@
+{
+  "cookies": [
+    {
+      "name": "JSESSIONID",
+      "value": "692CD2C7E9EF62E8B10E0D97ADB173B5.app08",
+      "domain": "pub.a8.net",
+      "path": "/a8v2",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.1725850390.1777924596",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1785700596,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUkZreRUKiVVB-WzJSe_AVWn4KIHuKEthDwbIDPRaddoLXsyw2G1FXSqFN-6",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1812484596.508543,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.908522998.1777924596",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484610.274037,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__hstc",
+      "value": "37703807.c4690fe9ed060b02cb5714d826dac13c.1777924597955.1777924597955.1777924597955.1",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1793476597,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "hubspotutk",
+      "value": "c4690fe9ed060b02cb5714d826dac13c",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1793476597,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__hssrc",
+      "value": "1",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__hssc",
+      "value": "37703807.1.1777924597955",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1777926397,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "vWWz8LFcv3bcdtDecQR.R5afvxMD1TujnVF.T_itdqA-1777924598-1.0.1.1-qGupR8RXHSEh5FEdyVoPye6XNCp_mt3XOXqMz9f.8xVW7xBlicN_sC8MSPFlDT9cQsmuovyR7C3qdvcLgeifo_gtlErQc5uLi28RhEFA0UU",
+      "domain": ".hubspot.com",
+      "path": "/",
+      "expires": 1777926398.350412,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cfuvid",
+      "value": "YX1UU0Eisx_xzClC_t6yEVsWLRgRm7P.kUS4w2.CaBc-1777924598250-0.0.1.1-604800000",
+      "domain": ".hubspot.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1777924598449.27780651536105233",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1785700607,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "app-as",
+      "value": "9373be227412c52cf1ab7b46a5b373bcfa5acd0a",
+      "domain": "pub.a8.net",
+      "path": "/",
+      "expires": 1777982208.040291,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_L0KHR1DNVS",
+      "value": "GS2.1.s1777924596$o1$g1$t1777924608$j48$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484608.32928,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "AWSALB",
+      "value": "iPIUbiI6rzxgOby7ujx0KBRI1hDirWpsukURqt+tZfLc+mR4oLti5zGFGIUPuzEFRGs/75pbCZ62dFCVQYmH2vBc642vXVdTpg6l1goc6ru9WP2c8KnfjEohburH",
+      "domain": "www.a8.net",
+      "path": "/",
+      "expires": 1778529408.903425,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "AWSALBCORS",
+      "value": "iPIUbiI6rzxgOby7ujx0KBRI1hDirWpsukURqt+tZfLc+mR4oLti5zGFGIUPuzEFRGs/75pbCZ62dFCVQYmH2vBc642vXVdTpg6l1goc6ru9WP2c8KnfjEohburH",
+      "domain": "www.a8.net",
+      "path": "/",
+      "expires": 1778529408.903613,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga_CB7M49WDK0",
+      "value": "GS2.1.s1777924596$o1$g1$t1777924609$j47$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484609.562197,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_X11XQZ7YRR",
+      "value": "GS2.1.s1777924596$o1$g1$t1777924609$j47$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484609.701314,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_HV13TPN5Q4",
+      "value": "GS2.1.s1777924596$o1$g1$t1777924609$j47$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484609.761072,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_EMWQSDMGJ0",
+      "value": "GS2.1.s1777924597$o1$g1$t1777924609$j48$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484609.831726,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_ELCGBT21N7",
+      "value": "GS2.1.s1777924610$o1$g0$t1777924610$j60$l0$h0",
+      "domain": ".a8.net",
+      "path": "/",
+      "expires": 1812484610.270653,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://pub.a8.net",
+      "localStorage": [
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1777924608725},\"expires\":1785700608725}}"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.a8.net",
+      "localStorage": [
+        {
+          "name": "lastExternalReferrer",
+          "value": "empty"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1777924595875},\"expires\":1785700595875}}"
+        },
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1777924598423"
+        }
+      ]
+    }
+  ]
+}
