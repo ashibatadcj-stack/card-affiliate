@@ -37,15 +37,15 @@ SCOPES = ["https://www.googleapis.com/auth/indexing"]
 
 PRIORITY_URLS = [
     "https://cardshindan.com/",
-    "https://cardshindan.com/articles/epos-kaigai-hoken.html",
-    "https://cardshindan.com/articles/yachin-card-hikaku.html",
-    "https://cardshindan.com/articles/cashing-hikaku.html",
-    "https://cardshindan.com/articles/hojin-etc-guide.html",
+    "https://cardshindan.com/about.html",
+    "https://cardshindan.com/articles/pillar-credit-card.html",
+    "https://cardshindan.com/articles/pillar-factoring.html",
+    "https://cardshindan.com/articles/pillar-cashing.html",
     "https://cardshindan.com/articles/factoring-guide.html",
-    "https://cardshindan.com/articles/vanilla-visa-guide.html",
-    "https://cardshindan.com/articles/epos.html",
+    "https://cardshindan.com/articles/cashing-hikaku.html",
+    "https://cardshindan.com/articles/business-funding-guide.html",
     "https://cardshindan.com/articles/beginner-guide.html",
-    "https://cardshindan.com/articles/annual-fee-free.html",
+    "https://cardshindan.com/articles/poikatsu-comparison.html",
 ]
 
 
