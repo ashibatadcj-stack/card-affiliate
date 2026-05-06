@@ -86,6 +86,27 @@ def _strip_html_wrapper(content: str) -> str:
     return content.strip()
 
 
+def _assert_clean(content: str, label: str = "") -> None:
+    """生成HTMLを検証。問題があれば例外。後段の HTML 破壊バグを未然防止。"""
+    import re as _re
+    checks = [
+        (r'```', 'コードフェンス残存'),
+        (r'<!DOCTYPE', 'DOCTYPE 残存'),
+        (r'(?i)<html\b', '<html> タグ残存'),
+        (r'(?i)<head\b', '<head> タグ残存'),
+        (r'(?i)<body\b', '<body> タグ残存'),
+    ]
+    issues = []
+    for pattern, msg in checks:
+        if _re.search(pattern, content):
+            issues.append(msg)
+    if issues:
+        snippet = content[:300] + '...' if len(content) > 300 else content
+        raise RuntimeError(
+            f"[{label}] 生成HTMLに問題: {', '.join(issues)}\n--- 先頭300文字 ---\n{snippet}"
+        )
+
+
 def generate_article_html(article: dict, research: dict | None = None) -> str:
     """カテゴリに応じて記事/カード詳細のHTMLコンテンツを生成"""
     category_slug = article.get("category_slug", "guide")
@@ -143,6 +164,7 @@ def _generate_compare_article_html(article: dict, research: dict | None) -> str:
         placeholder = f"AFFILIATE_{card['id'].upper()}"
         content = content.replace(placeholder, card["affiliate_url"])
 
+    _assert_clean(content, label=f"compare:{article['slug']}")
     return content
 
 
@@ -203,6 +225,7 @@ def _generate_card_detail_html(article: dict, research: dict | None) -> str:
     if aff_url:
         content = content.replace("CARD_AFF_URL", aff_url)
 
+    _assert_clean(content, label=f"card-detail:{article['slug']}")
     return content
 
 
