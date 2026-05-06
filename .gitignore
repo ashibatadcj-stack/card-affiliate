@@ -1,3 +1,20 @@
 .env
 __pycache__/
 *.pyc
+
+# A8 セッション・キャッシュ
+.a8_session.json
+.a8_banners_cache.json
+
+# アナリティクス（認証鍵・出力レポート）
+analytics/credentials/
+analytics/output/
+analytics/.cache/
+
+# デバッグ・スクラッチ
+debug_*.py
+debug_*.png
+_verify.py
+_migrate_cards.py
+_patch_index.py
+_gen_sitemap.py

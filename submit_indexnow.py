@@ -14,7 +14,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 DOCS = BASE / "docs"
 HOST = "cardshindan.com"
-KEY = "a8f3c2e1b9d4476a8e1c3f7b2d5e9a4c"  # 32文字の任意の英数字
+KEY = "71cdc768cc7a726af4831109627bdd0e"  # 32文字の任意の英数字
 
 
 def write_key_file():
