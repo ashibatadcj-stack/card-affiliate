@@ -645,44 +645,44 @@
   },
   {
     "slug": "pillar-cashing",
-    "score": 4,
+    "score": 6,
     "max": 7,
     "checks": {
       "pros_cons": false,
       "numeric_specs": true,
-      "multiple_options": false,
+      "multiple_options": true,
       "first_hand": true,
       "navigation": true,
       "pr_disclosure": true,
-      "sponsored_link": false
+      "sponsored_link": true
     }
   },
   {
     "slug": "pillar-credit-card",
-    "score": 4,
+    "score": 6,
     "max": 7,
     "checks": {
       "pros_cons": false,
       "numeric_specs": true,
-      "multiple_options": false,
+      "multiple_options": true,
       "first_hand": true,
       "navigation": true,
       "pr_disclosure": true,
-      "sponsored_link": false
+      "sponsored_link": true
     }
   },
   {
     "slug": "pillar-factoring",
-    "score": 4,
+    "score": 6,
     "max": 7,
     "checks": {
       "pros_cons": false,
       "numeric_specs": true,
-      "multiple_options": false,
+      "multiple_options": true,
       "first_hand": true,
       "navigation": true,
       "pr_disclosure": true,
-      "sponsored_link": false
+      "sponsored_link": true
     }
   },
   {
