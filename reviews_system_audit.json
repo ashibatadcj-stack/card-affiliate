@@ -1,0 +1,800 @@
+[
+  {
+    "slug": "a8_s00000007478002",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000008928005",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000010046001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000011827001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000012115008",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000012115029",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000013023001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000013470008",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000014787001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000015135001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000015135002",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000015597014",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000015923001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000015923003",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000016469001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000016537001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000017718074",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000018378001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000018733005",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000018733010",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000019225001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000020552003",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000022686001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000023727001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000023883002",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000026555003",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000026615001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000026624001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000027217001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000027422001",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "a8_s00000027494001",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "amazon",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "annual-fee-free",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "beginner-guide",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "business-funding-guide",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "cashing-hikaku",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "easy-approval",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "epos-kaigai-hoken",
+    "score": 5,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": false,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": false
+    }
+  },
+  {
+    "slug": "epos",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "factoring-guide",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "high-points",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "hojin-etc-guide",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "hojin_etc",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "housewife-card",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "moneyforward-credit-card",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "overseas-travel",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "pillar-cashing",
+    "score": 4,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": false,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": false
+    }
+  },
+  {
+    "slug": "pillar-credit-card",
+    "score": 4,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": false,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": false
+    }
+  },
+  {
+    "slug": "pillar-factoring",
+    "score": 4,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": false,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": false
+    }
+  },
+  {
+    "slug": "poikatsu-comparison",
+    "score": 6,
+    "max": 7,
+    "checks": {
+      "pros_cons": false,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "rakuten-vs-epos",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "rakuten",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "sbi_platinum",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "student-card",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "two-cards",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "vanilla-visa-guide",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  },
+  {
+    "slug": "yachin-card-hikaku",
+    "score": 7,
+    "max": 7,
+    "checks": {
+      "pros_cons": true,
+      "numeric_specs": true,
+      "multiple_options": true,
+      "first_hand": true,
+      "navigation": true,
+      "pr_disclosure": true,
+      "sponsored_link": true
+    }
+  }
+]
