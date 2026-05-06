@@ -1,0 +1,49 @@
+name: Claude Code
+
+on:
+  # Issue が新規作成された時
+  issues:
+    types: [opened, assigned]
+  # Issue にコメントが付いた時
+  issue_comment:
+    types: [created]
+  # PR にレビューコメントが付いた時
+  pull_request_review_comment:
+    types: [created]
+  # PR に対するレビューが完了した時
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude:
+    # @claude メンションがある時だけ起動
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: write           # ファイル変更・コミット・push
+      pull-requests: write      # PR作成
+      issues: write             # Issue へのコメント
+      id-token: write           # OIDC
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # claude-haiku 系で高速・低コスト動作（複雑なタスクは sonnet にも切替可）
+          model: claude-sonnet-4-5
+          # PR を自動作成して内容を提案
+          # mode: 'pr' / 'inline' / 'review'
+          # ※ デフォルトの自動判定でOK
