@@ -1,0 +1,15 @@
+# Windows バッチファイルは必ず CRLF を維持
+# （Linux/WSL 環境で git checkout すると LF に変換され、
+#  Task Scheduler 経由の cmd.exe 実行時にコメント行が誤実行される）
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# その他のテキストはデフォルト（autocrlf 設定に従う）
+*.py text
+*.html text
+*.css text
+*.js text
+*.json text
+*.xml text
+*.md text
