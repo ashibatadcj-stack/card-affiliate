@@ -420,6 +420,29 @@
     }
   </style>
   <link rel="canonical" href="https://cardshindan.com/">
+  <!-- OGP / Twitter Card（canonical URL に統一して GA4 重複カウントとSEO評価分散を防ぐ） -->
+  <meta property="og:url" content="https://cardshindan.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="クレジットカードおすすめランキング2026年版 | クレジットカード比較ナビ">
+  <meta property="og:description" content="クレジットカード・ファクタリング・キャッシングの比較・選び方を編集部が実体験ベースで解説。年会費・還元率・審査・即日対応で徹底比較。">
+  <meta property="og:site_name" content="クレジットカード比較ナビ">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://cardshindan.com/">
+  <script>
+    /* === URL 正規化: /index.html へ直接来た訪問者を / に書き換え（リロード無し） ===
+       目的: GA4 で / と /index.html が別ページとして二重計上されるのを防ぐ。
+       Google検索結果からのクリック・直リンク・ブックマーク経由を全て / に統一する。 */
+    (function () {
+      try {
+        var p = window.location.pathname;
+        if (p === '/index.html' || p.endsWith('/index.html')) {
+          var newPath = p.replace(/index\.html$/, '');
+          if (!newPath || newPath.slice(-1) !== '/') newPath += '/';
+          window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+        }
+      } catch (e) { /* 古いブラウザは何もしない */ }
+    })();
+  </script>
 </head>
 <body>
 
@@ -444,7 +467,7 @@
     <div class="header-main-inner">
 
       <!-- ロゴ -->
-      <a href="index.html" class="site-logo">
+      <a href="/" class="site-logo">
         <div class="site-logo-icon"><i class="fa-solid fa-credit-card"></i></div>
         <div class="site-logo-text">
           <span class="logo-main">クレジットカード比較ナビ</span>
@@ -687,6 +710,37 @@
       <div class="hero-stat"><span class="num">24+</span><span class="lbl">掲載カード数</span></div>
       <div class="hero-stat"><span class="num">5問</span><span class="lbl">60秒診断</span></div>
       <div class="hero-stat"><span class="num">無料</span><span class="lbl">完全無料で比較</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 直帰削減：目的別ナビ（ヒーロー直下、最初の3秒で次の行動を提示） ===== -->
+<div style="background:#fff;border-bottom:1px solid #e5e7eb;padding:20px 16px 14px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="text-align:center;font-size:0.92rem;color:#475569;margin-bottom:14px">
+      <i class="fa-solid fa-hand-point-down" style="color:#1a56db"></i> <strong style="color:#0a2540">目的別に進む</strong> ― あなたの目的を選択してください
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">
+      <a href="articles/pillar-credit-card.html" style="background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;text-decoration:none;color:inherit;text-align:center;transition:all .15s" onmouseover="this.style.borderColor='#1a56db';this.style.background='#dbeafe'" onmouseout="this.style.borderColor='#bfdbfe';this.style.background='#eff6ff'">
+        <div style="font-size:1.5rem;margin-bottom:4px">💳</div>
+        <strong style="display:block;font-size:0.92rem;color:#0a2540">クレカを作りたい</strong>
+        <span style="font-size:0.78rem;color:#475569">用途別おすすめ完全ガイド</span>
+      </a>
+      <a href="articles/pillar-factoring.html" style="background:#fff7ed;border:2px solid #fed7aa;border-radius:10px;padding:14px;text-decoration:none;color:inherit;text-align:center;transition:all .15s" onmouseover="this.style.borderColor='#ea580c';this.style.background='#ffedd5'" onmouseout="this.style.borderColor='#fed7aa';this.style.background='#fff7ed'">
+        <div style="font-size:1.5rem;margin-bottom:4px">💼</div>
+        <strong style="display:block;font-size:0.92rem;color:#0a2540">事業資金が必要</strong>
+        <span style="font-size:0.78rem;color:#475569">ファクタリング徹底比較</span>
+      </a>
+      <a href="articles/pillar-cashing.html" style="background:#fef2f2;border:2px solid #fecaca;border-radius:10px;padding:14px;text-decoration:none;color:inherit;text-align:center;transition:all .15s" onmouseover="this.style.borderColor='#dc2626';this.style.background='#fee2e2'" onmouseout="this.style.borderColor='#fecaca';this.style.background='#fef2f2'">
+        <div style="font-size:1.5rem;margin-bottom:4px">💴</div>
+        <strong style="display:block;font-size:0.92rem;color:#0a2540">即日でお金を借りたい</strong>
+        <span style="font-size:0.78rem;color:#475569">キャッシング即日比較</span>
+      </a>
+      <a href="#quiz" style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:10px;padding:14px;text-decoration:none;color:inherit;text-align:center;transition:all .15s" onmouseover="this.style.borderColor='#16a34a';this.style.background='#dcfce7'" onmouseout="this.style.borderColor='#bbf7d0';this.style.background='#f0fdf4'">
+        <div style="font-size:1.5rem;margin-bottom:4px">🎯</div>
+        <strong style="display:block;font-size:0.92rem;color:#0a2540">最適なカードを診断</strong>
+        <span style="font-size:0.78rem;color:#475569">5問60秒で無料診断</span>
+      </a>
     </div>
   </div>
 </div>
