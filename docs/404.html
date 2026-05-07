@@ -5,64 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>ページが見つかりません | クレジットカード比較ナビ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="/assets/common.css">
   <script>
-    // 旧URLからの自動リダイレクト処理
+    // === 旧URLからの自動リダイレクト処理（GitHub Pagesリポジトリ名サブパス時代の遺物URLへの対応） ===
+    // 対応パターン:
+    //   /card-affiliate/...           → /...        （旧サブパスのプレフィックス除去）
+    //   /cards/<slug>.html            → /articles/<slug>.html （旧ディレクトリ名）
+    //   /card-affiliate/cards/<slug>  → /articles/<slug>.html
+    //   /card-affiliate/index.html    → /
+    // 無限ループ防止: sessionStorage で1セッションあたり最大2回までに制限
     (function () {
-      var path = window.location.pathname;
-      var search = window.location.search || '';
-      var hash = window.location.hash || '';
-      var newPath = null;
+      try {
+        var path = window.location.pathname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        var newPath = path;
 
-      // パターン1: /card-affiliate/ プレフィックスを除去
-      // 例: /card-affiliate/index.html → /index.html
-      //     /card-affiliate/articles/foo.html → /articles/foo.html
-      if (path.indexOf('/card-affiliate/') === 0) {
-        newPath = path.replace(/^\/card-affiliate\//, '/');
-      }
+        // パターン1: /card-affiliate/ プレフィックス除去
+        if (newPath.indexOf('/card-affiliate/') === 0) {
+          newPath = newPath.replace(/^\/card-affiliate\//, '/');
+        }
 
-      // パターン2: /cards/ → /articles/ （旧ディレクトリ名）
-      if (newPath && newPath.indexOf('/cards/') === 0) {
-        newPath = newPath.replace(/^\/cards\//, '/articles/');
-      } else if (path.indexOf('/cards/') === 0) {
-        newPath = path.replace(/^\/cards\//, '/articles/');
-      }
+        // パターン2: /cards/ → /articles/ （旧ディレクトリ名）
+        if (newPath.indexOf('/cards/') === 0) {
+          newPath = newPath.replace(/^\/cards\//, '/articles/');
+        }
 
-      // パターン3: ルート末尾なら / にする
-      if (newPath === '/' || newPath === '') {
-        newPath = '/';
-      }
+        // パターン3: /index.html or 末尾 /index.html → 親ディレクトリ
+        if (newPath === '/index.html' || newPath.endsWith('/index.html')) {
+          newPath = newPath.slice(0, -'index.html'.length);
+        }
 
-      if (newPath && newPath !== path) {
-        // 自動リダイレクト（301相当の挙動）
-        window.location.replace(newPath + search + hash);
-      }
+        // 無限ループ防止
+        var redirectKey = '__404_redirect_count__';
+        var count = parseInt(sessionStorage.getItem(redirectKey) || '0', 10);
+
+        if (newPath !== path && count < 2) {
+          sessionStorage.setItem(redirectKey, count + 1);
+          // 画面表示前に即時リダイレクト
+          window.location.replace(newPath + search + hash);
+          return; // この後のDOM描画はキャンセルされる
+        }
+        // 正常着地時はカウンタをクリア
+        sessionStorage.removeItem(redirectKey);
+      } catch (e) { /* 古いブラウザは何もしない */ }
     })();
   </script>
   <style>
-    .err-wrap{max-width:680px;margin:80px auto;padding:0 20px;text-align:center;font-family:'Hiragino Sans','Meiryo',sans-serif}
-    .err-code{font-size:6rem;font-weight:800;color:#3b82f6;margin:0;line-height:1}
-    .err-msg{font-size:1.4rem;color:#1f2937;margin:16px 0 8px}
-    .err-sub{color:#6b7280;margin-bottom:32px}
-    .err-links{display:grid;gap:12px;text-align:left;margin-top:32px}
-    .err-links a{display:block;padding:14px 18px;background:#f3f4f6;border-radius:8px;text-decoration:none;color:#1e3a8a;font-weight:600;border:1px solid #d1d5db}
-    .err-links a:hover{background:#e5e7eb}
-    .err-home{display:inline-block;margin-top:24px;padding:14px 32px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:8px;font-weight:700}
+    body{margin:0;background:#f5f7fa;color:#1f2937;font-family:'Hiragino Sans','Meiryo',sans-serif;line-height:1.6}
+    .err-wrap{max-width:760px;margin:60px auto;padding:0 20px;text-align:center}
+    .err-code{font-size:6rem;font-weight:800;color:#3b82f6;margin:0;line-height:1;letter-spacing:-0.04em}
+    .err-msg{font-size:1.5rem;color:#0a2540;margin:16px 0 8px}
+    .err-sub{color:#475569;margin-bottom:32px;font-size:0.95rem}
+    .err-home{display:inline-block;margin:8px 0 28px;padding:14px 32px;background:#1a56db;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;box-shadow:0 4px 14px rgba(26,86,219,0.3);transition:transform .15s}
+    .err-home:hover{transform:translateY(-2px)}
+    .err-section-title{font-size:0.9rem;color:#475569;margin:32px 0 12px;text-align:left;padding-left:4px}
+    .err-pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+    .err-pillar{background:white;border:2px solid #bfdbfe;border-radius:12px;padding:18px 14px;text-decoration:none;color:#0a2540;text-align:center;transition:all .15s}
+    .err-pillar:hover{border-color:#1a56db;background:#eff6ff;transform:translateY(-2px)}
+    .err-pillar-icon{font-size:1.8rem;margin-bottom:6px}
+    .err-pillar-title{font-weight:700;font-size:0.95rem;display:block;margin-bottom:3px}
+    .err-pillar-sub{font-size:0.78rem;color:#64748b}
+    .err-links{display:grid;gap:8px;text-align:left;margin-top:8px}
+    .err-links a{display:flex;align-items:center;gap:10px;padding:12px 16px;background:white;border-radius:8px;text-decoration:none;color:#1e3a8a;font-weight:500;border:1px solid #e5e7eb;font-size:0.92rem;transition:background .15s}
+    .err-links a:hover{background:#f0f4ff}
   </style>
 </head>
 <body>
   <div class="err-wrap">
     <p class="err-code">404</p>
     <h1 class="err-msg">お探しのページが見つかりません</h1>
-    <p class="err-sub">URLが間違っているか、ページが移動・削除された可能性があります。</p>
-    <a href="/" class="err-home">トップページへ戻る</a>
+    <p class="err-sub">URLが間違っているか、ページが移動・削除された可能性があります。<br>下記から目的のコンテンツを探してください。</p>
+    <a href="/" class="err-home"><i class="fa-solid fa-house"></i> トップページへ戻る</a>
 
+    <div class="err-section-title">📚 主要カテゴリから探す</div>
+    <div class="err-pillars">
+      <a href="/articles/pillar-credit-card.html" class="err-pillar">
+        <div class="err-pillar-icon">💳</div>
+        <span class="err-pillar-title">クレカ完全ガイド</span>
+        <span class="err-pillar-sub">用途別おすすめ・選び方</span>
+      </a>
+      <a href="/articles/pillar-factoring.html" class="err-pillar">
+        <div class="err-pillar-icon">💼</div>
+        <span class="err-pillar-title">ファクタリング比較</span>
+        <span class="err-pillar-sub">手数料・即日資金化</span>
+      </a>
+      <a href="/articles/pillar-cashing.html" class="err-pillar">
+        <div class="err-pillar-icon">💴</div>
+        <span class="err-pillar-title">キャッシング比較</span>
+        <span class="err-pillar-sub">即日・WEB完結</span>
+      </a>
+    </div>
+
+    <div class="err-section-title">🔥 人気の記事</div>
     <div class="err-links">
-      <a href="/articles/beginner-guide.html">📘 クレジットカード初心者ガイド</a>
-      <a href="/articles/annual-fee-free.html">💳 年会費無料カード比較</a>
-      <a href="/articles/high-points.html">⭐ ポイント還元率ランキング</a>
-      <a href="/articles/easy-approval.html">✅ 審査通りやすいカード</a>
-      <a href="/articles/epos-kaigai-hoken.html">✈ エポスカード海外旅行保険</a>
+      <a href="/articles/beginner-guide.html"><i class="fa-solid fa-book-open"></i> クレジットカード初心者完全ガイド</a>
+      <a href="/articles/annual-fee-free.html"><i class="fa-solid fa-circle-check"></i> 年会費無料カードおすすめ比較</a>
+      <a href="/articles/high-points.html"><i class="fa-solid fa-star"></i> ポイント還元率ランキング</a>
+      <a href="/articles/easy-approval.html"><i class="fa-solid fa-bolt"></i> 審査が通りやすいカード</a>
+      <a href="/articles/factoring-guide.html"><i class="fa-solid fa-scale-balanced"></i> ファクタリング比較10選</a>
+      <a href="/articles/cashing-hikaku.html"><i class="fa-solid fa-scale-balanced"></i> 即日キャッシング比較5選</a>
+      <a href="/about.html"><i class="fa-solid fa-circle-info"></i> 運営者情報</a>
     </div>
   </div>
 </body>
