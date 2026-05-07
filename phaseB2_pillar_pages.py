@@ -112,7 +112,7 @@ def footer() -> str:
 '''
 
 
-PR_BLOCK = '''<div class="pr-disclosure"><i class="fa-solid fa-circle-info"></i><span><strong>PR</strong>：本ページはアフィリエイト広告を利用しています。</span></div>'''
+PR_BLOCK = ''  # ファーストビューPR表記は廃止（フッターに集約）
 
 
 # === ピラー1: クレジットカード完全ガイド ===

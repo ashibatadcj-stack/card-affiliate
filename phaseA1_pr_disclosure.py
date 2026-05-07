@@ -52,4 +52,8 @@ def main():
 
 
 if __name__ == '__main__':
+    # === アーカイブ: 2026-05-07 にPR表記をフッター集約に変更したため誤実行防止 ===
+    # 再注入したい場合は下記2行を削除してください。
+    print("[BLOCKED] phaseA1_pr_disclosure.py は廃止されました（PR表記はフッター集約方針）")
+    import sys as _sys; _sys.exit(0)
     main()
