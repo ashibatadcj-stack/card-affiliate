@@ -25,6 +25,12 @@ python analytics\daily_cycle.py --days 28 --quiet
 set CYCLE_EXIT=%ERRORLEVEL%
 echo [%DATE% %TIME%] daily_cycle.py exit=%CYCLE_EXIT% >> analytics\output\cycle.log
 
+REM ---- Step 4.5: GSC URL Inspection（インデックス状況の取得・未登録URLリストアップ） ----
+echo [%DATE% %TIME%] === Step 4.5: check_index_status.py === >> analytics\output\cycle.log
+python analytics\check_index_status.py --quiet >> analytics\output\cycle.log 2>&1
+set IDX_CHECK_EXIT=%ERRORLEVEL%
+echo [%DATE% %TIME%] check_index_status.py exit=%IDX_CHECK_EXIT% >> analytics\output\cycle.log
+
 REM ---- Step 5: Google Indexing API ----
 echo [%DATE% %TIME%] === Step 5: submit_google_indexing.py === >> analytics\output\cycle.log
 python submit_google_indexing.py >> analytics\output\cycle.log 2>&1

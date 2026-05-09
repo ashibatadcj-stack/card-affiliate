@@ -162,6 +162,49 @@ def build_blocks(report_md: str, today: str) -> list:
         })
         blocks.append({"type": "divider"})
 
+    # ===== 未インデックスURL TOP10（GSC手動申請推奨） =====
+    index_status_path = OUTPUT_DIR / "index_status.json"
+    if index_status_path.exists():
+        try:
+            ix = json.loads(index_status_path.read_text(encoding="utf-8"))
+            summary = ix.get("summary", {})
+            results = ix.get("results", [])
+            indexed_n = summary.get("indexed", 0)
+            crawled_n = summary.get("crawled_not_indexed", 0)
+            disc_n = summary.get("discovered_not_crawled", 0)
+            unk_n = summary.get("unknown", 0)
+            total = ix.get("total", 0)
+            # 優先順位: クロール済み未登録 > 未クロール > Unknown
+            priority_order = {"crawled_not_indexed": 0, "discovered_not_crawled": 1, "unknown": 2}
+            not_indexed = [r for r in results
+                           if r.get("category") in priority_order]
+            not_indexed.sort(key=lambda r: priority_order.get(r.get("category"), 9))
+            top10 = not_indexed[:10]
+
+            summary_text = (
+                f"*インデックス状況*: ✅{indexed_n} / 🟡{crawled_n} / 🟠{disc_n} / ❌{unk_n}（全{total}URL）"
+            )
+            if top10:
+                lines = [summary_text, "", "📋 *GSC手動「インデックス登録をリクエスト」推奨URL（10件/日上限）*", ""]
+                for i, r in enumerate(top10, 1):
+                    emoji = r.get("emoji", "•")
+                    url = r.get("url", "")
+                    state = r.get("coverage_state", "")[:20]
+                    lines.append(f"{i}. {emoji} <{url}|{url.replace('https://cardshindan.com', '')}> _{state}_")
+                blocks.append({
+                    "type": "section",
+                    "text": {"type": "mrkdwn", "text": "\n".join(lines)},
+                })
+                blocks.append({"type": "divider"})
+            else:
+                blocks.append({
+                    "type": "section",
+                    "text": {"type": "mrkdwn", "text": summary_text + "\n（未登録URLなし）"},
+                })
+                blocks.append({"type": "divider"})
+        except Exception as e:
+            print(f"[WARN] index_status.json 読み込み失敗: {e}", file=sys.stderr)
+
     # アクションボタン群
     report_url = f"https://github.com/{GITHUB_REPO}/blob/main/analytics/output/daily-{today}.md"
     blocks.append({
