@@ -54,6 +54,15 @@ def render(ga4: dict[str, list[dict]], gsc: dict[str, list[dict]],
     avg_position = (sum(r.get("position", 0) for r in gsc_daily) / len(gsc_daily)) if gsc_daily else 0
     overall_ctr = (total_clicks / total_impressions * 100) if total_impressions else 0
 
+    # 判断可能ライン: 表示≥30 のクエリ・ページ数を集計（統計的に施策判断可能な閾値）
+    THRESHOLD = 30
+    queries_all = gsc.get("top_queries", [])
+    pages_all = gsc.get("top_pages", [])
+    queries_judge = sum(1 for q in queries_all if q.get('impressions', 0) >= THRESHOLD)
+    pages_judge = sum(1 for p in pages_all if p.get('impressions', 0) >= THRESHOLD)
+    queries_total = len(queries_all)
+    pages_total = len(pages_all)
+
     out.append(_table(
         ["指標", "数値"],
         [
@@ -65,6 +74,10 @@ def render(ga4: dict[str, list[dict]], gsc: dict[str, list[dict]],
             ["検索表示回数", f"{total_impressions:,}"],
             ["平均CTR", f"{overall_ctr:.2f}%"],
             ["平均検索順位", f"{avg_position:.1f}位"],
+            [f"📊 判断可能クエリ（表示≥{THRESHOLD}）",
+             f"**{queries_judge} / {queries_total}**" + ("" if queries_judge else " ⚠️ サンプル不足")],
+            [f"📊 判断可能ページ（表示≥{THRESHOLD}）",
+             f"**{pages_judge} / {pages_total}**" + ("" if pages_judge else " ⚠️ サンプル不足")],
         ],
     ))
     out.append("")

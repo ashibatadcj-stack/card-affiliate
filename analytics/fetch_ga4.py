@@ -86,13 +86,83 @@ def _build_request(dimensions: list[str], metrics: list[str], days: int,
 # レポート関数
 # ============================================================
 
-def top_pages(days: int = 28, limit: int = 50) -> list[dict]:
+def _normalize_path(path: str) -> str:
+    """三重計測問題対応: GA4のpagePathを正規化
+    - /card-affiliate/xxx (旧GitHub Pagesリポジトリパス) → /xxx
+    - /index.html → /
+    - 末尾 /index.html → 末尾 /
+    """
+    if not path:
+        return path
+    # /card-affiliate/ プレフィックス除去
+    if path.startswith('/card-affiliate/'):
+        path = path[len('/card-affiliate'):]  # → /xxx or /
+        if not path:
+            path = '/'
+    elif path == '/card-affiliate':
+        path = '/'
+    # /index.html 系を / に
+    if path == '/index.html':
+        path = '/'
+    elif path.endswith('/index.html'):
+        path = path[:-len('index.html')]
+    return path
+
+
+def _merge_normalized_paths(rows: list[dict], path_key: str = 'pagePath') -> list[dict]:
+    """正規化後の同一パスを持つ行を統合する。
+    - PV/セッション/エンゲージメント時間: 合算
+    - bounceRate: セッション重み付き平均（sessions が無い場合は単純平均）
+    """
+    merged: dict[str, dict] = {}
+    for row in rows:
+        original = row.get(path_key, '')
+        norm = _normalize_path(original)
+        if norm not in merged:
+            new_row = dict(row)
+            new_row[path_key] = norm
+            new_row['_session_total'] = float(row.get('sessions', 0) or 0)
+            new_row['_bounce_weighted'] = (
+                float(row.get('bounceRate', 0) or 0) * new_row['_session_total']
+            )
+            merged[norm] = new_row
+        else:
+            existing = merged[norm]
+            for k, v in row.items():
+                if k == path_key:
+                    continue
+                if k == 'bounceRate':
+                    s = float(row.get('sessions', 0) or 0)
+                    existing['_bounce_weighted'] = existing.get('_bounce_weighted', 0) + float(v or 0) * s
+                    continue
+                if k == 'pageTitle':
+                    # タイトルは最も多くのPVを稼ぐ行のものを採用（既に上書きされない設計）
+                    continue
+                if isinstance(v, (int, float)):
+                    existing[k] = (existing.get(k, 0) or 0) + v
+            existing['_session_total'] = existing.get('_session_total', 0) + float(row.get('sessions', 0) or 0)
+    # bounceRate を重み付き平均に再計算
+    out: list[dict] = []
+    for row in merged.values():
+        st = row.pop('_session_total', 0)
+        bw = row.pop('_bounce_weighted', 0)
+        if st > 0:
+            row['bounceRate'] = bw / st
+        out.append(row)
+    out.sort(key=lambda r: r.get('screenPageViews', 0), reverse=True)
+    return out
+
+
+def top_pages(days: int = 28, limit: int = 50, normalize: bool = True) -> list[dict]:
     body = _build_request(
         dimensions=["pagePath", "pageTitle"],
         metrics=["screenPageViews", "sessions", "userEngagementDuration", "bounceRate"],
         days=days, order_metric="screenPageViews", limit=limit,
     )
-    return _run(body)
+    rows = _run(body)
+    if normalize:
+        rows = _merge_normalized_paths(rows, path_key='pagePath')
+    return rows[:limit]
 
 
 def traffic_sources(days: int = 28) -> list[dict]:
@@ -131,13 +201,16 @@ def daily_pageviews(days: int = 28) -> list[dict]:
     return _run(body)
 
 
-def landing_pages(days: int = 28, limit: int = 30) -> list[dict]:
+def landing_pages(days: int = 28, limit: int = 30, normalize: bool = True) -> list[dict]:
     body = _build_request(
         dimensions=["landingPage"],
         metrics=["sessions", "bounceRate", "userEngagementDuration"],
         days=days, order_metric="sessions", limit=limit,
     )
-    return _run(body)
+    rows = _run(body)
+    if normalize:
+        rows = _merge_normalized_paths(rows, path_key='landingPage')
+    return rows[:limit]
 
 
 def fetch_all(days: int = 28) -> dict[str, list[dict]]:

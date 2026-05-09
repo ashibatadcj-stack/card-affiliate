@@ -162,6 +162,48 @@ def build_blocks(report_md: str, today: str) -> list:
         })
         blocks.append({"type": "divider"})
 
+    # ===== 注目ページ推移（GSC top_pages のうち表示≥1） =====
+    # daily_cycle が出力する .cache/data-YYYY-MM-DD-28d.json から検索流入ページを取得
+    cache_path = ROOT_DIR / "analytics" / ".cache" / f"data-{today}-28d.json"
+    try:
+        if cache_path.exists():
+            cache_data = json.loads(cache_path.read_text(encoding="utf-8"))
+            gsc_data = cache_data.get("gsc", {})
+            top_search_pages = sorted(
+                gsc_data.get("top_pages", []),
+                key=lambda p: p.get("impressions", 0),
+                reverse=True,
+            )[:5]
+            if top_search_pages:
+                THRESHOLD = 30
+                lines = [f"📈 *注目ページ推移（GSC表示順 TOP5・閾値 {THRESHOLD}）*", ""]
+                judge_count = 0
+                for i, p in enumerate(top_search_pages, 1):
+                    page = p.get("page", "")
+                    short = page.replace("https://cardshindan.com", "") or "/"
+                    imp = p.get("impressions", 0)
+                    pos = p.get("position", 0)
+                    clk = p.get("clicks", 0)
+                    badge = "✅" if imp >= THRESHOLD else "⏳"
+                    if imp >= THRESHOLD:
+                        judge_count += 1
+                    lines.append(
+                        f"{badge} {i}. <{page}|{short}> "
+                        f"表示*{imp}* / クリック{clk} / 順位{pos:.1f}位"
+                    )
+                lines.append("")
+                if judge_count:
+                    lines.append(f"🎯 *判断可能ページ: {judge_count}/5 件*（表示≥{THRESHOLD}達成）→ CTR最適化検討可")
+                else:
+                    lines.append(f"⏳ 全ページ表示<{THRESHOLD}。判断可能ライン未達 → 引き続き観測")
+                blocks.append({
+                    "type": "section",
+                    "text": {"type": "mrkdwn", "text": "\n".join(lines)},
+                })
+                blocks.append({"type": "divider"})
+    except Exception as e:
+        print(f"[WARN] cache data 読み込み失敗: {e}", file=sys.stderr)
+
     # ===== 未インデックスURL TOP10（GSC手動申請推奨） =====
     index_status_path = OUTPUT_DIR / "index_status.json"
     if index_status_path.exists():
