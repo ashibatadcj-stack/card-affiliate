@@ -1918,10 +1918,18 @@ function renderQuestion(){
     b.onclick=()=>select(q.id,o.value);
     c.appendChild(b);
   });
+  // GA4: 初問描画時に quiz_start を送信
+  if(step===0 && typeof gtag==='function'){
+    try{ gtag('event','quiz_start',{quiz_total_questions: QUESTIONS.length}); }catch(_){}
+  }
 }
 
 function select(qid,val){
   answers[qid]=val;
+  // GA4: 各回答イベント
+  if(typeof gtag==='function'){
+    try{ gtag('event','quiz_answer',{question_id: qid, choice_value: val, question_index: step}); }catch(_){}
+  }
   step++;
   if(step<QUESTIONS.length){renderQuestion();}else{showResult();}
 }
@@ -1972,6 +1980,11 @@ function showResult(){
   document.getElementById('quizSection').style.display='none';
   const rs=document.getElementById('resultSection');
   rs.style.display='block';
+
+  // GA4: クイズ完了
+  if(typeof gtag==='function'){
+    try{ gtag('event','quiz_complete',{answers_count: Object.keys(answers).length}); }catch(_){}
+  }
 
   // スコア計算
   let scored=CARDS.map(c=>{

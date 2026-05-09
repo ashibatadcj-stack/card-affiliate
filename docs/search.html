@@ -89,7 +89,12 @@ function doSearch(e) {
   if (e) e.preventDefault();
   const q = document.getElementById('q').value.trim();
   history.replaceState(null, '', '/search.html?q=' + encodeURIComponent(q));
-  render(search(q), q);
+  const results = search(q);
+  render(results, q);
+  // GA4: サイト内検索イベント
+  if (q && typeof gtag === 'function') {
+    try { gtag('event', 'internal_search', { search_term: q, results_count: results.length }); } catch(_){}
+  }
   return false;
 }
 (async function init() {
