@@ -55,6 +55,12 @@ python analytics\auto_action_local.py >> analytics\output\cycle.log 2>&1
 set AUTO_EXIT=%ERRORLEVEL%
 echo [%DATE% %TIME%] auto_action_local.py exit=%AUTO_EXIT% >> analytics\output\cycle.log
 
+REM ---- Step 9: 効果測定・ブラックリスト学習・週次サマリー（土曜にSlack通知） ----
+echo [%DATE% %TIME%] === Step 9: effect_tracker.py === >> analytics\output\cycle.log
+python analytics\effect_tracker.py --quiet >> analytics\output\cycle.log 2>&1
+set EFFECT_EXIT=%ERRORLEVEL%
+echo [%DATE% %TIME%] effect_tracker.py exit=%EFFECT_EXIT% >> analytics\output\cycle.log
+
 echo [%DATE% %TIME%] === DAILY RUN COMPLETE: cycle=%CYCLE_EXIT% indexing=%IDX_EXIT% indexnow=%NOW_EXIT% slack=%SLACK_EXIT% auto=%AUTO_EXIT% === >> analytics\output\cycle.log
 
 endlocal & exit /b %CYCLE_EXIT%
