@@ -1,21 +1,22 @@
 """
-Claude API を使った対応方針プランナー
+Claude を使った対応方針プランナー
 
 入力:  日次レポート(Markdown) + 履歴差分(deltas) + サイト構造情報
 出力:  優先度付き対応方針 (Markdown)
 
-毎日、レポートを Claude に渡して「今日やるべき具体的アクション TOP3〜5」を返してもらう。
-
-【2026-05-09 改訂】
-PROMPT_TEMPLATE を改訂: 各打ち手に「必要性評価・効果見込み・副作用リスク・代替案」を必須化、
-微小サンプルでの安易な改善提案・Google評価サイクル妨害を防ぐアンチパターン警告を追加、
-「待機（何もしない）」を妥当な選択肢として明示的に許容。
+【2026-05-09 改訂2】
+Anthropic API SDK 経由 → **claude CLI（Pro/Maxプラン）経由** に変更
+- API課金なし（Pro/Maxプランの定額枠を消費）
+- モデルを Haiku → **Sonnet** に格上げ（分析品質の向上）
+- 自動化の安定性より分析品質を優先（CLI失敗時は明示的にエラーを出す）
+- フォールバック: 環境変数 ALLOW_API_FALLBACK=1 のとき限り、API SDK にフォールバック
 """
 from __future__ import annotations
 import os
+import platform
+import shutil
+import subprocess
 from pathlib import Path
-
-import anthropic
 
 
 SITE_CONTEXT = """
@@ -108,22 +109,100 @@ PROMPT_TEMPLATE = """\
 - 必ずデータの数値を根拠として引用すること
 - 当サイトのページ構成（articles/{{id}}.html / pillar-*.html）を踏まえて、どのページのどこを編集すべきか明示
 - A8アフィリエイト収益最大化の視点も入れる（ただし統計的根拠が伴う場合のみ）
-- 約2000〜3000字
+- 約2500〜4000字（必要十分な長さ。冗長は避け、各項目を必ず最後まで書ききる）
 """
 
 
-def generate_action_plan(report_md: str, deltas_md: str, period_days: int) -> str:
-    """Claude を呼び出して対応方針 Markdown を返す"""
+# ============================================================
+# 実行: claude CLI 経由（Pro/Maxプラン消費・課金なし・Sonnet）
+# ============================================================
+
+def _find_claude_cli() -> str | None:
+    """OS に応じて claude CLI のパスを返す（見つからなければ None）"""
+    if platform.system() == 'Windows':
+        # Windows: shutil.which は通常 .cmd を見つけられる
+        for name in ['claude.cmd', 'claude']:
+            path = shutil.which(name)
+            if path:
+                return path
+        # 既知のインストールパスをフォールバック
+        npm_dir = Path(os.environ.get('APPDATA', '')) / 'npm'
+        for fname in ('claude.cmd', 'claude'):
+            cand = npm_dir / fname
+            if cand.exists():
+                return str(cand)
+    else:
+        path = shutil.which('claude')
+        if path:
+            return path
+    return None
+
+
+def _generate_via_cli(prompt: str, model: str = 'sonnet', timeout_sec: int = 600) -> str:
+    """claude CLI 経由でレスポンス取得（Pro/Maxプラン消費）"""
+    cli = _find_claude_cli()
+    if not cli:
+        raise RuntimeError(
+            "claude CLI が見つかりません。`npm install -g @anthropic-ai/claude-code` で導入してください"
+        )
+
+    # ツール使用を無効化（純粋にテキスト生成のみさせる）
+    cmd = [
+        cli,
+        '--print',                         # 非対話モードで応答を出力して終了
+        '--model', model,                  # 'sonnet' or 'opus' or 'haiku'
+        '--disallowedTools', 'Bash', 'Edit', 'Write', 'Read', 'Glob', 'Grep',
+        '--disable-slash-commands',        # スラッシュコマンド無効
+    ]
+
+    result = subprocess.run(
+        cmd,
+        input=prompt,
+        capture_output=True,
+        text=True,
+        encoding='utf-8',
+        errors='replace',
+        timeout=timeout_sec,
+    )
+
+    if result.returncode != 0:
+        # 失敗時は CLI が出した stderr を含めて投げる
+        err = (result.stderr or '').strip()[:600]
+        out = (result.stdout or '').strip()[:200]
+        raise RuntimeError(
+            f"claude CLI failed (exit {result.returncode})\n"
+            f"  stderr: {err}\n"
+            f"  stdout: {out}"
+        )
+
+    output = result.stdout.strip()
+    if not output:
+        raise RuntimeError("claude CLI は空の応答を返しました（ログイン切れの可能性）")
+    return output
+
+
+def _generate_via_api(prompt: str) -> str:
+    """API SDK 経由（フォールバック・課金あり）"""
+    import anthropic
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        # fallback: ルートの .env を override=True で読込
         from dotenv import load_dotenv
         load_dotenv(Path(__file__).parent.parent / ".env", override=True)
         api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        raise EnvironmentError("ANTHROPIC_API_KEY が未設定です")
+        raise EnvironmentError("ANTHROPIC_API_KEY が未設定です（フォールバック不可）")
 
     client = anthropic.Anthropic(api_key=api_key)
+    msg = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=4500,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return msg.content[0].text
+
+
+def generate_action_plan(report_md: str, deltas_md: str, period_days: int) -> str:
+    """対応方針 Markdown を返す"""
     prompt = PROMPT_TEMPLATE.format(
         site_context=SITE_CONTEXT,
         deltas=deltas_md,
@@ -131,9 +210,15 @@ def generate_action_plan(report_md: str, deltas_md: str, period_days: int) -> st
         period_days=period_days,
     )
 
-    msg = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=4500,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return msg.content[0].text
+    # 優先: claude CLI（Pro/Maxプラン枠・課金なし・Sonnet）
+    try:
+        return _generate_via_cli(prompt, model='sonnet')
+    except Exception as e:
+        msg = f"[ERROR] claude CLI 経由の生成に失敗: {e}"
+        # フォールバック許可フラグ確認
+        if os.environ.get("ALLOW_API_FALLBACK", "").lower() in ('1', 'true', 'yes'):
+            print(f"{msg}\n[WARN] API SDK へフォールバック（課金発生）...")
+            return _generate_via_api(prompt)
+        # フォールバック禁止 → エラー伝搬
+        print(msg)
+        raise
