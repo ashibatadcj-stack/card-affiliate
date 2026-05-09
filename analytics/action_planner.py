@@ -7,7 +7,7 @@ Claude を使った対応方針プランナー
 【2026-05-09 改訂2】
 Anthropic API SDK 経由 → **claude CLI（Pro/Maxプラン）経由** に変更
 - API課金なし（Pro/Maxプランの定額枠を消費）
-- モデルを Haiku → **Sonnet** に格上げ（分析品質の向上）
+- モデルを Haiku → Sonnet → **Opus（最新）** に格上げ（分析品質の最大化）
 - 自動化の安定性より分析品質を優先（CLI失敗時は明示的にエラーを出す）
 - フォールバック: 環境変数 ALLOW_API_FALLBACK=1 のとき限り、API SDK にフォールバック
 """
@@ -210,9 +210,9 @@ def generate_action_plan(report_md: str, deltas_md: str, period_days: int) -> st
         period_days=period_days,
     )
 
-    # 優先: claude CLI（Pro/Maxプラン枠・課金なし・Sonnet）
+    # 優先: claude CLI（Pro/Maxプラン枠・課金なし・Opus 最新）
     try:
-        return _generate_via_cli(prompt, model='sonnet')
+        return _generate_via_cli(prompt, model='opus')
     except Exception as e:
         msg = f"[ERROR] claude CLI 経由の生成に失敗: {e}"
         # フォールバック許可フラグ確認
