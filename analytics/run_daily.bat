@@ -7,17 +7,30 @@ REM   1. Fetch GA4 + Search Console data (28 days)
 REM   2. Generate report + update history CSV
 REM   3. Generate action plan via Claude API
 REM   4. Save analytics/output/daily-YYYY-MM-DD.md and latest.md
+REM   4.5. URL Inspection (index status check)
 REM   5. Submit URLs to Google Indexing API
 REM   6. Submit URLs to IndexNow (Bing/Yandex)
+REM   7. Slack notification
+REM   8. Auto-implement actions via local Claude Code
+REM   9. Effect tracker (weekly summary on Saturdays)
 REM
-REM  Log: analytics/output/cycle.log
+REM  Logs:
+REM   - analytics/output/task_trigger.log : bat 起動マーカー（トラブル切り分け用）
+REM   - analytics/output/cycle.log         : 各ステップ実行ログ
 REM ==============================================================
+
+REM ★最優先: bat が起動したマーカーを残す（権限・PATH問題があれば即座に判明）
+echo [%DATE% %TIME%] TASK_TRIGGERED dir=%~dp0 >> "%~dp0output\task_trigger.log" 2>&1
 
 setlocal
 set PYTHONIOENCODING=utf-8
 
 REM Move to project root (one level above this bat file)
 cd /d "%~dp0\.."
+
+REM 起動環境の診断情報を1度だけログに出す
+echo [%DATE% %TIME%] BAT_STARTED cwd=%CD% python=%PYTHON_HOME% >> "analytics\output\task_trigger.log" 2>&1
+where python >> "analytics\output\task_trigger.log" 2>&1
 
 REM ---- Step 1-4: Daily analytics cycle ----
 echo [%DATE% %TIME%] === Step 1-4: analytics/daily_cycle.py === >> analytics\output\cycle.log
