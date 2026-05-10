@@ -20,7 +20,9 @@ REM   - analytics/output/cycle.log         : 各ステップ実行ログ
 REM ==============================================================
 
 REM ★最優先: bat が起動したマーカーを残す（権限・PATH問題があれば即座に判明）
-echo [%DATE% %TIME%] TASK_TRIGGERED dir=%~dp0 >> "%~dp0output\task_trigger.log" 2>&1
+REM 注意: %DATE% %TIME% は日本語ロケールで "(日)" 等の括弧が含まれるため、
+REM     echo の引数全体を "..." で囲んで解析エラーを防ぐ
+echo "[%DATE% %TIME%] TASK_TRIGGERED dir=%~dp0" >> "%~dp0output\task_trigger.log" 2>&1
 
 setlocal
 set PYTHONIOENCODING=utf-8
@@ -28,8 +30,8 @@ set PYTHONIOENCODING=utf-8
 REM Move to project root (one level above this bat file)
 cd /d "%~dp0\.."
 
-REM 起動環境の診断情報を1度だけログに出す
-echo [%DATE% %TIME%] BAT_STARTED cwd=%CD% python=%PYTHON_HOME% >> "analytics\output\task_trigger.log" 2>&1
+REM 起動環境の診断情報を1度だけログに出す（ダブルクオートで括弧問題を回避）
+echo "[%DATE% %TIME%] BAT_STARTED cwd=%CD%" >> "analytics\output\task_trigger.log" 2>&1
 where python >> "analytics\output\task_trigger.log" 2>&1
 
 REM ---- Step 1-4: Daily analytics cycle ----
